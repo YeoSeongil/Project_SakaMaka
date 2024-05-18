@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		441A83D1C21DB4BECBB7CEC7 /* Pods_Project_SakaMaka.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED2D95E7182D7927D859FBC5 /* Pods_Project_SakaMaka.framework */; };
+		9E5879C12BF8D85200E55E19 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9E5879C02BF8D85200E55E19 /* GoogleService-Info.plist */; };
+		9E5879C32BF8D8EF00E55E19 /* AuthServiceError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E5879C22BF8D8EF00E55E19 /* AuthServiceError.swift */; };
 		9E7455BE2BF89D0000D519AD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7455BD2BF89D0000D519AD /* AppDelegate.swift */; };
 		9E7455C02BF89D0000D519AD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7455BF2BF89D0000D519AD /* SceneDelegate.swift */; };
 		9E7455C22BF89D0000D519AD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7455C12BF89D0000D519AD /* ViewController.swift */; };
@@ -24,6 +26,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9E5879C02BF8D85200E55E19 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		9E5879C22BF8D8EF00E55E19 /* AuthServiceError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthServiceError.swift; sourceTree = "<group>"; };
 		9E7455BA2BF89D0000D519AD /* Project_SakaMaka.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Project_SakaMaka.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E7455BD2BF89D0000D519AD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9E7455BF2BF89D0000D519AD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -95,6 +99,7 @@
 				9E7455C12BF89D0000D519AD /* ViewController.swift */,
 				9E7455C62BF89D0100D519AD /* Assets.xcassets */,
 				9E7455CB2BF89D0100D519AD /* Info.plist */,
+				9E5879C02BF8D85200E55E19 /* GoogleService-Info.plist */,
 			);
 			path = Project_SakaMaka;
 			sourceTree = "<group>";
@@ -214,6 +219,7 @@
 			children = (
 				9E7455F02BF8D69400D519AD /* AuthService.swift */,
 				9E7455EE2BF8D44500D519AD /* AppleAuthManager.swift */,
+				9E5879C22BF8D8EF00E55E19 /* AuthServiceError.swift */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -288,6 +294,7 @@
 			files = (
 				9E7455D22BF89DD700D519AD /* .gitignore in Resources */,
 				9E7455C72BF89D0100D519AD /* Assets.xcassets in Resources */,
+				9E5879C12BF8D85200E55E19 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -346,6 +353,7 @@
 				9E7455C22BF89D0000D519AD /* ViewController.swift in Sources */,
 				9E7455D72BF89F0900D519AD /* BaseViewController.swift in Sources */,
 				9E7455F12BF8D69400D519AD /* AuthService.swift in Sources */,
+				9E5879C32BF8D8EF00E55E19 /* AuthServiceError.swift in Sources */,
 				9E7455BE2BF89D0000D519AD /* AppDelegate.swift in Sources */,
 				9E7455C02BF89D0000D519AD /* SceneDelegate.swift in Sources */,
 				9E7455DA2BF8A05A00D519AD /* SplashViewController.swift in Sources */,
