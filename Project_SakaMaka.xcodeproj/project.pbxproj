@@ -82,8 +82,8 @@
 		9E7455BC2BF89D0000D519AD /* Project_SakaMaka */ = {
 			isa = PBXGroup;
 			children = (
-				9E7455D42BF89EFA00D519AD /* Source */,
 				9E7455D32BF89EF500D519AD /* Configure */,
+				9E7455D42BF89EFA00D519AD /* Source */,
 				9E7455BD2BF89D0000D519AD /* AppDelegate.swift */,
 				9E7455BF2BF89D0000D519AD /* SceneDelegate.swift */,
 				9E7455C12BF89D0000D519AD /* ViewController.swift */,
@@ -132,7 +132,7 @@
 		9E7455DB2BF8A0D000D519AD /* Splash */ = {
 			isa = PBXGroup;
 			children = (
-				9E7455D92BF8A05A00D519AD /* SplashViewController.swift */,
+				9E7455E72BF8CDEA00D519AD /* ViewController */,
 			);
 			path = Splash;
 			sourceTree = "<group>";
@@ -147,7 +147,7 @@
 		9E7455DD2BF8A17700D519AD /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				9E7455DE2BF8A18B00D519AD /* LoginViewController.swift */,
+				9E7455E82BF8CDEF00D519AD /* ViewController */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -167,6 +167,22 @@
 				9E7455E42BF8AC0700D519AD /* Roboto-Medium.ttf */,
 			);
 			path = Font;
+			sourceTree = "<group>";
+		};
+		9E7455E72BF8CDEA00D519AD /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				9E7455D92BF8A05A00D519AD /* SplashViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		9E7455E82BF8CDEF00D519AD /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				9E7455DE2BF8A18B00D519AD /* LoginViewController.swift */,
+			);
+			path = ViewController;
 			sourceTree = "<group>";
 		};
 		D493147200B50EB05B8FBA4F /* Frameworks */ = {
