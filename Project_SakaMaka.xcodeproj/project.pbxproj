@@ -119,9 +119,25 @@
 		9E7455D82BF8A04F00D519AD /* View */ = {
 			isa = PBXGroup;
 			children = (
-				9E7455D92BF8A05A00D519AD /* SplashViewController.swift */,
+				9E7455DB2BF8A0D000D519AD /* Splash */,
+				9E7455DC2BF8A0EC00D519AD /* Register */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		9E7455DB2BF8A0D000D519AD /* Splash */ = {
+			isa = PBXGroup;
+			children = (
+				9E7455D92BF8A05A00D519AD /* SplashViewController.swift */,
+			);
+			path = Splash;
+			sourceTree = "<group>";
+		};
+		9E7455DC2BF8A0EC00D519AD /* Register */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Register;
 			sourceTree = "<group>";
 		};
 		D493147200B50EB05B8FBA4F /* Frameworks */ = {
