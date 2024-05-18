@@ -17,6 +17,7 @@
 		9E7455DA2BF8A05A00D519AD /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7455D92BF8A05A00D519AD /* SplashViewController.swift */; };
 		9E7455DF2BF8A18B00D519AD /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7455DE2BF8A18B00D519AD /* LoginViewController.swift */; };
 		9E7455E22BF8AA8400D519AD /* UIColor + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7455E12BF8AA8400D519AD /* UIColor + Extension.swift */; };
+		9E7455E62BF8AC6D00D519AD /* UIFont + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7455E52BF8AC6D00D519AD /* UIFont + Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		9E7455DE2BF8A18B00D519AD /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		9E7455E12BF8AA8400D519AD /* UIColor + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor + Extension.swift"; sourceTree = "<group>"; };
 		9E7455E42BF8AC0700D519AD /* Roboto-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Medium.ttf"; sourceTree = "<group>"; };
+		9E7455E52BF8AC6D00D519AD /* UIFont + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont + Extension.swift"; sourceTree = "<group>"; };
 		C12611E47E27819F2A19345D /* Pods-Project_SakaMaka.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Project_SakaMaka.debug.xcconfig"; path = "Target Support Files/Pods-Project_SakaMaka/Pods-Project_SakaMaka.debug.xcconfig"; sourceTree = "<group>"; };
 		DBD4C8D96ACD58BAB179AE4A /* Pods-Project_SakaMaka.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Project_SakaMaka.release.xcconfig"; path = "Target Support Files/Pods-Project_SakaMaka/Pods-Project_SakaMaka.release.xcconfig"; sourceTree = "<group>"; };
 		ED2D95E7182D7927D859FBC5 /* Pods_Project_SakaMaka.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Project_SakaMaka.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -154,6 +156,7 @@
 			isa = PBXGroup;
 			children = (
 				9E7455E12BF8AA8400D519AD /* UIColor + Extension.swift */,
+				9E7455E52BF8AC6D00D519AD /* UIFont + Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -288,6 +291,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9E7455E62BF8AC6D00D519AD /* UIFont + Extension.swift in Sources */,
 				9E7455E22BF8AA8400D519AD /* UIColor + Extension.swift in Sources */,
 				9E7455DF2BF8A18B00D519AD /* LoginViewController.swift in Sources */,
 				9E7455C22BF89D0000D519AD /* ViewController.swift in Sources */,
