@@ -11,11 +11,13 @@
 		9E7455BE2BF89D0000D519AD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7455BD2BF89D0000D519AD /* AppDelegate.swift */; };
 		9E7455C02BF89D0000D519AD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7455BF2BF89D0000D519AD /* SceneDelegate.swift */; };
 		9E7455C22BF89D0000D519AD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7455C12BF89D0000D519AD /* ViewController.swift */; };
-		9E7455C52BF89D0000D519AD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E7455C32BF89D0000D519AD /* Main.storyboard */; };
 		9E7455C72BF89D0100D519AD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9E7455C62BF89D0100D519AD /* Assets.xcassets */; };
-		9E7455CA2BF89D0100D519AD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E7455C82BF89D0100D519AD /* LaunchScreen.storyboard */; };
 		9E7455D22BF89DD700D519AD /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 9E7455D12BF89DD700D519AD /* .gitignore */; };
 		9E7455D72BF89F0900D519AD /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7455D62BF89F0900D519AD /* BaseViewController.swift */; };
+		9E7455DA2BF8A05A00D519AD /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7455D92BF8A05A00D519AD /* SplashViewController.swift */; };
+		9E7455DF2BF8A18B00D519AD /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7455DE2BF8A18B00D519AD /* LoginViewController.swift */; };
+		9E7455E22BF8AA8400D519AD /* UIColor + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7455E12BF8AA8400D519AD /* UIColor + Extension.swift */; };
+		9E7455E62BF8AC6D00D519AD /* UIFont + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7455E52BF8AC6D00D519AD /* UIFont + Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,12 +25,15 @@
 		9E7455BD2BF89D0000D519AD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9E7455BF2BF89D0000D519AD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		9E7455C12BF89D0000D519AD /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		9E7455C42BF89D0000D519AD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9E7455C62BF89D0100D519AD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		9E7455C92BF89D0100D519AD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9E7455CB2BF89D0100D519AD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9E7455D12BF89DD700D519AD /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		9E7455D62BF89F0900D519AD /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		9E7455D92BF8A05A00D519AD /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
+		9E7455DE2BF8A18B00D519AD /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		9E7455E12BF8AA8400D519AD /* UIColor + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor + Extension.swift"; sourceTree = "<group>"; };
+		9E7455E42BF8AC0700D519AD /* Roboto-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Medium.ttf"; sourceTree = "<group>"; };
+		9E7455E52BF8AC6D00D519AD /* UIFont + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont + Extension.swift"; sourceTree = "<group>"; };
 		C12611E47E27819F2A19345D /* Pods-Project_SakaMaka.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Project_SakaMaka.debug.xcconfig"; path = "Target Support Files/Pods-Project_SakaMaka/Pods-Project_SakaMaka.debug.xcconfig"; sourceTree = "<group>"; };
 		DBD4C8D96ACD58BAB179AE4A /* Pods-Project_SakaMaka.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Project_SakaMaka.release.xcconfig"; path = "Target Support Files/Pods-Project_SakaMaka/Pods-Project_SakaMaka.release.xcconfig"; sourceTree = "<group>"; };
 		ED2D95E7182D7927D859FBC5 /* Pods_Project_SakaMaka.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Project_SakaMaka.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -82,9 +87,7 @@
 				9E7455BD2BF89D0000D519AD /* AppDelegate.swift */,
 				9E7455BF2BF89D0000D519AD /* SceneDelegate.swift */,
 				9E7455C12BF89D0000D519AD /* ViewController.swift */,
-				9E7455C32BF89D0000D519AD /* Main.storyboard */,
 				9E7455C62BF89D0100D519AD /* Assets.xcassets */,
-				9E7455C82BF89D0100D519AD /* LaunchScreen.storyboard */,
 				9E7455CB2BF89D0100D519AD /* Info.plist */,
 			);
 			path = Project_SakaMaka;
@@ -93,6 +96,8 @@
 		9E7455D32BF89EF500D519AD /* Configure */ = {
 			isa = PBXGroup;
 			children = (
+				9E7455E32BF8ABDB00D519AD /* Font */,
+				9E7455E02BF8AA7300D519AD /* Extension */,
 				9E7455D52BF89F0200D519AD /* Base */,
 			);
 			path = Configure;
@@ -101,6 +106,7 @@
 		9E7455D42BF89EFA00D519AD /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				9E7455D82BF8A04F00D519AD /* View */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -111,6 +117,56 @@
 				9E7455D62BF89F0900D519AD /* BaseViewController.swift */,
 			);
 			path = Base;
+			sourceTree = "<group>";
+		};
+		9E7455D82BF8A04F00D519AD /* View */ = {
+			isa = PBXGroup;
+			children = (
+				9E7455DB2BF8A0D000D519AD /* Splash */,
+				9E7455DC2BF8A0EC00D519AD /* Register */,
+				9E7455DD2BF8A17700D519AD /* Login */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		9E7455DB2BF8A0D000D519AD /* Splash */ = {
+			isa = PBXGroup;
+			children = (
+				9E7455D92BF8A05A00D519AD /* SplashViewController.swift */,
+			);
+			path = Splash;
+			sourceTree = "<group>";
+		};
+		9E7455DC2BF8A0EC00D519AD /* Register */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Register;
+			sourceTree = "<group>";
+		};
+		9E7455DD2BF8A17700D519AD /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				9E7455DE2BF8A18B00D519AD /* LoginViewController.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		9E7455E02BF8AA7300D519AD /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				9E7455E12BF8AA8400D519AD /* UIColor + Extension.swift */,
+				9E7455E52BF8AC6D00D519AD /* UIFont + Extension.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		9E7455E32BF8ABDB00D519AD /* Font */ = {
+			isa = PBXGroup;
+			children = (
+				9E7455E42BF8AC0700D519AD /* Roboto-Medium.ttf */,
+			);
+			path = Font;
 			sourceTree = "<group>";
 		};
 		D493147200B50EB05B8FBA4F /* Frameworks */ = {
@@ -182,9 +238,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9E7455D22BF89DD700D519AD /* .gitignore in Resources */,
-				9E7455CA2BF89D0100D519AD /* LaunchScreen.storyboard in Resources */,
 				9E7455C72BF89D0100D519AD /* Assets.xcassets in Resources */,
-				9E7455C52BF89D0000D519AD /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -237,33 +291,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9E7455E62BF8AC6D00D519AD /* UIFont + Extension.swift in Sources */,
+				9E7455E22BF8AA8400D519AD /* UIColor + Extension.swift in Sources */,
+				9E7455DF2BF8A18B00D519AD /* LoginViewController.swift in Sources */,
 				9E7455C22BF89D0000D519AD /* ViewController.swift in Sources */,
 				9E7455D72BF89F0900D519AD /* BaseViewController.swift in Sources */,
 				9E7455BE2BF89D0000D519AD /* AppDelegate.swift in Sources */,
 				9E7455C02BF89D0000D519AD /* SceneDelegate.swift in Sources */,
+				9E7455DA2BF8A05A00D519AD /* SplashViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		9E7455C32BF89D0000D519AD /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				9E7455C42BF89D0000D519AD /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		9E7455C82BF89D0100D519AD /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				9E7455C92BF89D0100D519AD /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		9E7455CC2BF89D0100D519AD /* Debug */ = {
@@ -303,7 +342,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -366,7 +405,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -398,7 +437,6 @@
 				INFOPLIST_FILE = Project_SakaMaka/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -427,7 +465,6 @@
 				INFOPLIST_FILE = Project_SakaMaka/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
