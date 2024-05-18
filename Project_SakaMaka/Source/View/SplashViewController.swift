@@ -7,7 +7,13 @@
 
 import UIKit
 
-class SplashViewController: UIViewController {
+import RxSwift
+import RxCocoa
+
+import SnapKit
+import Then
+
+class SplashViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -15,7 +21,6 @@ class SplashViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-
     /*
     // MARK: - Navigation
 
