@@ -21,7 +21,7 @@ class LoginViewController: BaseViewController {
     
     private let loginButtonStackView = UIStackView().then {
         $0.axis = .vertical
-        $0.spacing = 5.0
+        $0.spacing = 8.0
         $0.backgroundColor = .clear
     }
     
@@ -41,16 +41,15 @@ class LoginViewController: BaseViewController {
     
     private let googleLoginButton = UIButton(type: .system).then {
         $0.setTitle("Google로 로그인", for: .normal)
-        $0.setTitleColor(.white, for: .normal)
+        $0.setTitleColor(.black, for: .normal)
         $0.titleLabel?.font = UIFont.systemFont(ofSize: 20, weight: .medium)
         $0.titleLabel?.textAlignment = .center
         $0.layer.cornerRadius = 10.0
-        $0.backgroundColor = .googleLoginButtonColor
+        $0.backgroundColor = .white
     }
     
     private let googleLogoImageView = UIImageView().then {
-        $0.image = UIImage(named: "googleLogo")?.withRenderingMode(.alwaysTemplate)
-        $0.tintColor = .white
+        $0.image = UIImage(named: "googleLogo")
         $0.contentMode = .scaleAspectFill
     }
     
@@ -79,7 +78,7 @@ class LoginViewController: BaseViewController {
         
         loginButtonStackView.snp.makeConstraints {
             $0.bottom.equalTo(view.safeAreaInsets).inset(100)
-            $0.height.equalTo(125)
+            $0.height.equalTo(128)
             $0.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(20)
         }
         
