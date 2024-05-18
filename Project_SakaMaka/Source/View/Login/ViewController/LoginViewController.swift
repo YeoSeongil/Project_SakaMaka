@@ -17,8 +17,9 @@ import Then
 
 class LoginViewController: BaseViewController {
 
-    // MARK: - UI Components
+    private let viewModel: LoginViewModelType
     
+    // MARK: - UI Components
     private let loginButtonStackView = UIStackView().then {
         $0.axis = .vertical
         $0.spacing = 8.0
@@ -53,10 +54,22 @@ class LoginViewController: BaseViewController {
         $0.contentMode = .scaleAspectFill
     }
     
+    // MARK: - Init
+    init(viewModel: LoginViewModelType = LoginViewModel()) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
     }
     
+    // MARK: - SetUp VC
     override func setViewController() {
         super.setViewController()
         view.backgroundColor = .black
@@ -99,6 +112,17 @@ class LoginViewController: BaseViewController {
             $0.centerY.equalTo(googleLoginButton)
             $0.width.height.equalTo(24)
         }
+    }
+    
+    override func bind() {
+        // Input
+        appleLoginButton.rx.tap
+            .bind(to: viewModel.tappedAppleLogin)
+            .disposed(by: disposeBag)
+        
+        googleLoginButton.rx.tap
+            .bind(to: viewModel.tappedGoogleLogin)
+            .disposed(by: disposeBag)
     }
 
 }
