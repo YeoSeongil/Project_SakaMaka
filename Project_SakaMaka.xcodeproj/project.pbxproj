@@ -15,6 +15,7 @@
 		9E7455C72BF89D0100D519AD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9E7455C62BF89D0100D519AD /* Assets.xcassets */; };
 		9E7455CA2BF89D0100D519AD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E7455C82BF89D0100D519AD /* LaunchScreen.storyboard */; };
 		9E7455D22BF89DD700D519AD /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 9E7455D12BF89DD700D519AD /* .gitignore */; };
+		9E7455D72BF89F0900D519AD /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7455D62BF89F0900D519AD /* BaseViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +28,7 @@
 		9E7455C92BF89D0100D519AD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9E7455CB2BF89D0100D519AD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9E7455D12BF89DD700D519AD /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		9E7455D62BF89F0900D519AD /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		C12611E47E27819F2A19345D /* Pods-Project_SakaMaka.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Project_SakaMaka.debug.xcconfig"; path = "Target Support Files/Pods-Project_SakaMaka/Pods-Project_SakaMaka.debug.xcconfig"; sourceTree = "<group>"; };
 		DBD4C8D96ACD58BAB179AE4A /* Pods-Project_SakaMaka.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Project_SakaMaka.release.xcconfig"; path = "Target Support Files/Pods-Project_SakaMaka/Pods-Project_SakaMaka.release.xcconfig"; sourceTree = "<group>"; };
 		ED2D95E7182D7927D859FBC5 /* Pods_Project_SakaMaka.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Project_SakaMaka.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -50,7 +52,6 @@
 				C12611E47E27819F2A19345D /* Pods-Project_SakaMaka.debug.xcconfig */,
 				DBD4C8D96ACD58BAB179AE4A /* Pods-Project_SakaMaka.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -76,6 +77,8 @@
 		9E7455BC2BF89D0000D519AD /* Project_SakaMaka */ = {
 			isa = PBXGroup;
 			children = (
+				9E7455D42BF89EFA00D519AD /* Source */,
+				9E7455D32BF89EF500D519AD /* Configure */,
 				9E7455BD2BF89D0000D519AD /* AppDelegate.swift */,
 				9E7455BF2BF89D0000D519AD /* SceneDelegate.swift */,
 				9E7455C12BF89D0000D519AD /* ViewController.swift */,
@@ -85,6 +88,29 @@
 				9E7455CB2BF89D0100D519AD /* Info.plist */,
 			);
 			path = Project_SakaMaka;
+			sourceTree = "<group>";
+		};
+		9E7455D32BF89EF500D519AD /* Configure */ = {
+			isa = PBXGroup;
+			children = (
+				9E7455D52BF89F0200D519AD /* Base */,
+			);
+			path = Configure;
+			sourceTree = "<group>";
+		};
+		9E7455D42BF89EFA00D519AD /* Source */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
+		9E7455D52BF89F0200D519AD /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				9E7455D62BF89F0900D519AD /* BaseViewController.swift */,
+			);
+			path = Base;
 			sourceTree = "<group>";
 		};
 		D493147200B50EB05B8FBA4F /* Frameworks */ = {
@@ -212,6 +238,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9E7455C22BF89D0000D519AD /* ViewController.swift in Sources */,
+				9E7455D72BF89F0900D519AD /* BaseViewController.swift in Sources */,
 				9E7455BE2BF89D0000D519AD /* AppDelegate.swift in Sources */,
 				9E7455C02BF89D0000D519AD /* SceneDelegate.swift in Sources */,
 			);
