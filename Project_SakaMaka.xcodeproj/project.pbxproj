@@ -31,6 +31,7 @@
 		9E7455D92BF8A05A00D519AD /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		9E7455DE2BF8A18B00D519AD /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		9E7455E12BF8AA8400D519AD /* UIColor + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor + Extension.swift"; sourceTree = "<group>"; };
+		9E7455E42BF8AC0700D519AD /* Roboto-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Medium.ttf"; sourceTree = "<group>"; };
 		C12611E47E27819F2A19345D /* Pods-Project_SakaMaka.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Project_SakaMaka.debug.xcconfig"; path = "Target Support Files/Pods-Project_SakaMaka/Pods-Project_SakaMaka.debug.xcconfig"; sourceTree = "<group>"; };
 		DBD4C8D96ACD58BAB179AE4A /* Pods-Project_SakaMaka.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Project_SakaMaka.release.xcconfig"; path = "Target Support Files/Pods-Project_SakaMaka/Pods-Project_SakaMaka.release.xcconfig"; sourceTree = "<group>"; };
 		ED2D95E7182D7927D859FBC5 /* Pods_Project_SakaMaka.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Project_SakaMaka.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -93,6 +94,7 @@
 		9E7455D32BF89EF500D519AD /* Configure */ = {
 			isa = PBXGroup;
 			children = (
+				9E7455E32BF8ABDB00D519AD /* Font */,
 				9E7455E02BF8AA7300D519AD /* Extension */,
 				9E7455D52BF89F0200D519AD /* Base */,
 			);
@@ -154,6 +156,14 @@
 				9E7455E12BF8AA8400D519AD /* UIColor + Extension.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		9E7455E32BF8ABDB00D519AD /* Font */ = {
+			isa = PBXGroup;
+			children = (
+				9E7455E42BF8AC0700D519AD /* Roboto-Medium.ttf */,
+			);
+			path = Font;
 			sourceTree = "<group>";
 		};
 		D493147200B50EB05B8FBA4F /* Frameworks */ = {
