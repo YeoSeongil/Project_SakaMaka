@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		441A83D1C21DB4BECBB7CEC7 /* Pods_Project_SakaMaka.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED2D95E7182D7927D859FBC5 /* Pods_Project_SakaMaka.framework */; };
 		9E7455BE2BF89D0000D519AD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7455BD2BF89D0000D519AD /* AppDelegate.swift */; };
 		9E7455C02BF89D0000D519AD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7455BF2BF89D0000D519AD /* SceneDelegate.swift */; };
 		9E7455C22BF89D0000D519AD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7455C12BF89D0000D519AD /* ViewController.swift */; };
@@ -26,6 +27,9 @@
 		9E7455C92BF89D0100D519AD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9E7455CB2BF89D0100D519AD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9E7455D12BF89DD700D519AD /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		C12611E47E27819F2A19345D /* Pods-Project_SakaMaka.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Project_SakaMaka.debug.xcconfig"; path = "Target Support Files/Pods-Project_SakaMaka/Pods-Project_SakaMaka.debug.xcconfig"; sourceTree = "<group>"; };
+		DBD4C8D96ACD58BAB179AE4A /* Pods-Project_SakaMaka.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Project_SakaMaka.release.xcconfig"; path = "Target Support Files/Pods-Project_SakaMaka/Pods-Project_SakaMaka.release.xcconfig"; sourceTree = "<group>"; };
+		ED2D95E7182D7927D859FBC5 /* Pods_Project_SakaMaka.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Project_SakaMaka.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,18 +37,31 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				441A83D1C21DB4BECBB7CEC7 /* Pods_Project_SakaMaka.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8CC84FCA55E28B56826A2310 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C12611E47E27819F2A19345D /* Pods-Project_SakaMaka.debug.xcconfig */,
+				DBD4C8D96ACD58BAB179AE4A /* Pods-Project_SakaMaka.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		9E7455B12BF89D0000D519AD = {
 			isa = PBXGroup;
 			children = (
 				9E7455D12BF89DD700D519AD /* .gitignore */,
 				9E7455BC2BF89D0000D519AD /* Project_SakaMaka */,
 				9E7455BB2BF89D0000D519AD /* Products */,
+				8CC84FCA55E28B56826A2310 /* Pods */,
+				D493147200B50EB05B8FBA4F /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -70,6 +87,14 @@
 			path = Project_SakaMaka;
 			sourceTree = "<group>";
 		};
+		D493147200B50EB05B8FBA4F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				ED2D95E7182D7927D859FBC5 /* Pods_Project_SakaMaka.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -77,9 +102,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9E7455CE2BF89D0100D519AD /* Build configuration list for PBXNativeTarget "Project_SakaMaka" */;
 			buildPhases = (
+				CBBA2FBF1B26CFD47A6F62F4 /* [CP] Check Pods Manifest.lock */,
 				9E7455B62BF89D0000D519AD /* Sources */,
 				9E7455B72BF89D0000D519AD /* Frameworks */,
 				9E7455B82BF89D0000D519AD /* Resources */,
+				4AA511020B2C0AFA63F1073A /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -136,6 +163,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		4AA511020B2C0AFA63F1073A /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Project_SakaMaka/Pods-Project_SakaMaka-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Project_SakaMaka/Pods-Project_SakaMaka-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Project_SakaMaka/Pods-Project_SakaMaka-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CBBA2FBF1B26CFD47A6F62F4 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Project_SakaMaka-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		9E7455B62BF89D0000D519AD /* Sources */ = {
@@ -291,6 +360,7 @@
 		};
 		9E7455CF2BF89D0100D519AD /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C12611E47E27819F2A19345D /* Pods-Project_SakaMaka.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -319,6 +389,7 @@
 		};
 		9E7455D02BF89D0100D519AD /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DBD4C8D96ACD58BAB179AE4A /* Pods-Project_SakaMaka.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
