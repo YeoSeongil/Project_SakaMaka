@@ -10,6 +10,7 @@ target 'Project_SakaMaka' do
     pod 'Then'
     pod 'Firebase/Firestore'
     pod 'Firebase/Auth'
+    pod 'GoogleSignIn'
 
   # Pods for Project_SakaMaka
 
