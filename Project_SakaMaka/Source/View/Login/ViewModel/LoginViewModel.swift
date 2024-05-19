@@ -54,21 +54,22 @@ extension LoginViewModel: LoginViewModelType {
 extension LoginViewModel: AppleAuthServiceDelegate {
     func didSuccessSignInFirebaseWithApple() {
         FireBaseService.shared.checkIsCurrentUserRegistered()
-            .subscribe(onNext: { bool in
-                if bool {
-                    print("사용자 존재")
-                } else {
-                    print("사용자 없음")
+            .subscribe(onNext: { result in
+                switch result {
+                case .success:
+                    debugPrint("#debug: 유저 정보 존재합니다.")
+                case .notFindCurrentUser:
+                    debugPrint("#debug: 유저 정보가 존재하지 않습니다.")
                 }
             })
             .disposed(by: disposeBag)
     }
     
     func didFailedSignInFirebaseWithApple(_ error: Error) {
-    
+        // 파이어베이스 로그인 실패
     }
     
     func didFailedAppleLoginHandle(_ error: Error) {
-
+        //
     }
 }
