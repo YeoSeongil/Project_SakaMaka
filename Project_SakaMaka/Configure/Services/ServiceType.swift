@@ -10,10 +10,9 @@ import FirebaseFirestore
 
 enum AppleAuthServiceType {
     case appleSignFailedOnFirebase
-    case appleSignSuccessOnFirebase
+    case appleSignSuccessAndFindCurrentUserOnFirebase
+    case appleSignSuccessAndNotFindCurrentUserOnFirebase
     case appleSignFailed
-    case findCurrentUser
-    case notFindCurrentUser
 }
 
 // MARK: - checkIsCurrentUserRegistered Type
