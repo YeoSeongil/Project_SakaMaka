@@ -72,7 +72,6 @@ class LoginViewController: BaseViewController {
     // MARK: - SetUp VC
     override func setViewController() {
         super.setViewController()
-        view.backgroundColor = .black
         
         [loginButtonStackView].forEach {
             view.addSubview($0)
