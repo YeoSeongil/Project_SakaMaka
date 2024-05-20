@@ -12,6 +12,8 @@ enum AppleAuthServiceType {
     case appleSignFailedOnFirebase
     case appleSignSuccessOnFirebase
     case appleSignFailed
+    case findCurrentUser
+    case notFindCurrentUser
 }
 
 // MARK: - checkIsCurrentUserRegistered Type
