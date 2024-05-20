@@ -130,8 +130,12 @@ class LoginViewController: BaseViewController {
         viewModel.resultAppleSign
             .drive(with: self, onNext: { owner, result in
                 switch result {
-                case .appleSignSuccessOnFirebase:
-                    print("VC 파이어 베이스 로그인 성공")
+                case .appleSignSuccessAndFindCurrentUserOnFirebase:
+                    print("VC 파이어 베이스 로그인 성공 + 현재 유저 정보 존재")
+                case .appleSignSuccessAndNotFindCurrentUserOnFirebase:
+                    let viewController = RegisterViewController()
+                    owner.navigationController?.pushViewController(viewController, animated: true)
+                    print("VC 파이어 베이스 로그인 실패 + 현재 유저 정보 존재하지 않음")
                 case .appleSignFailedOnFirebase:
                     print("VC 파이어 베이스 로그인 실패")
                 case .appleSignFailed:
@@ -139,7 +143,5 @@ class LoginViewController: BaseViewController {
                 }
             })
             .disposed(by: disposeBag)
-        
     }
-
 }
