@@ -14,6 +14,9 @@ protocol LoginViewModelType {
     // Input
     var tappedAppleLogin: AnyObserver<Void> { get }
     var tappedGoogleLogin: AnyObserver<Void> { get }
+    
+    // Outout
+    var resultAppleSign: Driver<AppleAuthServiceType> { get }
 }
 
 class LoginViewModel {
@@ -23,9 +26,10 @@ class LoginViewModel {
     private let inputTappedAppleLogin = PublishSubject<Void>()
     private let inputTappedGoogleLogin = PublishSubject<Void>()
     
+    private let outputAppleSignResult = PublishRelay<AppleAuthServiceType>()
+    
     init() {
         tryAppleLogin()
-        AppleAuthService.shared.delegate = self
     }
     
     private func tryAppleLogin() {
@@ -38,6 +42,10 @@ class LoginViewModel {
     
     private func requestAppleAuth() {
         AppleAuthService.shared.signInWithApple()
+            .subscribe(with: self, onNext: { owner, result in
+                owner.outputAppleSignResult.accept(result)
+            })
+            .disposed(by: disposeBag)
     }
 }
 
@@ -49,26 +57,8 @@ extension LoginViewModel: LoginViewModelType {
     var tappedGoogleLogin: AnyObserver<Void> {
         inputTappedGoogleLogin.asObserver()
     }
-}
-
-extension LoginViewModel: AppleAuthServiceDelegate {
-    func didSuccessSignInFirebaseWithApple() {
-        FireBaseService.shared.checkIsCurrentUserRegistered()
-            .subscribe(onNext: { bool in
-                if bool {
-                    print("사용자 존재")
-                } else {
-                    print("사용자 없음")
-                }
-            })
-            .disposed(by: disposeBag)
-    }
     
-    func didFailedSignInFirebaseWithApple(_ error: Error) {
-    
-    }
-    
-    func didFailedAppleLoginHandle(_ error: Error) {
-
+    var resultAppleSign: Driver<AppleAuthServiceType> {
+        outputAppleSignResult.asDriver(onErrorDriveWith: .empty())
     }
 }

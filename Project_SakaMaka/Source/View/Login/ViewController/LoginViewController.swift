@@ -115,6 +115,8 @@ class LoginViewController: BaseViewController {
     }
     
     override func bind() {
+        super.bind()
+        
         // Input
         appleLoginButton.rx.tap
             .bind(to: viewModel.tappedAppleLogin)
@@ -123,6 +125,21 @@ class LoginViewController: BaseViewController {
         googleLoginButton.rx.tap
             .bind(to: viewModel.tappedGoogleLogin)
             .disposed(by: disposeBag)
+        
+        // Output
+        viewModel.resultAppleSign
+            .drive(with: self, onNext: { owner, result in
+                switch result {
+                case .appleSignSuccessOnFirebase:
+                    print("VC 파이어 베이스 로그인 성공")
+                case .appleSignFailedOnFirebase:
+                    print("VC 파이어 베이스 로그인 실패")
+                case .appleSignFailed:
+                    print("VC 애플 로그인 실패")
+                }
+            })
+            .disposed(by: disposeBag)
+        
     }
 
 }
