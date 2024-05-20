@@ -12,16 +12,6 @@ import FirebaseFirestore
 
 import RxSwift
 
-enum FirebaseError: Error {
-    case notFindCurrentUser
-    case failedRegister
-}
-
-enum AuthResult {
-    case success
-    case failed
-}
-
 class FireBaseService {
     
     static let shared = FireBaseService()

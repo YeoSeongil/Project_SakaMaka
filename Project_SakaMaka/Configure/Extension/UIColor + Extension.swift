@@ -26,7 +26,6 @@ extension UIColor {
 }
 
 extension UIColor {
-    // Blue
-    static let googleLoginButtonColor = UIColor(hexCode: 0x4285F4)
     static let PrestigeBlue = UIColor(hexCode: 0x2f3542)
+    static let Turquoise = UIColor(hexCode: 0x1abc9c)
 }
