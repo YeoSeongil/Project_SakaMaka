@@ -7,7 +7,7 @@
 
 import UIKit
 
-class TestViewController: UIViewController {
+class TestViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
