@@ -28,32 +28,19 @@ class LoginViewController: BaseViewController {
     
     private let appleLoginButton = UIButton(type: .system).then {
         $0.setTitle("Apple로 로그인", for: .normal)
-        $0.setTitleColor(.black, for: .normal)
+        $0.setTitleColor(.white, for: .normal)
         $0.titleLabel?.font = UIFont.systemFont(ofSize: 20, weight: .medium)
         $0.titleLabel?.textAlignment = .center
         $0.layer.cornerRadius = 10.0
-        $0.backgroundColor = .white
+        $0.backgroundColor = .black
+        $0.tintColor = .white
     }
     
     private let appleLogoImageView = UIImageView().then {
-        $0.image = UIImage(named: "appleLogo")
+        $0.image = UIImage(named: "appleLogo")?.withRenderingMode(.alwaysTemplate)
         $0.contentMode = .scaleAspectFill
     }
-    
-    private let googleLoginButton = UIButton(type: .system).then {
-        $0.setTitle("Google로 로그인", for: .normal)
-        $0.setTitleColor(.black, for: .normal)
-        $0.titleLabel?.font = UIFont.systemFont(ofSize: 20, weight: .medium)
-        $0.titleLabel?.textAlignment = .center
-        $0.layer.cornerRadius = 10.0
-        $0.backgroundColor = .white
-    }
-    
-    private let googleLogoImageView = UIImageView().then {
-        $0.image = UIImage(named: "googleLogo")
-        $0.contentMode = .scaleAspectFill
-    }
-    
+
     // MARK: - Init
     init(viewModel: LoginViewModelType = LoginViewModel()) {
         self.viewModel = viewModel
@@ -72,18 +59,16 @@ class LoginViewController: BaseViewController {
     // MARK: - SetUp VC
     override func setViewController() {
         super.setViewController()
-        view.backgroundColor = .black
         
         [loginButtonStackView].forEach {
             view.addSubview($0)
         }
         
-        [appleLoginButton, googleLoginButton].forEach {
+        [appleLoginButton].forEach {
             loginButtonStackView.addArrangedSubview($0)
         }
         
         appleLoginButton.addSubview(appleLogoImageView)
-        googleLoginButton.addSubview(googleLogoImageView)
     }
     
     override func setConstraints() {
@@ -91,11 +76,11 @@ class LoginViewController: BaseViewController {
         
         loginButtonStackView.snp.makeConstraints {
             $0.bottom.equalTo(view.safeAreaInsets).inset(100)
-            $0.height.equalTo(128)
+            $0.height.equalTo(60)
             $0.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(20)
         }
         
-        [appleLoginButton, googleLoginButton].forEach {
+        [appleLoginButton].forEach {
             $0.snp.makeConstraints {
                 $0.height.equalTo(60)
             }
@@ -104,12 +89,6 @@ class LoginViewController: BaseViewController {
         appleLogoImageView.snp.makeConstraints {
             $0.leading.equalTo(appleLoginButton).offset(20)
             $0.centerY.equalTo(appleLoginButton)
-            $0.width.height.equalTo(24)
-        }       
-        
-        googleLogoImageView.snp.makeConstraints {
-            $0.leading.equalTo(googleLoginButton).offset(20)
-            $0.centerY.equalTo(googleLoginButton)
             $0.width.height.equalTo(24)
         }
     }
@@ -120,10 +99,6 @@ class LoginViewController: BaseViewController {
         // Input
         appleLoginButton.rx.tap
             .bind(to: viewModel.tappedAppleLogin)
-            .disposed(by: disposeBag)
-        
-        googleLoginButton.rx.tap
-            .bind(to: viewModel.tappedGoogleLogin)
             .disposed(by: disposeBag)
         
         // Output
