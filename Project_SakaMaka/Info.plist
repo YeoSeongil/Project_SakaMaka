@@ -5,6 +5,10 @@
 	<key>UIAppFonts</key>
 	<array>
 		<string>Roboto-Medium.ttf</string>
+		<string>Pretendard-Light.otf</string>
+		<string>Pretendard-Regular.otf</string>
+		<string>Pretendard-SemiBold.otf</string>
+		<string>Pretendard-Bold.otf</string>
 	</array>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
