@@ -18,6 +18,10 @@
 		9E5BDD1B2BFB18A2005FCFAC /* Pretendard-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9E5BDD172BFB18A2005FCFAC /* Pretendard-Medium.otf */; };
 		9E5BDD1C2BFB18A2005FCFAC /* Pretendard-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9E5BDD182BFB18A2005FCFAC /* Pretendard-SemiBold.otf */; };
 		9E5BDD1D2BFB18A2005FCFAC /* Pretendard-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9E5BDD192BFB18A2005FCFAC /* Pretendard-Regular.otf */; };
+		9E5BDD222BFB4E65005FCFAC /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E5BDD212BFB4E65005FCFAC /* TabBarController.swift */; };
+		9E5BDD252BFB4FD8005FCFAC /* addShadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E5BDD242BFB4FD8005FCFAC /* addShadow.swift */; };
+		9E5BDD272BFB54AC005FCFAC /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E5BDD262BFB54AC005FCFAC /* TestViewController.swift */; };
+		9E5BDD292BFB560E005FCFAC /* Test2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E5BDD282BFB560E005FCFAC /* Test2ViewController.swift */; };
 		9E7455BE2BF89D0000D519AD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7455BD2BF89D0000D519AD /* AppDelegate.swift */; };
 		9E7455C02BF89D0000D519AD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7455BF2BF89D0000D519AD /* SceneDelegate.swift */; };
 		9E7455C22BF89D0000D519AD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7455C12BF89D0000D519AD /* ViewController.swift */; };
@@ -43,6 +47,10 @@
 		9E5BDD172BFB18A2005FCFAC /* Pretendard-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Medium.otf"; sourceTree = "<group>"; };
 		9E5BDD182BFB18A2005FCFAC /* Pretendard-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-SemiBold.otf"; sourceTree = "<group>"; };
 		9E5BDD192BFB18A2005FCFAC /* Pretendard-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Regular.otf"; sourceTree = "<group>"; };
+		9E5BDD212BFB4E65005FCFAC /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		9E5BDD242BFB4FD8005FCFAC /* addShadow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addShadow.swift; sourceTree = "<group>"; };
+		9E5BDD262BFB54AC005FCFAC /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
+		9E5BDD282BFB560E005FCFAC /* Test2ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test2ViewController.swift; sourceTree = "<group>"; };
 		9E7455BA2BF89D0000D519AD /* Project_SakaMaka.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Project_SakaMaka.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E7455BD2BF89D0000D519AD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9E7455BF2BF89D0000D519AD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -107,6 +115,24 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		9E5BDD1E2BFB4E37005FCFAC /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				9E5BDD212BFB4E65005FCFAC /* TabBarController.swift */,
+				9E5BDD262BFB54AC005FCFAC /* TestViewController.swift */,
+				9E5BDD282BFB560E005FCFAC /* Test2ViewController.swift */,
+			);
+			path = TabBar;
+			sourceTree = "<group>";
+		};
+		9E5BDD232BFB4F99005FCFAC /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				9E5BDD242BFB4FD8005FCFAC /* addShadow.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 		9E7455B12BF89D0000D519AD = {
 			isa = PBXGroup;
 			children = (
@@ -145,8 +171,9 @@
 		9E7455D32BF89EF500D519AD /* Configure */ = {
 			isa = PBXGroup;
 			children = (
+				9E5BDD232BFB4F99005FCFAC /* Utils */,
 				9E7455EC2BF8D39500D519AD /* Services */,
-				9E7455E32BF8ABDB00D519AD /* Font */,
+				9E7455E32BF8ABDB00D519AD /* Fonts */,
 				9E7455E02BF8AA7300D519AD /* Extension */,
 				9E7455D52BF89F0200D519AD /* Base */,
 			);
@@ -172,6 +199,7 @@
 		9E7455D82BF8A04F00D519AD /* View */ = {
 			isa = PBXGroup;
 			children = (
+				9E5BDD1E2BFB4E37005FCFAC /* TabBar */,
 				9E7455DB2BF8A0D000D519AD /* Splash */,
 				9E7455DC2BF8A0EC00D519AD /* Register */,
 				9E7455DD2BF8A17700D519AD /* Login */,
@@ -214,7 +242,7 @@
 			path = Extension;
 			sourceTree = "<group>";
 		};
-		9E7455E32BF8ABDB00D519AD /* Font */ = {
+		9E7455E32BF8ABDB00D519AD /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
 				9E7455E42BF8AC0700D519AD /* Roboto-Medium.ttf */,
@@ -223,7 +251,7 @@
 				9E5BDD192BFB18A2005FCFAC /* Pretendard-Regular.otf */,
 				9E5BDD182BFB18A2005FCFAC /* Pretendard-SemiBold.otf */,
 			);
-			path = Font;
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 		9E7455E72BF8CDEA00D519AD /* ViewController */ = {
@@ -397,12 +425,16 @@
 			files = (
 				9E5879CB2BF8ECA000E55E19 /* FireBaseService.swift in Sources */,
 				9E7455E62BF8AC6D00D519AD /* UIFont + Extension.swift in Sources */,
+				9E5BDD272BFB54AC005FCFAC /* TestViewController.swift in Sources */,
 				9E5879C82BF8E8CF00E55E19 /* AppleAuthService.swift in Sources */,
+				9E5BDD222BFB4E65005FCFAC /* TabBarController.swift in Sources */,
 				9E7455E22BF8AA8400D519AD /* UIColor + Extension.swift in Sources */,
 				9E7455DF2BF8A18B00D519AD /* LoginViewController.swift in Sources */,
+				9E5BDD292BFB560E005FCFAC /* Test2ViewController.swift in Sources */,
 				9E7455C22BF89D0000D519AD /* ViewController.swift in Sources */,
 				9E7455D72BF89F0900D519AD /* BaseViewController.swift in Sources */,
 				9E7455BE2BF89D0000D519AD /* AppDelegate.swift in Sources */,
+				9E5BDD252BFB4FD8005FCFAC /* addShadow.swift in Sources */,
 				9E7455C02BF89D0000D519AD /* SceneDelegate.swift in Sources */,
 				9E5BDD112BFB0473005FCFAC /* RegisterViewModel.swift in Sources */,
 				9E7455DA2BF8A05A00D519AD /* SplashViewController.swift in Sources */,
