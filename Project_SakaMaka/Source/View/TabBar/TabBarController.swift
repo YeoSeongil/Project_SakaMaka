@@ -9,21 +9,42 @@ import UIKit
 
 class TabBarController: UITabBarController {
 
+    // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        setTabBarUI()
+        setTabBarController()
         // Do any additional setup after loading the view.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    // MARK: - SetUp TabBarController
+    private func setTabBarUI() {
+        tabBar.backgroundColor = .white
+        tabBar.unselectedItemTintColor = .lightGray
+        tabBar.tintColor = .Turquoise
+        tabBar.layer.cornerRadius = 15
+        tabBar.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+        tabBar.layer.addShadow(alpha: 0.1, y: -4, blur: 5)
     }
-    */
+    
+    private func setTabBarController() {
+        // Todo 나머지 VC 구현 후 추가
+        let testVC = setNavigationController(title: "홈", unselectedImage: UIImage(systemName: "house"), selectedImage: UIImage(systemName: "house.fill"), rootViewController: TestViewController())
+        let testVC2 = setNavigationController(title: "홈2", unselectedImage: UIImage(systemName: "house"), selectedImage: UIImage(systemName: "home.fill"), rootViewController: Test2ViewController())
+        
+        viewControllers = [testVC, testVC2]
+    }
+}
 
+extension TabBarController {
+    // MARK: - Method
+    private func setNavigationController(title: String, unselectedImage: UIImage?, selectedImage: UIImage?, rootViewController: UIViewController) -> UINavigationController {
+        let navigationController = UINavigationController(rootViewController: rootViewController)
+        navigationController.title = title
+        navigationController.tabBarItem.image = unselectedImage
+        navigationController.tabBarItem.selectedImage = selectedImage
+        navigationController.navigationBar.isHidden = true
+        return navigationController
+    }
 }
