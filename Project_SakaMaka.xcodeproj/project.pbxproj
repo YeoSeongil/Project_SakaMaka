@@ -12,6 +12,8 @@
 		9E5879CB2BF8ECA000E55E19 /* FireBaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E5879CA2BF8ECA000E55E19 /* FireBaseService.swift */; };
 		9E5BDD032BF9E3E5005FCFAC /* ServiceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E5BDD022BF9E3E5005FCFAC /* ServiceType.swift */; };
 		9E5BDD0B2BF9F569005FCFAC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9E5BDD0A2BF9F569005FCFAC /* GoogleService-Info.plist */; };
+		9E5BDD0D2BFB0429005FCFAC /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E5BDD0C2BFB0429005FCFAC /* RegisterViewController.swift */; };
+		9E5BDD112BFB0473005FCFAC /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E5BDD102BFB0473005FCFAC /* RegisterViewModel.swift */; };
 		9E7455BE2BF89D0000D519AD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7455BD2BF89D0000D519AD /* AppDelegate.swift */; };
 		9E7455C02BF89D0000D519AD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7455BF2BF89D0000D519AD /* SceneDelegate.swift */; };
 		9E7455C22BF89D0000D519AD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7455C12BF89D0000D519AD /* ViewController.swift */; };
@@ -31,6 +33,12 @@
 		9E5879CA2BF8ECA000E55E19 /* FireBaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireBaseService.swift; sourceTree = "<group>"; };
 		9E5BDD022BF9E3E5005FCFAC /* ServiceType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceType.swift; sourceTree = "<group>"; };
 		9E5BDD0A2BF9F569005FCFAC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		9E5BDD0C2BFB0429005FCFAC /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		9E5BDD102BFB0473005FCFAC /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RegisterViewModel.swift; path = ../../../../../../../Documents/RegisterViewModel.swift; sourceTree = "<group>"; };
+		9E5BDD122BFB0BC0005FCFAC /* Pretendard-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Light.otf"; sourceTree = "<group>"; };
+		9E5BDD132BFB0BC8005FCFAC /* Pretendard-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Regular.otf"; sourceTree = "<group>"; };
+		9E5BDD142BFB0BCF005FCFAC /* Pretendard-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-SemiBold.otf"; sourceTree = "<group>"; };
+		9E5BDD152BFB0BDB005FCFAC /* Pretendard-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Bold.otf"; sourceTree = "<group>"; };
 		9E7455BA2BF89D0000D519AD /* Project_SakaMaka.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Project_SakaMaka.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E7455BD2BF89D0000D519AD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9E7455BF2BF89D0000D519AD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -77,6 +85,22 @@
 				9E5879CA2BF8ECA000E55E19 /* FireBaseService.swift */,
 			);
 			path = FireBase;
+			sourceTree = "<group>";
+		};
+		9E5BDD0E2BFB0451005FCFAC /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				9E5BDD0C2BFB0429005FCFAC /* RegisterViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		9E5BDD0F2BFB0459005FCFAC /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				9E5BDD102BFB0473005FCFAC /* RegisterViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		9E7455B12BF89D0000D519AD = {
@@ -162,6 +186,8 @@
 		9E7455DC2BF8A0EC00D519AD /* Register */ = {
 			isa = PBXGroup;
 			children = (
+				9E5BDD0E2BFB0451005FCFAC /* ViewController */,
+				9E5BDD0F2BFB0459005FCFAC /* ViewModel */,
 			);
 			path = Register;
 			sourceTree = "<group>";
@@ -188,6 +214,10 @@
 			isa = PBXGroup;
 			children = (
 				9E7455E42BF8AC0700D519AD /* Roboto-Medium.ttf */,
+				9E5BDD122BFB0BC0005FCFAC /* Pretendard-Light.otf */,
+				9E5BDD132BFB0BC8005FCFAC /* Pretendard-Regular.otf */,
+				9E5BDD142BFB0BCF005FCFAC /* Pretendard-SemiBold.otf */,
+				9E5BDD152BFB0BDB005FCFAC /* Pretendard-Bold.otf */,
 			);
 			path = Font;
 			sourceTree = "<group>";
@@ -366,7 +396,9 @@
 				9E7455D72BF89F0900D519AD /* BaseViewController.swift in Sources */,
 				9E7455BE2BF89D0000D519AD /* AppDelegate.swift in Sources */,
 				9E7455C02BF89D0000D519AD /* SceneDelegate.swift in Sources */,
+				9E5BDD112BFB0473005FCFAC /* RegisterViewModel.swift in Sources */,
 				9E7455DA2BF8A05A00D519AD /* SplashViewController.swift in Sources */,
+				9E5BDD0D2BFB0429005FCFAC /* RegisterViewController.swift in Sources */,
 				9E7455EB2BF8CE6100D519AD /* LoginViewModel.swift in Sources */,
 				9E5BDD032BF9E3E5005FCFAC /* ServiceType.swift in Sources */,
 			);
