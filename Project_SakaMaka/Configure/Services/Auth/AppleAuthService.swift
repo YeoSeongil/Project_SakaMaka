@@ -9,6 +9,7 @@ import UIKit
 import AuthenticationServices
 import CryptoKit
 import FirebaseAuth
+import FirebaseFirestore
 import RxSwift
 
 class AppleAuthService: NSObject {
@@ -106,6 +107,15 @@ extension AppleAuthService: ASAuthorizationControllerDelegate, ASAuthorizationCo
                 }
                 
                 if let authResult = authResult {
+                    if let currentUser = Auth.auth().currentUser {
+                        Firestore.firestore().collection("users").document(currentUser.uid).getDocument { doc, error in
+                            if let doc = doc, doc.exists {
+                                self?.currentObserver?.onNext(.findCurrentUser)
+                            } else {
+                                self?.currentObserver?.onNext(.notFindCurrentUser)
+                            }
+                        }
+                    }
                     self?.currentObserver?.onNext(.appleSignSuccessOnFirebase)
                 }
                 self?.currentObserver?.onCompleted()
