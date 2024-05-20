@@ -28,13 +28,12 @@ class FireBaseService {
     
     private init() { }
     
-    // <Result<AuthResult, FirebaseError>>
     func checkIsCurrentUserRegistered() -> Observable<checkIsCurrentUserRegisteredType> {
         return Observable.create { observer in
             if let currentUser = Auth.auth().currentUser {
                 Firestore.firestore().collection("users").document(currentUser.uid).getDocument { doc, error in
                     if let doc = doc, doc.exists {
-                        observer.onNext(.success)
+                        observer.onNext(.findCurrentUser)
                     } else {
                         observer.onNext(.notFindCurrentUser)
                     }
