@@ -8,10 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		441A83D1C21DB4BECBB7CEC7 /* Pods_Project_SakaMaka.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED2D95E7182D7927D859FBC5 /* Pods_Project_SakaMaka.framework */; };
-		9E5879C62BF8E23C00E55E19 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9E5879C52BF8E23C00E55E19 /* GoogleService-Info.plist */; };
 		9E5879C82BF8E8CF00E55E19 /* AppleAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E5879C72BF8E8CF00E55E19 /* AppleAuthService.swift */; };
 		9E5879CB2BF8ECA000E55E19 /* FireBaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E5879CA2BF8ECA000E55E19 /* FireBaseService.swift */; };
 		9E5BDD032BF9E3E5005FCFAC /* ServiceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E5BDD022BF9E3E5005FCFAC /* ServiceType.swift */; };
+		9E5BDD0B2BF9F569005FCFAC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9E5BDD0A2BF9F569005FCFAC /* GoogleService-Info.plist */; };
 		9E7455BE2BF89D0000D519AD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7455BD2BF89D0000D519AD /* AppDelegate.swift */; };
 		9E7455C02BF89D0000D519AD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7455BF2BF89D0000D519AD /* SceneDelegate.swift */; };
 		9E7455C22BF89D0000D519AD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7455C12BF89D0000D519AD /* ViewController.swift */; };
@@ -27,10 +27,10 @@
 
 /* Begin PBXFileReference section */
 		9E5879C42BF8DEE600E55E19 /* Project_SakaMaka.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Project_SakaMaka.entitlements; sourceTree = "<group>"; };
-		9E5879C52BF8E23C00E55E19 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		9E5879C72BF8E8CF00E55E19 /* AppleAuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleAuthService.swift; sourceTree = "<group>"; };
 		9E5879CA2BF8ECA000E55E19 /* FireBaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireBaseService.swift; sourceTree = "<group>"; };
 		9E5BDD022BF9E3E5005FCFAC /* ServiceType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceType.swift; sourceTree = "<group>"; };
+		9E5BDD0A2BF9F569005FCFAC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		9E7455BA2BF89D0000D519AD /* Project_SakaMaka.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Project_SakaMaka.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E7455BD2BF89D0000D519AD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9E7455BF2BF89D0000D519AD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -109,7 +109,7 @@
 				9E7455C12BF89D0000D519AD /* ViewController.swift */,
 				9E7455C62BF89D0100D519AD /* Assets.xcassets */,
 				9E7455CB2BF89D0100D519AD /* Info.plist */,
-				9E5879C52BF8E23C00E55E19 /* GoogleService-Info.plist */,
+				9E5BDD0A2BF9F569005FCFAC /* GoogleService-Info.plist */,
 			);
 			path = Project_SakaMaka;
 			sourceTree = "<group>";
@@ -304,7 +304,7 @@
 			files = (
 				9E7455D22BF89DD700D519AD /* .gitignore in Resources */,
 				9E7455C72BF89D0100D519AD /* Assets.xcassets in Resources */,
-				9E5879C62BF8E23C00E55E19 /* GoogleService-Info.plist in Resources */,
+				9E5BDD0B2BF9F569005FCFAC /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -510,6 +510,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -539,6 +540,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

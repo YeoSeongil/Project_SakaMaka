@@ -9,34 +9,37 @@ import UIKit
 import AuthenticationServices
 import CryptoKit
 import FirebaseAuth
-
-protocol AppleAuthServiceDelegate: AnyObject {
-    func didSuccessSignInFirebaseWithApple()
-    func didFailedSignInFirebaseWithApple(_ error: Error)
-    func didFailedAppleLoginHandle(_ error: Error)
-}
+import RxSwift
 
 class AppleAuthService: NSObject {
     
     static let shared = AppleAuthService()
     
-    weak var delegate: AppleAuthServiceDelegate?
     private var currentNonce: String?
+    private var currentObserver: AnyObserver<AppleAuthServiceType>?
     
     private override init() {}
     
-    func signInWithApple() {
-        let nonce = randomNonceString()
-        currentNonce = nonce
-        let appleIDProvider = ASAuthorizationAppleIDProvider()
-        let request = appleIDProvider.createRequest()
-        request.requestedScopes = [.fullName, .email]
-        request.nonce = sha256(nonce)
+    func signInWithApple() -> Observable<AppleAuthServiceType> {
+        return Observable.create { [weak self] observer in
+            let nonce = self?.randomNonceString()
+            self?.currentNonce = nonce
+            let appleIDProvider = ASAuthorizationAppleIDProvider()
+            let request = appleIDProvider.createRequest()
+            request.requestedScopes = [.fullName, .email]
+            request.nonce = self?.sha256(nonce ?? "")
 
-        let authorizationController = ASAuthorizationController(authorizationRequests: [request])
-        authorizationController.delegate = self
-        authorizationController.presentationContextProvider = self
-        authorizationController.performRequests()
+            let authorizationController = ASAuthorizationController(authorizationRequests: [request])
+            authorizationController.delegate = self
+            authorizationController.presentationContextProvider = self
+
+            self?.currentObserver = observer
+            
+            authorizationController.performRequests()
+            
+            return Disposables.create()
+        }
+
     }
     
     private func sha256(_ input: String) -> String {
@@ -99,19 +102,19 @@ extension AppleAuthService: ASAuthorizationControllerDelegate, ASAuthorizationCo
             
             Auth.auth().signIn(with: credential) { [weak self] (authResult, error) in
                 if let error = error {
-                    self?.delegate?.didFailedSignInFirebaseWithApple(error)
-                    return
+                    self?.currentObserver?.onNext(.appleSignFailedOnFirebase)
                 }
                 
                 if let authResult = authResult {
-                    self?.delegate?.didSuccessSignInFirebaseWithApple()
+                    self?.currentObserver?.onNext(.appleSignSuccessOnFirebase)
                 }
+                self?.currentObserver?.onCompleted()
             }
         }
     }
 
     func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
         print("Sign in with Apple errored: \(error)")
-        delegate?.didFailedAppleLoginHandle(error)
+        currentObserver?.onNext(.appleSignFailed)
     }
 }
