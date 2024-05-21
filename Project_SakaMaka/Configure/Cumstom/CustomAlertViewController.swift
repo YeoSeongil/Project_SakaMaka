@@ -10,7 +10,7 @@ import UIKit
 import SnapKit
 import Then
 
-enum AlertType {
+enum CustomAlertType {
     case defaultType
     case customType
 }
@@ -20,7 +20,7 @@ final class CustomAlertViewController: UIViewController {
     // MARK: - Properties
     var leftButtonTapAction: (() -> Void)?
     var rightButtonTapAction: (() -> Void)?
-    var alertType: AlertType = .defaultType
+    var customAlertType: CustomAlertType = .defaultType
     
     // MARK: - UI Components
     private let containerView = UIView().then {
@@ -34,7 +34,7 @@ final class CustomAlertViewController: UIViewController {
         $0.textAlignment = .center
     }
     
-    private lazy var yesButton = UIButton(type: .custom).then {
+    private lazy var rightButton = UIButton(type: .custom).then {
         $0.setTitle("네", for: .normal)
         $0.titleLabel?.font = .h5
         $0.setTitleColor(.white, for: .normal)
@@ -42,7 +42,7 @@ final class CustomAlertViewController: UIViewController {
         $0.layer.cornerRadius = 10
     }
     
-    private lazy var noButton = UIButton(type: .custom).then {
+    private lazy var leftButton = UIButton(type: .custom).then {
         $0.setTitle("아니오", for: .normal)
         $0.titleLabel?.font = .h5
         $0.setTitleColor(.Turquoise, for: .normal)
@@ -53,6 +53,7 @@ final class CustomAlertViewController: UIViewController {
     init(message: String) {
         super.init(nibName: nil, bundle: nil)
         self.messageLabel.text = message
+        self.modalPresentationStyle = .overFullScreen
     }
     
     required init?(coder: NSCoder) {
@@ -70,7 +71,7 @@ final class CustomAlertViewController: UIViewController {
     // MARK: - SetUp VC
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
-        if alertType == .defaultType {
+        if customAlertType == .defaultType {
             if let touch = touches.first, touch.view == self.view {
                 dismiss(animated: false)
             }
@@ -82,16 +83,15 @@ final class CustomAlertViewController: UIViewController {
         containerView.backgroundColor = .white
         
         view.addSubview(containerView)
-        [messageLabel, yesButton, noButton].forEach {
+        [messageLabel, rightButton, leftButton].forEach {
             containerView.addSubview($0)
         }
     }
     
     private func setConstraints() {
         containerView.snp.makeConstraints {
-            $0.centerX.equalToSuperview()
-            $0.centerY.equalToSuperview()
-            $0.leading.trailing.equalToSuperview().inset(30)
+            $0.centerX.centerY.equalToSuperview()
+            $0.horizontalEdges.equalToSuperview().inset(30)
         }
 
         messageLabel.snp.makeConstraints {
@@ -99,7 +99,7 @@ final class CustomAlertViewController: UIViewController {
             $0.top.equalToSuperview().offset(26)
         }
         
-        noButton.snp.makeConstraints {
+        leftButton.snp.makeConstraints {
             $0.top.equalTo(messageLabel.snp.bottom).offset(20)
             $0.leading.equalToSuperview().offset(16)
             $0.trailing.equalTo(containerView.snp.centerX).offset(-4)
@@ -108,8 +108,8 @@ final class CustomAlertViewController: UIViewController {
             $0.bottom.equalToSuperview().inset(16)
         }
         
-        yesButton.snp.makeConstraints {
-            $0.top.equalTo(noButton.snp.top)
+        rightButton.snp.makeConstraints {
+            $0.top.equalTo(leftButton.snp.top)
             $0.trailing.equalToSuperview().inset(16)
             $0.leading.equalTo(containerView.snp.centerX).offset(4)
             $0.height.equalTo(44)
@@ -122,25 +122,25 @@ final class CustomAlertViewController: UIViewController {
 // MARK: - Methods
 extension CustomAlertViewController {
     private func setAddTarget() {
-        self.noButton.addTarget(self, action: #selector(touchUpNoButton), for: .touchUpInside)
-        self.yesButton.addTarget(self, action: #selector(touchYesButton), for: .touchUpInside)
+        self.leftButton.addTarget(self, action: #selector(leftButtonTapped), for: .touchUpInside)
+        self.rightButton.addTarget(self, action: #selector(rightButtonTapped), for: .touchUpInside)
     }
     
     @discardableResult
     func setButtonTitle(_ leftButtonTitle: String, _ rightButtonTitle: String) -> Self {
-        self.yesButton.setTitle(rightButtonTitle, for: .normal)
-        self.noButton.setTitle(leftButtonTitle, for: .normal)
+        self.rightButton.setTitle(rightButtonTitle, for: .normal)
+        self.leftButton.setTitle(leftButtonTitle, for: .normal)
         return self
     }
 }
 
 // MARK: - @objc
 extension CustomAlertViewController {
-    @objc private func touchUpNoButton() {
-        alertType == .defaultType ? dismiss(animated: false) : self.leftButtonTapAction?()
+    @objc private func leftButtonTapped() {
+        customAlertType == .defaultType ? dismiss(animated: false) : self.leftButtonTapAction?()
     }
     
-    @objc private func touchYesButton() {
+    @objc private func rightButtonTapped() {
         self.rightButtonTapAction?()
     }
 }
