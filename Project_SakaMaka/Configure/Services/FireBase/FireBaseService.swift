@@ -9,6 +9,7 @@ import UIKit
 
 import FirebaseAuth
 import FirebaseFirestore
+import FirebaseStorage
 
 import RxSwift
 
@@ -33,14 +34,13 @@ class FireBaseService {
         }
     }
     
-    func registerFirebaseUser(nickName: String) -> Observable<registerFirebaseUserType> {
+    func registerFirebaseUser(nickName: String, image: UIImage) -> Observable<registerFirebaseUserType> {
         return Observable.create { observer in
             if let currentUser = Auth.auth().currentUser {
                 let userRef = Firestore.firestore().collection("users").document(currentUser.uid)
                 
                 let userData: [String: Any] = [
                     "name" : nickName,
-                    "image" : "imageURL",
                     "isRegistered" : true
                 ]
                 
@@ -48,6 +48,13 @@ class FireBaseService {
                     if let error = error {
                         observer.onNext(.failedRegister)
                     }  else {
+                        let storageRef = Storage.storage().reference().child("profiles/\(currentUser.uid)")
+                        
+                        guard let imageData = image.jpegData(compressionQuality: 0.8) else { return }
+                        
+                        storageRef.putData(imageData, metadata: nil) { metadata, error in
+                            if let error = error { observer.onNext(.failedUploadImage) }
+                        }
                         observer.onNext(.success)
                     }
                 }
