@@ -22,6 +22,7 @@
 		9E5BDD252BFB4FD8005FCFAC /* addShadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E5BDD242BFB4FD8005FCFAC /* addShadow.swift */; };
 		9E5BDD272BFB54AC005FCFAC /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E5BDD262BFB54AC005FCFAC /* TestViewController.swift */; };
 		9E5BDD292BFB560E005FCFAC /* Test2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E5BDD282BFB560E005FCFAC /* Test2ViewController.swift */; };
+		9E5BDD2C2BFC661A005FCFAC /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E5BDD2B2BFC661A005FCFAC /* User.swift */; };
 		9E7455BE2BF89D0000D519AD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7455BD2BF89D0000D519AD /* AppDelegate.swift */; };
 		9E7455C02BF89D0000D519AD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7455BF2BF89D0000D519AD /* SceneDelegate.swift */; };
 		9E7455C22BF89D0000D519AD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7455C12BF89D0000D519AD /* ViewController.swift */; };
@@ -51,6 +52,7 @@
 		9E5BDD242BFB4FD8005FCFAC /* addShadow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addShadow.swift; sourceTree = "<group>"; };
 		9E5BDD262BFB54AC005FCFAC /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 		9E5BDD282BFB560E005FCFAC /* Test2ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test2ViewController.swift; sourceTree = "<group>"; };
+		9E5BDD2B2BFC661A005FCFAC /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		9E7455BA2BF89D0000D519AD /* Project_SakaMaka.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Project_SakaMaka.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E7455BD2BF89D0000D519AD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9E7455BF2BF89D0000D519AD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -133,6 +135,14 @@
 			path = Utils;
 			sourceTree = "<group>";
 		};
+		9E5BDD2A2BFC657C005FCFAC /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				9E5BDD2B2BFC661A005FCFAC /* User.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		9E7455B12BF89D0000D519AD = {
 			isa = PBXGroup;
 			children = (
@@ -183,6 +193,7 @@
 		9E7455D42BF89EFA00D519AD /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				9E5BDD2A2BFC657C005FCFAC /* Model */,
 				9E7455D82BF8A04F00D519AD /* View */,
 			);
 			path = Source;
@@ -441,6 +452,7 @@
 				9E5BDD0D2BFB0429005FCFAC /* RegisterViewController.swift in Sources */,
 				9E7455EB2BF8CE6100D519AD /* LoginViewModel.swift in Sources */,
 				9E5BDD032BF9E3E5005FCFAC /* ServiceType.swift in Sources */,
+				9E5BDD2C2BFC661A005FCFAC /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
