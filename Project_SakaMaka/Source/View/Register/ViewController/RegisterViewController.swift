@@ -147,6 +147,22 @@ class RegisterViewController: BaseViewController {
         addNickNameTextField.rx.text.orEmpty
             .bind(to: viewModel.nickName)
             .disposed(by: disposeBag)
+        
+        
+        // Output
+        viewModel.registerResult
+            .drive(with: self, onNext: { owner, result in
+                switch result {
+                case .success:
+                    let tabBarController = TabBarController()
+                    owner.navigationController?.setViewControllers([tabBarController], animated: true)
+                case .failedRegister:
+                    print("가입실패")
+                case .failedUploadImage:
+                    print("이미지 업로드 실패")
+                }
+            })
+            .disposed(by: disposeBag)
     }
 }
 
