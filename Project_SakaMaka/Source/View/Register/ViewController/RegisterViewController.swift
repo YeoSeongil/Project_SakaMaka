@@ -29,7 +29,7 @@ class RegisterViewController: BaseViewController {
     
     private lazy var addProfileImageButton = UIButton().then {
         $0.addSubview(addProfileImageView)
-        $0.backgroundColor = .Turquoise
+        $0.backgroundColor = .clear
         $0.layer.cornerRadius = 50
     }
     
