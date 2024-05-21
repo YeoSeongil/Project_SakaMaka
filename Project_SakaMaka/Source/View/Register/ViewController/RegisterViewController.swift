@@ -118,9 +118,7 @@ class RegisterViewController: BaseViewController {
         addNickNameTextField.rx.text.orEmpty
             .map { $0.count <= 8 }
             .subscribe(with: self, onNext: { owner, isEditable in
-                if !isEditable {
-                    owner.addNickNameTextField.text = String(owner.addNickNameTextField.text?.dropLast() ?? "")
-                }
+                owner.characterLimitAddNickNameTextField(isEditable)
             })
             .disposed(by: disposeBag)
         
@@ -142,6 +140,12 @@ class RegisterViewController: BaseViewController {
 }
 
 extension RegisterViewController {
+    private func characterLimitAddNickNameTextField(_ isEditable: Bool) {
+        if !isEditable {
+            addNickNameTextField.text = String(addNickNameTextField.text?.dropLast() ?? "")
+        }
+    }
+    
     private func changeAddNickNameTextFieldLayerColor(_ isEmpty: Bool) {
         addNickNameTextField.layer.borderColor = isEmpty ? UIColor.lightGray.cgColor : UIColor.Turquoise.cgColor
     }
