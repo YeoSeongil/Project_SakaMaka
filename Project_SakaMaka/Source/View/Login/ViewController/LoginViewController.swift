@@ -112,9 +112,11 @@ class LoginViewController: BaseViewController {
                     let viewController = RegisterViewController()
                     owner.navigationController?.pushViewController(viewController, animated: true)
                 case .appleSignFailedOnFirebase:
-                    print("VC 파이어 베이스 로그인 실패")
+                    let alert = OnlyYesAlertViewController(message: "파이어 베이스 로그인에 실패했어요.").setButtonTitle("확인했어요.")
+                    owner.present(alert, animated: false)
                 case .appleSignFailed:
-                    print("VC 애플 로그인 실패")
+                    let alert = OnlyYesAlertViewController(message: "애플 로그인에 실패했어요.").setButtonTitle("확인했어요.")
+                    owner.present(alert, animated: false)
                 }
             })
             .disposed(by: disposeBag)
