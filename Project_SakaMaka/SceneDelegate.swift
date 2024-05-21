@@ -22,28 +22,24 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(windowScene: windowScene)
         //
         
-        // TEST
-        window?.rootViewController = RegisterViewController()
-        window?.makeKeyAndVisible()
-//        
-//        if Auth.auth().currentUser != nil {
-//            let tapBarController = TabBarController()
-//            
-//            let navigationController = UINavigationController()
-//            navigationController.navigationBar.isHidden = true
-//            navigationController.viewControllers = [tapBarController]
-//            
-//            window?.rootViewController = navigationController
-//            window?.makeKeyAndVisible()
-//        } else {
-//            let rootViewController = LoginViewController()
-//            
-//            let navigationController = UINavigationController(rootViewController: rootViewController)
-//            navigationController.navigationBar.isHidden = true
-//            
-//            window?.rootViewController = navigationController
-//            window?.makeKeyAndVisible()
-//        }
+        if Auth.auth().currentUser != nil {
+            let tapBarController = TabBarController()
+            
+            let navigationController = UINavigationController()
+            navigationController.navigationBar.isHidden = true
+            navigationController.viewControllers = [tapBarController]
+            
+            window?.rootViewController = navigationController
+            window?.makeKeyAndVisible()
+        } else {
+            let rootViewController = LoginViewController()
+            
+            let navigationController = UINavigationController(rootViewController: rootViewController)
+            navigationController.navigationBar.isHidden = true
+            
+            window?.rootViewController = navigationController
+            window?.makeKeyAndVisible()
+        }
     }
     
     func sceneDidDisconnect(_ scene: UIScene) {

@@ -54,8 +54,8 @@ class FireBaseService {
                         
                         storageRef.putData(imageData, metadata: nil) { metadata, error in
                             if let error = error { observer.onNext(.failedUploadImage) }
+                            observer.onNext(.success)
                         }
-                        observer.onNext(.success)
                     }
                 }
             }
