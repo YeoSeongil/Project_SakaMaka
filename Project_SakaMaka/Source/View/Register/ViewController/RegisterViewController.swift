@@ -157,9 +157,11 @@ class RegisterViewController: BaseViewController {
                     let tabBarController = TabBarController()
                     owner.navigationController?.setViewControllers([tabBarController], animated: true)
                 case .failedRegister:
-                    print("가입실패")
+                    let alert = OnlyYesAlertViewController(message: "파이어 베이스 가입에 실패했어요.").setButtonTitle("확인했어요.")
+                    owner.present(alert, animated: false)
                 case .failedUploadImage:
-                    print("이미지 업로드 실패")
+                    let alert = OnlyYesAlertViewController(message: "이미지 업로드를 실패했어요.").setButtonTitle("확인했어요.")
+                    owner.present(alert, animated: false)
                 }
             })
             .disposed(by: disposeBag)
