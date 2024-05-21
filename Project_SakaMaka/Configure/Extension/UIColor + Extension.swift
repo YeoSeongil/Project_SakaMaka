@@ -28,4 +28,6 @@ extension UIColor {
 extension UIColor {
     static let PrestigeBlue = UIColor(hexCode: 0x2f3542)
     static let Turquoise = UIColor(hexCode: 0x1abc9c)
+    static let nightGray = UIColor(hexCode: 0xbdc3c7)
+    static let milkWhite = UIColor(hexCode: 0xf5f6fa)
 }
