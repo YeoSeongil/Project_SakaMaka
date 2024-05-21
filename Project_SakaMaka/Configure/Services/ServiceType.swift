@@ -24,6 +24,6 @@ enum checkIsCurrentUserRegisteredType {
 enum registerFirebaseUserType {
     case success
     case failedRegister
+    case failedUploadImage
 }
-
 

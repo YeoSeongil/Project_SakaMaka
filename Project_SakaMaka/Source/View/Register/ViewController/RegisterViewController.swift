@@ -13,6 +13,8 @@ import RxSwift
 import SnapKit
 import Then
 
+import PhotosUI
+
 class RegisterViewController: BaseViewController {
     
     private let viewModel: RegisterViewModelType
@@ -26,15 +28,16 @@ class RegisterViewController: BaseViewController {
     }
     
     private lazy var addProfileImageButton = UIButton().then {
-        //$0.addSubview(addProfileImageView)
-        $0.setImage(UIImage(named: "addUser")?.withRenderingMode(.alwaysTemplate), for: .normal)
-        $0.tintColor = .white
-        $0.backgroundColor = .Turquoise
+        $0.addSubview(addProfileImageView)
+        $0.backgroundColor = .clear
         $0.layer.cornerRadius = 50
     }
     
     private let addProfileImageView = UIImageView().then {
         $0.image = .unknownUser
+        $0.contentMode = .scaleAspectFill
+        $0.layer.masksToBounds = true
+        $0.layer.cornerRadius = 50
     }
     
     private let addNickNameTextField = UITextField().then {
@@ -92,14 +95,13 @@ class RegisterViewController: BaseViewController {
         addProfileImageButton.snp.makeConstraints {
             $0.centerX.equalTo(view.safeAreaLayoutGuide)
             $0.centerY.equalTo(view.safeAreaLayoutGuide).offset(-50)
-            $0.height.equalTo(100)
-            $0.width.equalTo(100)
+            $0.height.width.equalTo(100)
         }
-//        
-//        addProfileImageView.snp.makeConstraints {
-//            $0.centerX.equalToSuperview()
-//            $0.centerY.equalToSuperview()
-//        }
+        
+        addProfileImageView.snp.makeConstraints {
+            $0.centerX.centerY.equalToSuperview()
+            $0.height.width.equalTo(100)
+        }
         
         addNickNameTextField.snp.makeConstraints {
             $0.top.equalTo(addProfileImageButton.snp.bottom).offset(35)
@@ -118,9 +120,7 @@ class RegisterViewController: BaseViewController {
         addNickNameTextField.rx.text.orEmpty
             .map { $0.count <= 8 }
             .subscribe(with: self, onNext: { owner, isEditable in
-                if !isEditable {
-                    owner.addNickNameTextField.text = String(owner.addNickNameTextField.text?.dropLast() ?? "")
-                }
+                owner.characterLimitAddNickNameTextField(isEditable)
             })
             .disposed(by: disposeBag)
         
@@ -133,20 +133,90 @@ class RegisterViewController: BaseViewController {
             })
             .disposed(by: disposeBag)
         
+        addProfileImageButton.rx.tap
+            .subscribe(with: self, onNext: { owner, _ in
+                owner.presentImagePicker()
+            })
+            .disposed(by: disposeBag)
+        
+        // Input
         saveButton.rx.tap
-            .subscribe(onNext: { _ in
-                print("tap")
+            .bind(to: viewModel.saveButtonTapped)
+            .disposed(by: disposeBag)
+        
+        addNickNameTextField.rx.text.orEmpty
+            .bind(to: viewModel.nickName)
+            .disposed(by: disposeBag)
+        
+        
+        // Output
+        viewModel.registerResult
+            .drive(with: self, onNext: { owner, result in
+                switch result {
+                case .success:
+                    let tabBarController = TabBarController()
+                    owner.navigationController?.setViewControllers([tabBarController], animated: true)
+                case .failedRegister:
+                    print("가입실패")
+                case .failedUploadImage:
+                    print("이미지 업로드 실패")
+                }
             })
             .disposed(by: disposeBag)
     }
 }
 
 extension RegisterViewController {
+    private func characterLimitAddNickNameTextField(_ isEditable: Bool) {
+        if !isEditable {
+            addNickNameTextField.text = String(addNickNameTextField.text?.dropLast() ?? "")
+        }
+    }
+    
     private func changeAddNickNameTextFieldLayerColor(_ isEmpty: Bool) {
         addNickNameTextField.layer.borderColor = isEmpty ? UIColor.lightGray.cgColor : UIColor.Turquoise.cgColor
     }
     
     private func changeSaveButtonBackgroundColor(_ isEmpty: Bool) {
         saveButton.backgroundColor = isEmpty ?  .lightGray : .Turquoise
+    }
+    
+    private func presentImagePicker() {
+        var configuration = PHPickerConfiguration()
+        configuration.filter = .images
+        configuration.selectionLimit = 1
+        
+        let picker = PHPickerViewController(configuration: configuration)
+        picker.delegate = self
+        present(picker, animated: true, completion: nil)
+    }
+}
+
+extension RegisterViewController: PHPickerViewControllerDelegate {
+    func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
+        picker.dismiss(animated: true, completion: nil)
+        
+        guard let result = results.first else { return }
+        
+        result.itemProvider.loadObject(ofClass: UIImage.self) { [weak self] (object, error) in
+            if let error = error {
+                print("Error loading image: \(error.localizedDescription)")
+                return
+            }
+            
+            result.itemProvider.loadFileRepresentation(forTypeIdentifier: UTType.image.identifier) { [weak self] (url, error) in
+                if let error = error {
+                    print("Error loading image URL: \(error.localizedDescription)")
+                    return
+                }
+                
+                guard let image = object as? UIImage else { return }
+                
+                DispatchQueue.main.async {
+                    self?.addProfileImageView.image = image
+                    self?.viewModel.profileImage.onNext(image)
+                }
+            }
+        }
     }
 }

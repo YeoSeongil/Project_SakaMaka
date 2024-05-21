@@ -10,7 +10,7 @@ target 'Project_SakaMaka' do
     pod 'Then'
     pod 'Firebase/Firestore'
     pod 'Firebase/Auth'
-
+    pod 'FirebaseStorage'
   # Pods for Project_SakaMaka
 
 end
