@@ -27,12 +27,13 @@ class FeedHeaderView: UIView {
         let attributedString = NSMutableAttributedString(string: "사카", attributes: [.font: UIFont.h2, .foregroundColor: UIColor.Turquoise])
         attributedString.append(NSAttributedString(string: "마카", attributes: [.font: UIFont.h2_2, .foregroundColor: UIColor.black]))
         $0.attributedText = attributedString
-        $0.numberOfLines = 2
     }
     
     private let addVoteButton = UIButton().then {
         $0.setImage(UIImage(systemName: "plus"), for: .normal)
-        $0.tintColor = .black
+        $0.tintColor = .nightGray
+        $0.backgroundColor = .milkWhite
+        $0.layer.cornerRadius = 5
     }
     
     // MARK: - Init
@@ -62,6 +63,7 @@ class FeedHeaderView: UIView {
         
         addVoteButton.snp.makeConstraints {
             $0.centerY.equalToSuperview()
+            $0.width.height.equalTo(30)
             $0.trailing.equalToSuperview().inset(20)
         }
     }
