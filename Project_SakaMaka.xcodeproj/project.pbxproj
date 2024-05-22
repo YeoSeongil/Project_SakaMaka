@@ -26,6 +26,7 @@
 		9E5BDD312BFCCCED005FCFAC /* CustomAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E5BDD302BFCCCED005FCFAC /* CustomAlertViewController.swift */; };
 		9E5BDD332BFCDA9A005FCFAC /* OnlyYesAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E5BDD322BFCDA9A005FCFAC /* OnlyYesAlertViewController.swift */; };
 		9E5BDD362BFDF15C005FCFAC /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E5BDD352BFDF15C005FCFAC /* HomeViewController.swift */; };
+		9E5BDD3A2BFDF7E2005FCFAC /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E5BDD392BFDF7E2005FCFAC /* FeedViewController.swift */; };
 		9E7455BE2BF89D0000D519AD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7455BD2BF89D0000D519AD /* AppDelegate.swift */; };
 		9E7455C02BF89D0000D519AD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7455BF2BF89D0000D519AD /* SceneDelegate.swift */; };
 		9E7455C22BF89D0000D519AD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7455C12BF89D0000D519AD /* ViewController.swift */; };
@@ -59,6 +60,7 @@
 		9E5BDD302BFCCCED005FCFAC /* CustomAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlertViewController.swift; sourceTree = "<group>"; };
 		9E5BDD322BFCDA9A005FCFAC /* OnlyYesAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnlyYesAlertViewController.swift; sourceTree = "<group>"; };
 		9E5BDD352BFDF15C005FCFAC /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		9E5BDD392BFDF7E2005FCFAC /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
 		9E7455BA2BF89D0000D519AD /* Project_SakaMaka.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Project_SakaMaka.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E7455BD2BF89D0000D519AD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9E7455BF2BF89D0000D519AD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -166,6 +168,22 @@
 			path = Home;
 			sourceTree = "<group>";
 		};
+		9E5BDD372BFDF7D4005FCFAC /* Feed */ = {
+			isa = PBXGroup;
+			children = (
+				9E5BDD382BFDF7DA005FCFAC /* ViewController */,
+			);
+			path = Feed;
+			sourceTree = "<group>";
+		};
+		9E5BDD382BFDF7DA005FCFAC /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				9E5BDD392BFDF7E2005FCFAC /* FeedViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
 		9E7455B12BF89D0000D519AD = {
 			isa = PBXGroup;
 			children = (
@@ -239,6 +257,7 @@
 				9E7455DD2BF8A17700D519AD /* Login */,
 				9E7455DC2BF8A0EC00D519AD /* Register */,
 				9E5BDD342BFDF151005FCFAC /* Home */,
+				9E5BDD372BFDF7D4005FCFAC /* Feed */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -459,6 +478,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9E5BDD3A2BFDF7E2005FCFAC /* FeedViewController.swift in Sources */,
 				9E5879CB2BF8ECA000E55E19 /* FireBaseService.swift in Sources */,
 				9E7455E62BF8AC6D00D519AD /* UIFont + Extension.swift in Sources */,
 				9E5BDD272BFB54AC005FCFAC /* TestViewController.swift in Sources */,
