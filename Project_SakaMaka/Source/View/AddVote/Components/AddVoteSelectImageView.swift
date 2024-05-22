@@ -32,10 +32,11 @@ class AddVoteSelectImageView: UIView {
     }
     
     private lazy var selectImageButton = UIButton().then {
-        $0.backgroundColor = .clear
         $0.setImage(UIImage(named: "selectImage")?.withRenderingMode(.alwaysTemplate), for: .normal)
         $0.imageView?.layer.cornerRadius = 10
         $0.imageView?.contentMode = .scaleToFill
+        $0.imageView?.clipsToBounds = true
+        $0.backgroundColor = .clear
         $0.tintColor = .nightGray
         $0.layer.cornerRadius = 10
         $0.layer.borderWidth = 1
