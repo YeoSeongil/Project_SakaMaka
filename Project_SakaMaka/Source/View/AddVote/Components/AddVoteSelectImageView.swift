@@ -68,7 +68,7 @@ class AddVoteSelectImageView: UIView {
         
         selectImageButton.snp.makeConstraints {
             $0.top.equalTo(titleDescriptionLabel.snp.bottom).offset(5)
-            $0.height.equalTo(170)
+            $0.height.equalTo(200)
             $0.horizontalEdges.equalToSuperview()
         }
     }
