@@ -23,7 +23,8 @@ extension UIFont {
     static let h2_2 = UIFont(name: Pretendard.pretendardMedium.rawValue, size: 22)!
     static let h3 = UIFont(name: Pretendard.pretendardBold.rawValue, size: 20)!
     static let h4 = UIFont(name: Pretendard.pretendardBold.rawValue, size: 18)!
-    static let h5 = UIFont(name: Pretendard.pretendardBold.rawValue, size: 15)!
+    static let h5 = UIFont(name: Pretendard.pretendardBold.rawValue, size: 17)!
+    static let h6 = UIFont(name: Pretendard.pretendardBold.rawValue, size: 15)!
     
     static let b1 = UIFont(name: Pretendard.pretendardMedium.rawValue, size: 17)!
     static let b2 = UIFont(name: Pretendard.pretendardMedium.rawValue, size: 15)!
