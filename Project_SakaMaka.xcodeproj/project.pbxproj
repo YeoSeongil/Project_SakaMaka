@@ -25,7 +25,6 @@
 		9E5BDD332BFCDA9A005FCFAC /* OnlyYesAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E5BDD322BFCDA9A005FCFAC /* OnlyYesAlertViewController.swift */; };
 		9E5BDD362BFDF15C005FCFAC /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E5BDD352BFDF15C005FCFAC /* HomeViewController.swift */; };
 		9E5BDD3A2BFDF7E2005FCFAC /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E5BDD392BFDF7E2005FCFAC /* FeedViewController.swift */; };
-		9E5BDD3D2BFDFDDB005FCFAC /* CustomNavigationBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E5BDD3C2BFDFDDB005FCFAC /* CustomNavigationBarView.swift */; };
 		9E7455BE2BF89D0000D519AD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7455BD2BF89D0000D519AD /* AppDelegate.swift */; };
 		9E7455C02BF89D0000D519AD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7455BF2BF89D0000D519AD /* SceneDelegate.swift */; };
 		9E7455C22BF89D0000D519AD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7455C12BF89D0000D519AD /* ViewController.swift */; };
@@ -58,7 +57,6 @@
 		9E5BDD322BFCDA9A005FCFAC /* OnlyYesAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnlyYesAlertViewController.swift; sourceTree = "<group>"; };
 		9E5BDD352BFDF15C005FCFAC /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		9E5BDD392BFDF7E2005FCFAC /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
-		9E5BDD3C2BFDFDDB005FCFAC /* CustomNavigationBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationBarView.swift; sourceTree = "<group>"; };
 		9E7455BA2BF89D0000D519AD /* Project_SakaMaka.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Project_SakaMaka.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E7455BD2BF89D0000D519AD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9E7455BF2BF89D0000D519AD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -152,7 +150,6 @@
 			children = (
 				9E5BDD302BFCCCED005FCFAC /* CustomAlertViewController.swift */,
 				9E5BDD322BFCDA9A005FCFAC /* OnlyYesAlertViewController.swift */,
-				9E5BDD3C2BFDFDDB005FCFAC /* CustomNavigationBarView.swift */,
 			);
 			path = Custom;
 			sourceTree = "<group>";
@@ -494,7 +491,6 @@
 				9E7455C22BF89D0000D519AD /* ViewController.swift in Sources */,
 				9E7455D72BF89F0900D519AD /* BaseViewController.swift in Sources */,
 				9E7455BE2BF89D0000D519AD /* AppDelegate.swift in Sources */,
-				9E5BDD3D2BFDFDDB005FCFAC /* CustomNavigationBarView.swift in Sources */,
 				9E5BDD2E2BFC9FB8005FCFAC /* RegisterViewModel.swift in Sources */,
 				9E5BDD252BFB4FD8005FCFAC /* addShadow.swift in Sources */,
 				9E7455C02BF89D0000D519AD /* SceneDelegate.swift in Sources */,
