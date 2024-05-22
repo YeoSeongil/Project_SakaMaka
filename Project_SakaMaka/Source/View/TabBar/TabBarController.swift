@@ -30,15 +30,15 @@ class TabBarController: UITabBarController {
     
     private func setTabBarController() {
         // Todo 나머지 VC 구현 후 추가
-        let testVC = setNavigationController(title: "홈", unselectedImage: UIImage(systemName: "house"), selectedImage: UIImage(systemName: "house.fill"), rootViewController: TestViewController())
+        let homeVC = setNavigationController(title: "홈", unselectedImage: UIImage(systemName: "house"), selectedImage: UIImage(systemName: "house.fill"), rootViewController: HomeViewController())
         let testVC2 = setNavigationController(title: "홈2", unselectedImage: UIImage(systemName: "house"), selectedImage: UIImage(systemName: "home.fill"), rootViewController: Test2ViewController())
         
-        viewControllers = [testVC, testVC2]
+        viewControllers = [homeVC, testVC2]
     }
 }
 
+// MARK: - Method
 extension TabBarController {
-    // MARK: - Method
     private func setNavigationController(title: String, unselectedImage: UIImage?, selectedImage: UIImage?, rootViewController: UIViewController) -> UINavigationController {
         let navigationController = UINavigationController(rootViewController: rootViewController)
         navigationController.title = title
