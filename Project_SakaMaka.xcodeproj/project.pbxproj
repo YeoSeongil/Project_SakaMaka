@@ -30,6 +30,7 @@
 		9E5BDD482BFE0D1E005FCFAC /* AddVoteHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E5BDD472BFE0D1E005FCFAC /* AddVoteHeaderView.swift */; };
 		9E5BDD4B2BFE17CD005FCFAC /* AddVoteTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E5BDD4A2BFE17CD005FCFAC /* AddVoteTitleView.swift */; };
 		9E5BDD4F2BFE2076005FCFAC /* AddVoteSelectImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E5BDD4E2BFE2076005FCFAC /* AddVoteSelectImageView.swift */; };
+		9E5BDD512BFE323E005FCFAC /* AddVotePriceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E5BDD502BFE323E005FCFAC /* AddVotePriceView.swift */; };
 		9E7455BE2BF89D0000D519AD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7455BD2BF89D0000D519AD /* AppDelegate.swift */; };
 		9E7455C02BF89D0000D519AD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7455BF2BF89D0000D519AD /* SceneDelegate.swift */; };
 		9E7455C22BF89D0000D519AD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7455C12BF89D0000D519AD /* ViewController.swift */; };
@@ -67,6 +68,7 @@
 		9E5BDD472BFE0D1E005FCFAC /* AddVoteHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddVoteHeaderView.swift; sourceTree = "<group>"; };
 		9E5BDD4A2BFE17CD005FCFAC /* AddVoteTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddVoteTitleView.swift; sourceTree = "<group>"; };
 		9E5BDD4E2BFE2076005FCFAC /* AddVoteSelectImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddVoteSelectImageView.swift; sourceTree = "<group>"; };
+		9E5BDD502BFE323E005FCFAC /* AddVotePriceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddVotePriceView.swift; sourceTree = "<group>"; };
 		9E7455BA2BF89D0000D519AD /* Project_SakaMaka.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Project_SakaMaka.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E7455BD2BF89D0000D519AD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9E7455BF2BF89D0000D519AD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -227,6 +229,7 @@
 			children = (
 				9E5BDD4A2BFE17CD005FCFAC /* AddVoteTitleView.swift */,
 				9E5BDD4E2BFE2076005FCFAC /* AddVoteSelectImageView.swift */,
+				9E5BDD502BFE323E005FCFAC /* AddVotePriceView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -548,6 +551,7 @@
 				9E7455DA2BF8A05A00D519AD /* SplashViewController.swift in Sources */,
 				9E5BDD0D2BFB0429005FCFAC /* RegisterViewController.swift in Sources */,
 				9E5BDD4B2BFE17CD005FCFAC /* AddVoteTitleView.swift in Sources */,
+				9E5BDD512BFE323E005FCFAC /* AddVotePriceView.swift in Sources */,
 				9E5BDD312BFCCCED005FCFAC /* CustomAlertViewController.swift in Sources */,
 				9E5BDD332BFCDA9A005FCFAC /* OnlyYesAlertViewController.swift in Sources */,
 				9E7455EB2BF8CE6100D519AD /* LoginViewModel.swift in Sources */,
