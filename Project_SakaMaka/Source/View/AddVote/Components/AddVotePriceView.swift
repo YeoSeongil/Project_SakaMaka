@@ -62,6 +62,7 @@ class AddVotePriceView: UIView {
     
     private func setConstraint() {
         priceDescriptionLabel.snp.makeConstraints {
+            $0.top.equalToSuperview()
             $0.horizontalEdges.equalToSuperview()
         }
         
@@ -69,8 +70,10 @@ class AddVotePriceView: UIView {
             $0.top.equalTo(priceDescriptionLabel.snp.bottom).offset(5)
             $0.height.equalTo(40)
             $0.horizontalEdges.equalToSuperview()
+            $0.bottom.equalToSuperview()
         }
     }
+    
     private func bind() {
         priceTextField.rx.text.orEmpty
             .map { $0.count <= 13 }
@@ -97,6 +100,6 @@ extension AddVotePriceView {
     }
     
     private func changePriceTextFieldLayerColor(_ isEmpty: Bool) {
-        priceTextField.layer.borderColor = isEmpty ? UIColor.lightGray.cgColor : UIColor.Turquoise.cgColor
+        priceTextField.layer.borderColor = isEmpty ? UIColor.nightGray.cgColor : UIColor.Turquoise.cgColor
     }
 }

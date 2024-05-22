@@ -62,6 +62,7 @@ class AddVoteLinkView: UIView {
     
     private func setConstraint() {
         linkDescriptionLabel.snp.makeConstraints {
+            $0.top.equalToSuperview()
             $0.horizontalEdges.equalToSuperview()
         }
         
@@ -69,6 +70,7 @@ class AddVoteLinkView: UIView {
             $0.top.equalTo(linkDescriptionLabel.snp.bottom).offset(5)
             $0.height.equalTo(40)
             $0.horizontalEdges.equalToSuperview()
+            $0.bottom.equalToSuperview()
         }
     }
     private func bind() {
@@ -84,6 +86,6 @@ class AddVoteLinkView: UIView {
 // MARK: - Method
 extension AddVoteLinkView {
     private func changeLinkTextFieldLayerColor(_ isEmpty: Bool) {
-        linkTextField.layer.borderColor = isEmpty ? UIColor.lightGray.cgColor : UIColor.Turquoise.cgColor
+        linkTextField.layer.borderColor = isEmpty ? UIColor.nightGray.cgColor : UIColor.Turquoise.cgColor
     }
 }
