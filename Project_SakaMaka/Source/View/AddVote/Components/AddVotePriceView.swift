@@ -14,7 +14,6 @@ import SnapKit
 import Then
 
 protocol AddVotePriceViewDelegate: AnyObject {
-    func didBackbuttonTapped()
 }
 
 class AddVotePriceView: UIView {
