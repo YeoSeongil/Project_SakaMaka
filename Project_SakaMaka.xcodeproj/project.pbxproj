@@ -32,6 +32,7 @@
 		9E5BDD4F2BFE2076005FCFAC /* AddVoteSelectImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E5BDD4E2BFE2076005FCFAC /* AddVoteSelectImageView.swift */; };
 		9E5BDD512BFE323E005FCFAC /* AddVotePriceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E5BDD502BFE323E005FCFAC /* AddVotePriceView.swift */; };
 		9E5BDD532BFE35BD005FCFAC /* AddVoteLinkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E5BDD522BFE35BD005FCFAC /* AddVoteLinkView.swift */; };
+		9E5BDD552BFE36FF005FCFAC /* AddVoteContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E5BDD542BFE36FF005FCFAC /* AddVoteContentView.swift */; };
 		9E7455BE2BF89D0000D519AD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7455BD2BF89D0000D519AD /* AppDelegate.swift */; };
 		9E7455C02BF89D0000D519AD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7455BF2BF89D0000D519AD /* SceneDelegate.swift */; };
 		9E7455C22BF89D0000D519AD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7455C12BF89D0000D519AD /* ViewController.swift */; };
@@ -71,6 +72,7 @@
 		9E5BDD4E2BFE2076005FCFAC /* AddVoteSelectImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddVoteSelectImageView.swift; sourceTree = "<group>"; };
 		9E5BDD502BFE323E005FCFAC /* AddVotePriceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddVotePriceView.swift; sourceTree = "<group>"; };
 		9E5BDD522BFE35BD005FCFAC /* AddVoteLinkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddVoteLinkView.swift; sourceTree = "<group>"; };
+		9E5BDD542BFE36FF005FCFAC /* AddVoteContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddVoteContentView.swift; sourceTree = "<group>"; };
 		9E7455BA2BF89D0000D519AD /* Project_SakaMaka.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Project_SakaMaka.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E7455BD2BF89D0000D519AD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9E7455BF2BF89D0000D519AD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -233,6 +235,7 @@
 				9E5BDD4E2BFE2076005FCFAC /* AddVoteSelectImageView.swift */,
 				9E5BDD502BFE323E005FCFAC /* AddVotePriceView.swift */,
 				9E5BDD522BFE35BD005FCFAC /* AddVoteLinkView.swift */,
+				9E5BDD542BFE36FF005FCFAC /* AddVoteContentView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -559,6 +562,7 @@
 				9E5BDD312BFCCCED005FCFAC /* CustomAlertViewController.swift in Sources */,
 				9E5BDD332BFCDA9A005FCFAC /* OnlyYesAlertViewController.swift in Sources */,
 				9E7455EB2BF8CE6100D519AD /* LoginViewModel.swift in Sources */,
+				9E5BDD552BFE36FF005FCFAC /* AddVoteContentView.swift in Sources */,
 				9E5BDD032BF9E3E5005FCFAC /* ServiceType.swift in Sources */,
 				9E5BDD2C2BFC661A005FCFAC /* User.swift in Sources */,
 			);
