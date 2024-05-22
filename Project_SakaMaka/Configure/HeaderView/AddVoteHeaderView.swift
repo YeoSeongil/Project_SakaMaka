@@ -34,7 +34,7 @@ class AddVoteHeaderView: UIView {
         $0.textColor = .black
         $0.backgroundColor = .clear
         $0.textAlignment = .center
-        $0.font = .b1
+        $0.font = .h5
     }
 
     // MARK: - Init
