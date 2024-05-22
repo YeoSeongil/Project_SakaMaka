@@ -26,17 +26,19 @@ class AddVoteViewController: BaseViewController {
     private lazy var addVoteSelectImageView = AddVoteSelectImageView().then {
         $0.delegate = self
     }
+    private let addVotePriceView = AddVotePriceView()
+    private let addVoteLinkView = AddVoteLinkView()
+    private let addVoteContentView = AddVoteContentView()
     
     private let stackView = UIStackView().then {
         $0.axis = .vertical
-        $0.spacing = 10
-        $0.alignment = .fill
-        $0.distribution = .fillEqually
+        $0.spacing = 35
         $0.backgroundColor = .clear
     }
     
     private lazy var scrollView = UIScrollView().then {
         $0.backgroundColor = .clear
+        $0.showsVerticalScrollIndicator = false
         $0.addSubview(stackView)
     }
 
@@ -64,7 +66,7 @@ class AddVoteViewController: BaseViewController {
             view.addSubview($0)
         }
         
-        [addVoteTitleView, addVoteSelectImageView].forEach {
+        [addVoteTitleView, addVoteSelectImageView, addVotePriceView, addVoteLinkView, addVoteContentView].forEach {
             stackView.addArrangedSubview($0)
         }
     }
@@ -76,9 +78,12 @@ class AddVoteViewController: BaseViewController {
             $0.height.equalTo(32)
         }
         
+        addVoteContentView.snp.makeConstraints {
+            $0.height.equalTo(220)
+        }
+        
         stackView.snp.makeConstraints {
-            $0.width.equalToSuperview()
-            $0.height.equalToSuperview()
+            $0.top.bottom.leading.trailing.width.equalToSuperview()
         }
         
         scrollView.snp.makeConstraints {

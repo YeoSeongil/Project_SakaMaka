@@ -64,6 +64,7 @@ class AddVoteSelectImageView: UIView {
     
     private func setConstraint() {
         titleDescriptionLabel.snp.makeConstraints {
+            $0.top.equalToSuperview()
             $0.horizontalEdges.equalToSuperview()
         }
         
@@ -71,6 +72,7 @@ class AddVoteSelectImageView: UIView {
             $0.top.equalTo(titleDescriptionLabel.snp.bottom).offset(5)
             $0.height.equalTo(200)
             $0.horizontalEdges.equalToSuperview()
+            $0.bottom.equalToSuperview()
         }
     }
     

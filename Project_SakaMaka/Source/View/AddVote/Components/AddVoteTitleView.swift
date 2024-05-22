@@ -14,7 +14,6 @@ import SnapKit
 import Then
 
 protocol AddVoteTitleViewDelegate: AnyObject {
-    func didBackbuttonTapped()
 }
 
 class AddVoteTitleView: UIView {
@@ -70,6 +69,7 @@ class AddVoteTitleView: UIView {
     
     private func setConstraint() {
         titleDescriptionLabel.snp.makeConstraints {
+            $0.top.equalToSuperview()
             $0.horizontalEdges.equalToSuperview()
         }
         
@@ -82,6 +82,7 @@ class AddVoteTitleView: UIView {
         emptyWarningMessageLabel.snp.makeConstraints {
             $0.top.equalTo(titleTextField.snp.bottom).offset(3)
             $0.horizontalEdges.equalToSuperview()
+            $0.bottom.equalToSuperview()
         }
     }
     
