@@ -7,23 +7,25 @@
 
 import UIKit
 
-class HomeViewController: UIViewController {
+import RxCocoa
+import RxSwift
 
+import SnapKit
+import Then
+
+class HomeViewController: BaseViewController {
+
+    // MARK: - UI Components
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+    // MARK: - Init
+    
+    // MARK: - LifeCycle
+    
+    // MARK: - SetUp VC
+    
 }
