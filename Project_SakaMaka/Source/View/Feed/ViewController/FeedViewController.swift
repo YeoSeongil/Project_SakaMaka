@@ -41,11 +41,11 @@ class FeedViewController: BaseViewController {
             $0.height.equalTo(32)
         }
     }
-    
 }
 
 extension FeedViewController: FeedHeaderViewDelegate {
     func didAddVoteButtonTapped() {
-        print("네비 탭")
+        let vc = AddVoteViewController()
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 }
