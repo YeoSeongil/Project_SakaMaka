@@ -16,16 +16,36 @@ import Then
 class FeedViewController: BaseViewController {
 
     // MARK: - UI Components
+    private lazy var headerView = FeedHeaderView().then {
+        $0.delegate = self
+    }
+
+    // MARK: - Init
+    
+    // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
     }
     
-    // MARK: - Init
-    
-    // MARK: - LifeCycle
-    
     // MARK: - SetUp VC
+    override func setViewController() {
+        [headerView].forEach { view.addSubview($0) }
+    }
     
+    override func setConstraints() {
+        headerView.snp.makeConstraints {
+            $0.top.equalTo(view.safeAreaLayoutGuide)
+            $0.horizontalEdges.equalToSuperview()
+            $0.height.equalTo(32)
+        }
+    }
+    
+}
+
+extension FeedViewController: FeedHeaderViewDelegate {
+    func didAddVoteButtonTapped() {
+        print("네비 탭")
+    }
 }
