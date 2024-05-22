@@ -145,13 +145,13 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		9E5BDD2F2BFCCCD0005FCFAC /* Cumstom */ = {
+		9E5BDD2F2BFCCCD0005FCFAC /* custom */ = {
 			isa = PBXGroup;
 			children = (
 				9E5BDD302BFCCCED005FCFAC /* CustomAlertViewController.swift */,
 				9E5BDD322BFCDA9A005FCFAC /* OnlyYesAlertViewController.swift */,
 			);
-			path = Cumstom;
+			path = custom;
 			sourceTree = "<group>";
 		};
 		9E5BDD342BFDF151005FCFAC /* Home */ = {
@@ -224,7 +224,7 @@
 		9E7455D32BF89EF500D519AD /* Configure */ = {
 			isa = PBXGroup;
 			children = (
-				9E5BDD2F2BFCCCD0005FCFAC /* Cumstom */,
+				9E5BDD2F2BFCCCD0005FCFAC /* custom */,
 				9E5BDD232BFB4F99005FCFAC /* Utils */,
 				9E7455EC2BF8D39500D519AD /* Services */,
 				9E7455E32BF8ABDB00D519AD /* Fonts */,
