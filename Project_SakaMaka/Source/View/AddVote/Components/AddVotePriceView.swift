@@ -13,13 +13,13 @@ import RxSwift
 import SnapKit
 import Then
 
-protocol AddVotePriceViewDelegate: AnyObject {
+protocol AddVotePriceViewType {
+    var priceText: Observable<String> { get }
 }
 
 class AddVotePriceView: UIView {
     
     private let disposeBag = DisposeBag()
-    weak var delegate: AddVotePriceViewDelegate?
     
     // MARK: - UI Components
     private let priceDescriptionLabel = UILabel().then {
@@ -33,7 +33,7 @@ class AddVotePriceView: UIView {
         let padding = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 0))
         $0.leftView = padding
         $0.leftViewMode = .always
-        $0.attributedPlaceholder = NSAttributedString(string: "ex) 10,000", attributes: [.font: UIFont.b5, .foregroundColor: UIColor.nightGray])
+        $0.attributedPlaceholder = NSAttributedString(string: "ex) 10000", attributes: [.font: UIFont.b5, .foregroundColor: UIColor.nightGray])
         $0.font = .b4
         $0.textColor = .Turquoise
         $0.layer.cornerRadius = 10
@@ -102,5 +102,12 @@ extension AddVotePriceView {
     
     private func changePriceTextFieldLayerColor(_ isEmpty: Bool) {
         priceTextField.layer.borderColor = isEmpty ? UIColor.nightGray.cgColor : UIColor.Turquoise.cgColor
+    }
+}
+
+extension AddVotePriceView: AddVotePriceViewType {
+    var priceText: Observable<String> {
+        priceTextField.rx.text.orEmpty
+            .asObservable()
     }
 }
