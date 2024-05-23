@@ -39,6 +39,7 @@ class AddVoteLinkView: UIView {
         $0.layer.cornerRadius = 10
         $0.layer.borderWidth = 1
         $0.layer.borderColor = UIColor.black.cgColor
+        $0.keyboardType = .URL
     }
     
     // MARK: - Init
