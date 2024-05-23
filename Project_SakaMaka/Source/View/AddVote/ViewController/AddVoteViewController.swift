@@ -40,6 +40,10 @@ class AddVoteViewController: BaseViewController {
         $0.backgroundColor = .clear
         $0.showsVerticalScrollIndicator = false
         $0.addSubview(stackView)
+        $0.delegate = self
+        
+        let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(scrollViewTapGesture))
+        $0.addGestureRecognizer(gestureRecognizer)
     }
 
     private let addButton = UIButton().then {
@@ -56,8 +60,6 @@ class AddVoteViewController: BaseViewController {
     // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
     }
     
     // MARK: - SetUp VC
@@ -113,6 +115,14 @@ extension AddVoteViewController {
     }
 }
 
+// MARK: - @objc
+extension AddVoteViewController {
+    @objc private func scrollViewTapGesture(sender: UITapGestureRecognizer) {
+        self.view.endEditing(true)
+    }
+}
+
+// MARK: - Delegate
 extension AddVoteViewController: AddVoteHeaderViewDelegate {
     func didBackbuttonTapped() {
         self.navigationController?.popViewController(animated: true)
@@ -154,5 +164,11 @@ extension AddVoteViewController: PHPickerViewControllerDelegate {
                 }
             }
         }
+    }
+}
+
+extension AddVoteViewController: UIScrollViewDelegate {
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        self.view.endEditing(true)
     }
 }
