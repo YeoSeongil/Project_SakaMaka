@@ -13,13 +13,13 @@ import RxSwift
 import SnapKit
 import Then
 
-protocol AddVoteContentViewDelegate: AnyObject {
+protocol AddVoteContentViewType {
+    var contentText: Observable<String> { get }
 }
 
 class AddVoteContentView: UIView {
     
     private let disposeBag = DisposeBag()
-    weak var delegate: AddVoteContentViewDelegate?
     
     // MARK: - UI Components
     private let contentDescriptionLabel = UILabel().then {
@@ -79,13 +79,6 @@ class AddVoteContentView: UIView {
             })
             .disposed(by: disposeBag)
         
-//        contentTextView.rx.text.orEmpty
-//            .map { $0.isEmpty }
-//            .subscribe(with: self, onNext: { owner, isEmpty in
-//                owner.changeContentTextFieldLayerColor(isEmpty)
-//            })
-//            .disposed(by: disposeBag)
-        
         contentTextView.rx.didBeginEditing
             .subscribe(with: self, onNext: { owner, _ in
                 owner.didBeginEditingEvent()
@@ -126,5 +119,12 @@ extension AddVoteContentView {
             contentTextView.textColor = UIColor.nightGray
             contentTextView.layer.borderColor = UIColor.nightGray.cgColor
         }
+    }
+}
+
+extension AddVoteContentView: AddVoteContentViewType {
+    var contentText: Observable<String> {
+        contentTextView.rx.text.orEmpty
+            .asObservable()
     }
 }
