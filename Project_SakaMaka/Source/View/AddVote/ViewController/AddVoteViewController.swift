@@ -17,6 +17,8 @@ import PhotosUI
 
 class AddVoteViewController: BaseViewController {
 
+    private let viewModel: AddVoteViewModelType
+    
     // MARK: - UI Components
     private lazy var headerView = AddVoteHeaderView().then {
         $0.delegate = self
@@ -46,8 +48,8 @@ class AddVoteViewController: BaseViewController {
         $0.addGestureRecognizer(gestureRecognizer)
     }
 
-    private let addButton = UIButton().then {
-        $0.setTitle("등록하기", for: .normal)
+    private let postButton = UIButton().then {
+        $0.setTitle("게시하기", for: .normal)
         $0.titleLabel?.textColor = .white
         $0.titleLabel?.textAlignment = .center
         $0.titleLabel?.font = .h4
@@ -56,6 +58,14 @@ class AddVoteViewController: BaseViewController {
     }
     
     // MARK: - Init
+    init(viewModel: AddVoteViewModelType = AddVoteViewModel()) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     // MARK: - LifeCycle
     override func viewDidLoad() {
@@ -64,7 +74,7 @@ class AddVoteViewController: BaseViewController {
     
     // MARK: - SetUp VC
     override func setViewController() {
-        [headerView, scrollView, addButton].forEach {
+        [headerView, scrollView, postButton].forEach {
             view.addSubview($0)
         }
         
@@ -90,15 +100,37 @@ class AddVoteViewController: BaseViewController {
         
         scrollView.snp.makeConstraints {
             $0.top.equalTo(headerView.snp.bottom).offset(25)
-            $0.bottom.equalTo(addButton.snp.top).offset(25)
+            $0.bottom.equalTo(postButton.snp.top).offset(25)
             $0.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(20)
         }
         
-        addButton.snp.makeConstraints {
+        postButton.snp.makeConstraints {
             $0.bottom.equalTo(view.safeAreaLayoutGuide).inset(10)
             $0.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(20)
             $0.height.equalTo(50)
         }
+    }
+    
+    override func bind() {
+        addVoteTitleView.titleText
+            .bind(to: viewModel.titleValue)
+            .disposed(by: disposeBag)
+        
+        addVotePriceView.priceText
+            .bind(to: viewModel.priceValue)
+            .disposed(by: disposeBag)
+        
+        addVoteLinkView.linkText
+            .bind(to: viewModel.linkValue)
+            .disposed(by: disposeBag)
+        
+        addVoteContentView.contentText
+            .bind(to: viewModel.contentValue)
+            .disposed(by: disposeBag)
+        
+        postButton.rx.tap
+            .bind(to: viewModel.postButtonTapped)
+            .disposed(by: disposeBag)
     }
 }
 
@@ -133,10 +165,6 @@ extension AddVoteViewController: AddVoteSelectImageViewDelegate {
     func didSelectImageButtonTapped() {
         presentImagePicker()
     }
-    
-    func didSelectImageTapped() {
-        
-    }
 }
 
 extension AddVoteViewController: PHPickerViewControllerDelegate {
@@ -161,6 +189,7 @@ extension AddVoteViewController: PHPickerViewControllerDelegate {
                 
                 DispatchQueue.main.async {
                     self?.addVoteSelectImageView.setImage(image)
+                    self?.viewModel.imageValue.onNext(image)
                 }
             }
         }
