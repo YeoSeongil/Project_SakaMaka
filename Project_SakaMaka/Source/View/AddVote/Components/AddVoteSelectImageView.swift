@@ -93,4 +93,3 @@ extension AddVoteSelectImageView {
         selectImageButton.layer.borderWidth = 0
     }
 }
-

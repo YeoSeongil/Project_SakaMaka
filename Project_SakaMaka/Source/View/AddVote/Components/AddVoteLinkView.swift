@@ -13,13 +13,13 @@ import RxSwift
 import SnapKit
 import Then
 
-protocol AddVoteLinkViewDelegate: AnyObject {
+protocol AddVoteLinkViewType {
+    var linkText: Observable<String> { get }
 }
 
 class AddVoteLinkView: UIView {
     
     private let disposeBag = DisposeBag()
-    weak var delegate: AddVoteLinkViewDelegate?
     
     // MARK: - UI Components
     private let linkDescriptionLabel = UILabel().then {
@@ -88,5 +88,12 @@ class AddVoteLinkView: UIView {
 extension AddVoteLinkView {
     private func changeLinkTextFieldLayerColor(_ isEmpty: Bool) {
         linkTextField.layer.borderColor = isEmpty ? UIColor.nightGray.cgColor : UIColor.Turquoise.cgColor
+    }
+}
+
+extension AddVoteLinkView: AddVoteLinkViewType {
+    var linkText: Observable<String> {
+        linkTextField.rx.text.orEmpty
+            .asObservable()
     }
 }

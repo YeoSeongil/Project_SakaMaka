@@ -13,13 +13,13 @@ import RxSwift
 import SnapKit
 import Then
 
-protocol AddVoteTitleViewDelegate: AnyObject {
+protocol AddVoteTitleViewType {
+    var titleText: Observable<String> { get }
 }
 
 class AddVoteTitleView: UIView {
-    
+     
     private let disposeBag = DisposeBag()
-    weak var delegate: AddVoteTitleViewDelegate?
     
     // MARK: - UI Components
     private let titleDescriptionLabel = UILabel().then {
@@ -119,5 +119,12 @@ extension AddVoteTitleView {
             titleTextField.layer.borderColor = UIColor.Turquoise.cgColor
             emptyWarningMessageLabel.isHidden = true
         }
+    }
+}
+
+extension AddVoteTitleView: AddVoteTitleViewType {
+    var titleText: Observable<String> {
+        titleTextField.rx.text.orEmpty
+            .asObservable()
     }
 }
