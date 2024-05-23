@@ -20,6 +20,7 @@ protocol AddVoteViewModelType {
 class AddVoteViewModel {
     private let disposeBag = DisposeBag()
     
+    private let firebaseService = FireBaseService.shared
     // Input
     private let inputPostButtonTapped = PublishSubject<Void>()
     private let inputTitleValue = PublishSubject<String>()
@@ -32,17 +33,17 @@ class AddVoteViewModel {
         inputPostButtonTapped
             .withLatestFrom(Observable.combineLatest(inputTitleValue, inputImageValue, inputPriceValue, inputLinkValue, inputContentValue))
             .subscribe(with: self, onNext: { owner, value in
-                print(value.0)
-                print(value.1)
-                print(value.2)
-                print(value.3)
-                print(value.4)
+                owner.firebaseService.postUpload(title: value.0, image: value.1, price: value.2, link: value.3, content: value.4)
+                    .subscribe(onNext: { result in
+                        switch result {
+                        case .success:
+                            print("성공")
+                        case .handleError:
+                            print("실패")
+                        }
+                    }).disposed(by: self.disposeBag)
             })
             .disposed(by: disposeBag)
-    }
-    
-    private func test() {
-
     }
 }
 
