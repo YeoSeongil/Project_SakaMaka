@@ -41,6 +41,7 @@ class AddVoteSelectImageView: UIView {
         $0.layer.cornerRadius = 10
         $0.layer.borderWidth = 1
         $0.layer.borderColor = UIColor.nightGray.cgColor
+        $0.layer.masksToBounds = true
     }
     
     // MARK: - Init
