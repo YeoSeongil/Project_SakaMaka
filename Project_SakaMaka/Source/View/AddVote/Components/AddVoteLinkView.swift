@@ -33,7 +33,7 @@ class AddVoteLinkView: UIView {
         let padding = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 0))
         $0.leftView = padding
         $0.leftViewMode = .always
-        $0.attributedPlaceholder = NSAttributedString(string: "ex) 10,000", attributes: [.font: UIFont.b5, .foregroundColor: UIColor.nightGray])
+        $0.attributedPlaceholder = NSAttributedString(string: "ex) https://itemlink.com", attributes: [.font: UIFont.b5, .foregroundColor: UIColor.nightGray])
         $0.font = .b4
         $0.textColor = .Turquoise
         $0.layer.cornerRadius = 10
