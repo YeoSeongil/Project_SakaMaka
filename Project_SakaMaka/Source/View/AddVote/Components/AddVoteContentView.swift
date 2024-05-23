@@ -24,7 +24,7 @@ class AddVoteContentView: UIView {
     // MARK: - UI Components
     private let contentDescriptionLabel = UILabel().then {
         let attributedString = NSMutableAttributedString(string: "투표 내용을 입력해주세요.", attributes: [.font: UIFont.b2, .foregroundColor: UIColor.black])
-        attributedString.append(NSAttributedString(string: " (필수사항)", attributes: [.font: UIFont.b5, .foregroundColor: UIColor.wineRed]))
+        attributedString.append(NSAttributedString(string: " (선택사항)", attributes: [.font: UIFont.b5, .foregroundColor: UIColor.nightGray]))
         $0.attributedText = attributedString
         $0.backgroundColor = .clear
     }
