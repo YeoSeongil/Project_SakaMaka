@@ -32,6 +32,7 @@ class FeedViewController: BaseViewController {
     ).then {
         $0.backgroundColor = .clear
         $0.register(FeedCollectionViewCell.self, forCellWithReuseIdentifier: FeedCollectionViewCell.id)
+        $0.showsVerticalScrollIndicator = false
     }
     
     // MARK: - Init
@@ -88,7 +89,13 @@ extension FeedViewController: FeedHeaderViewDelegate {
 extension FeedViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width: CGFloat = collectionView.bounds.width
-        let hegiht: CGFloat = 460
+        let hegiht: CGFloat = 420
         return CGSize(width: width, height: hegiht)
     }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 45
+    }
+
 }
+
