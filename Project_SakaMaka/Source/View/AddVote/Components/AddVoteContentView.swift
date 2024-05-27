@@ -37,6 +37,7 @@ class AddVoteContentView: UIView {
         $0.textContainerInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
         $0.text = "ex) 아이패드 9.7인치 살까? 아니면 12.9인치 살까?"
         $0.textColor = .nightGray
+        $0.backgroundColor = .clear
     }
     
     // MARK: - Init
