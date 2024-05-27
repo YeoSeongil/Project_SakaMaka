@@ -9,6 +9,7 @@ import UIKit
 
 import SnapKit
 import Then
+import FirebaseFirestore
 
 class FeedCollectionViewCell: UICollectionViewCell {
     static let id: String = "FeedCollectionViewCell"
@@ -23,12 +24,13 @@ class FeedCollectionViewCell: UICollectionViewCell {
     
     // Header
     private let cellHeaderView = UIView().then {
-        $0.backgroundColor = .blue
+        $0.backgroundColor = .clear
     }
     
     private let profileImageView = UIImageView().then {
         $0.backgroundColor = .clear
         $0.layer.cornerRadius = 15
+        $0.layer.masksToBounds = true
     }
 
     private let userNameLabel = UILabel().then {
@@ -45,12 +47,11 @@ class FeedCollectionViewCell: UICollectionViewCell {
     
     // Main
     private let cellMainView = UIView().then {
-        $0.backgroundColor = .red
+        $0.backgroundColor = .clear
     }
     
     private let itemImageView = UIImageView().then {
         $0.backgroundColor = .clear
-        $0.layer.cornerRadius = 10
     }
 
     private let titleLabel = UILabel().then {
@@ -63,11 +64,12 @@ class FeedCollectionViewCell: UICollectionViewCell {
         $0.backgroundColor = .clear
         $0.font = .b6
         $0.textColor = .black
+        $0.numberOfLines = 1
     }
     
     // Footer
     private let cellFooterView = UIView().then {
-        $0.backgroundColor = .green
+        $0.backgroundColor = .clear
     }
     
     private let voteBuyButton = UIButton().then {
@@ -123,7 +125,7 @@ class FeedCollectionViewCell: UICollectionViewCell {
         
         // Header
         cellHeaderView.snp.makeConstraints {
-            $0.height.equalTo(32)
+            $0.height.equalTo(40)
         }
         
         profileImageView.snp.makeConstraints {
@@ -133,28 +135,28 @@ class FeedCollectionViewCell: UICollectionViewCell {
         }
         
         userNameLabel.snp.makeConstraints {
-            $0.top.equalToSuperview()
+            $0.top.equalToSuperview().offset(5)
             $0.leading.equalTo(profileImageView.snp.trailing).offset(15)
         }
         
         postDateLabel.snp.makeConstraints {
-            $0.bottom.equalToSuperview()
+            $0.bottom.equalToSuperview().inset(5)
             $0.leading.equalTo(profileImageView.snp.trailing).offset(15)
         }
         
         // Main
         cellMainView.snp.makeConstraints {
-            $0.height.equalTo(388)
+            $0.height.equalTo(330)
         }
         
         itemImageView.snp.makeConstraints {
             $0.horizontalEdges.equalToSuperview()
             $0.top.equalToSuperview()
-            $0.height.equalTo(270)
+            $0.height.equalTo(287)
         }
         
         titleLabel.snp.makeConstraints {
-            $0.top.equalTo(itemImageView.snp.bottom).offset(15)
+            $0.top.equalTo(itemImageView.snp.bottom).offset(10)
             $0.horizontalEdges.equalToSuperview()
         }
         
@@ -165,33 +167,46 @@ class FeedCollectionViewCell: UICollectionViewCell {
 
         // Footer
         cellFooterView.snp.makeConstraints {
-            $0.height.equalTo(20)
+            $0.height.equalTo(30)
         }
         
         voteBuyButton.snp.makeConstraints {
+            $0.centerY.equalToSuperview()
             $0.leading.equalToSuperview()
-            $0.height.width.equalTo(15)
-        }        
+            $0.height.width.equalTo(25)
+        }
         
         voteDontBuyButton.snp.makeConstraints {
+            $0.centerY.equalToSuperview()
             $0.leading.equalTo(voteBuyButton.snp.trailing).offset(10)
-            $0.height.width.equalTo(15)
+            $0.height.width.equalTo(25)
         }
         
         commentButton.snp.makeConstraints {
+            $0.centerY.equalToSuperview()
             $0.trailing.equalToSuperview()
-            $0.height.width.equalTo(15)
+            $0.height.width.equalTo(25)
         }
     }
 }
 
 extension FeedCollectionViewCell {
     func configuration(_ data: Post) {
-        profileImageView.image = .unknownUser
+        profileImageView.setImageKingfisher(with: data.profileURL)
         userNameLabel.text = data.authorName
-        itemImageView.image = .unknownUser
+        itemImageView.setImageKingfisher(with: data.imageURL)
         contentLabel.text = data.content
-        postDateLabel.text = "\(data.timestamp)"
+        postDateLabel.text = formatTimestamp(data.timestamp)
         titleLabel.text = data.title
+    }
+}
+
+extension FeedCollectionViewCell {
+    private func formatTimestamp(_ timestamp: Timestamp) -> String{
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy.MM.dd"
+        
+        let date = timestamp.dateValue()
+        return formatter.string(from: date)
     }
 }
