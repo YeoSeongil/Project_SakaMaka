@@ -26,7 +26,7 @@ class AddVoteSelectImageView: UIView {
     // MARK: - UI Components
     private let titleDescriptionLabel = UILabel().then {
         let attributedString = NSMutableAttributedString(string: "상품의 사진을 등록해주세요.", attributes: [.font: UIFont.b2, .foregroundColor: UIColor.black])
-        attributedString.append(NSAttributedString(string: " (선택사항)", attributes: [.font: UIFont.b5, .foregroundColor: UIColor.nightGray]))
+        attributedString.append(NSAttributedString(string: " (필수사항)", attributes: [.font: UIFont.b5, .foregroundColor: UIColor.wineRed]))
         $0.attributedText = attributedString
         $0.backgroundColor = .clear
     }
@@ -40,8 +40,15 @@ class AddVoteSelectImageView: UIView {
         $0.tintColor = .nightGray
         $0.layer.cornerRadius = 10
         $0.layer.borderWidth = 1
-        $0.layer.borderColor = UIColor.nightGray.cgColor
+        $0.layer.borderColor = UIColor.wineRed.cgColor
         $0.layer.masksToBounds = true
+    }
+    
+    private let emptyWarningMessageLabel = UILabel().then {
+        $0.text = "사진은 필수로 등록해야 합니다."
+        $0.font = .b5
+        $0.textColor = .wineRed
+        $0.backgroundColor  = .clear
     }
     
     // MARK: - Init
@@ -60,7 +67,7 @@ class AddVoteSelectImageView: UIView {
     private func setView() {
         backgroundColor = .clear
         
-        [titleDescriptionLabel, selectImageButton].forEach { addSubview($0) }
+        [titleDescriptionLabel, selectImageButton, emptyWarningMessageLabel].forEach { addSubview($0) }
     }
     
     private func setConstraint() {
@@ -74,6 +81,11 @@ class AddVoteSelectImageView: UIView {
             $0.height.equalTo(200)
             $0.horizontalEdges.equalToSuperview()
             $0.bottom.equalToSuperview()
+        }
+        
+        emptyWarningMessageLabel.snp.makeConstraints {
+            $0.top.equalTo(selectImageButton.snp.bottom).offset(3)
+            $0.horizontalEdges.equalToSuperview()
         }
     }
     
@@ -91,5 +103,6 @@ extension AddVoteSelectImageView {
     func setImage(_ image: UIImage) {
         selectImageButton.setImage(image, for: .normal)
         selectImageButton.layer.borderWidth = 0
+        emptyWarningMessageLabel.isHidden = true
     }
 }
