@@ -88,7 +88,7 @@ class AddVoteTitleView: UIView {
     
     private func bind() {
         titleTextField.rx.text.orEmpty
-            .map { $0.count <= 8 }
+            .map { $0.count <= 15 }
             .subscribe(with: self, onNext: { owner, isEditable in
                 owner.characterLimitTitleTextField(isEditable)
             })
