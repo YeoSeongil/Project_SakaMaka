@@ -131,6 +131,30 @@ class AddVoteViewController: BaseViewController {
         postButton.rx.tap
             .bind(to: viewModel.postButtonTapped)
             .disposed(by: disposeBag)
+        
+        viewModel.postUploadResult
+            .drive(with: self, onNext:  { owner, result in
+                switch result {
+                case .success:
+                    let alert = OnlyYesAlertViewController(message: "투표가 게시 됐어요.").setButtonTitle("확인했어요.")
+                    alert.onlyAlertType = .customType
+                    alert.yesButtonTapAction = {
+                        alert.dismiss(animated: false)
+                        owner.navigationController?.popToRootViewController(animated: true)
+                    }
+                    owner.present(alert, animated: false)
+                    
+                case .handleError:
+                    let alert = OnlyYesAlertViewController(message: "투표 게시에 실패했어요.").setButtonTitle("확인했어요.")
+                    alert.onlyAlertType = .customType
+                    alert.yesButtonTapAction = {
+                        alert.dismiss(animated: false)
+                        owner.navigationController?.popToRootViewController(animated: true)
+                    }
+                    owner.present(alert, animated: false)
+                }
+            })
+            .disposed(by: disposeBag)
     }
 }
 
