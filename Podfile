@@ -11,6 +11,7 @@ target 'Project_SakaMaka' do
     pod 'Firebase/Firestore'
     pod 'Firebase/Auth'
     pod 'FirebaseStorage'
+    pod 'Kingfisher', '~> 7.0'
   # Pods for Project_SakaMaka
 
 end
