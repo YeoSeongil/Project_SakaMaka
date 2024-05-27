@@ -15,7 +15,6 @@ enum AppleAuthServiceType {
     case appleSignFailed
 }
 
-// MARK: - checkIsCurrentUserRegistered Type
 enum checkIsCurrentUserRegisteredType {
     case findCurrentUser
     case notFindCurrentUser
@@ -27,3 +26,7 @@ enum registerFirebaseUserType {
     case failedUploadImage
 }
 
+enum postUploadType {
+    case success
+    case handleError
+}

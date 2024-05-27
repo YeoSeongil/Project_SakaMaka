@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		441A83D1C21DB4BECBB7CEC7 /* Pods_Project_SakaMaka.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED2D95E7182D7927D859FBC5 /* Pods_Project_SakaMaka.framework */; };
 		9E3655F12BFF4EA500AF020A /* AddVoteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E3655F02BFF4EA500AF020A /* AddVoteViewModel.swift */; };
+		9E3655F42C047D4B00AF020A /* FeedCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E3655F32C047D4B00AF020A /* FeedCollectionViewCell.swift */; };
+		9E3655F62C04820C00AF020A /* FeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E3655F52C04820C00AF020A /* FeedViewModel.swift */; };
+		9E3655F82C04860200AF020A /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E3655F72C04860200AF020A /* Post.swift */; };
+		9E3655FC2C04AA1600AF020A /* UIImageView + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E3655FB2C04AA1600AF020A /* UIImageView + Extension.swift */; };
 		9E5879C82BF8E8CF00E55E19 /* AppleAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E5879C72BF8E8CF00E55E19 /* AppleAuthService.swift */; };
 		9E5879CB2BF8ECA000E55E19 /* FireBaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E5879CA2BF8ECA000E55E19 /* FireBaseService.swift */; };
 		9E5BDD032BF9E3E5005FCFAC /* ServiceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E5BDD022BF9E3E5005FCFAC /* ServiceType.swift */; };
@@ -49,6 +53,10 @@
 
 /* Begin PBXFileReference section */
 		9E3655F02BFF4EA500AF020A /* AddVoteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddVoteViewModel.swift; sourceTree = "<group>"; };
+		9E3655F32C047D4B00AF020A /* FeedCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCollectionViewCell.swift; sourceTree = "<group>"; };
+		9E3655F52C04820C00AF020A /* FeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewModel.swift; sourceTree = "<group>"; };
+		9E3655F72C04860200AF020A /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		9E3655FB2C04AA1600AF020A /* UIImageView + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView + Extension.swift"; sourceTree = "<group>"; };
 		9E5879C42BF8DEE600E55E19 /* Project_SakaMaka.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Project_SakaMaka.entitlements; sourceTree = "<group>"; };
 		9E5879C72BF8E8CF00E55E19 /* AppleAuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleAuthService.swift; sourceTree = "<group>"; };
 		9E5879CA2BF8ECA000E55E19 /* FireBaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireBaseService.swift; sourceTree = "<group>"; };
@@ -123,6 +131,14 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		9E3655F22C047A6500AF020A /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				9E3655F32C047D4B00AF020A /* FeedCollectionViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		9E5879C92BF8EC9600E55E19 /* FireBase */ = {
 			isa = PBXGroup;
 			children = (
@@ -167,6 +183,7 @@
 			isa = PBXGroup;
 			children = (
 				9E5BDD2B2BFC661A005FCFAC /* User.swift */,
+				9E3655F72C04860200AF020A /* Post.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -191,6 +208,7 @@
 		9E5BDD372BFDF7D4005FCFAC /* Feed */ = {
 			isa = PBXGroup;
 			children = (
+				9E3655F22C047A6500AF020A /* Cell */,
 				9E5BDD382BFDF7DA005FCFAC /* ViewController */,
 				9E5BDD3B2BFDF817005FCFAC /* ViewModel */,
 			);
@@ -208,6 +226,7 @@
 		9E5BDD3B2BFDF817005FCFAC /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				9E3655F52C04820C00AF020A /* FeedViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -362,6 +381,7 @@
 			children = (
 				9E7455E12BF8AA8400D519AD /* UIColor + Extension.swift */,
 				9E7455E52BF8AC6D00D519AD /* UIFont + Extension.swift */,
+				9E3655FB2C04AA1600AF020A /* UIImageView + Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -559,10 +579,13 @@
 				9E7455C22BF89D0000D519AD /* ViewController.swift in Sources */,
 				9E5BDD462BFE095F005FCFAC /* AddVoteViewController.swift in Sources */,
 				9E7455D72BF89F0900D519AD /* BaseViewController.swift in Sources */,
+				9E3655F82C04860200AF020A /* Post.swift in Sources */,
 				9E5BDD4F2BFE2076005FCFAC /* AddVoteSelectImageView.swift in Sources */,
 				9E7455BE2BF89D0000D519AD /* AppDelegate.swift in Sources */,
+				9E3655F62C04820C00AF020A /* FeedViewModel.swift in Sources */,
 				9E5BDD2E2BFC9FB8005FCFAC /* RegisterViewModel.swift in Sources */,
 				9E5BDD252BFB4FD8005FCFAC /* addShadow.swift in Sources */,
+				9E3655FC2C04AA1600AF020A /* UIImageView + Extension.swift in Sources */,
 				9E5BDD532BFE35BD005FCFAC /* AddVoteLinkView.swift in Sources */,
 				9E5BDD422BFE0234005FCFAC /* FeedHeaderView.swift in Sources */,
 				9E7455C02BF89D0000D519AD /* SceneDelegate.swift in Sources */,
@@ -576,6 +599,7 @@
 				9E7455EB2BF8CE6100D519AD /* LoginViewModel.swift in Sources */,
 				9E5BDD552BFE36FF005FCFAC /* AddVoteContentView.swift in Sources */,
 				9E5BDD032BF9E3E5005FCFAC /* ServiceType.swift in Sources */,
+				9E3655F42C047D4B00AF020A /* FeedCollectionViewCell.swift in Sources */,
 				9E5BDD2C2BFC661A005FCFAC /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
