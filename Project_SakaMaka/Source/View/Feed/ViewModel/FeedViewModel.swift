@@ -23,8 +23,10 @@ class FeedViewModel {
         fetchPosts()
     }
     
-    func fetchPosts() {
-        Firestore.firestore().collection("posts").addSnapshotListener { [weak self] (snapshot, error) in
+    private func fetchPosts() {
+        Firestore.firestore().collection("posts")
+            .order(by: "timestamp", descending: true)
+            .addSnapshotListener { [weak self] (snapshot, error) in
             guard let self = self else { return }
             
             if let error = error {
