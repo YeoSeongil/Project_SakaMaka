@@ -11,6 +11,7 @@
 		9E3655F12BFF4EA500AF020A /* AddVoteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E3655F02BFF4EA500AF020A /* AddVoteViewModel.swift */; };
 		9E3655F42C047D4B00AF020A /* FeedCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E3655F32C047D4B00AF020A /* FeedCollectionViewCell.swift */; };
 		9E3655F62C04820C00AF020A /* FeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E3655F52C04820C00AF020A /* FeedViewModel.swift */; };
+		9E3655F82C04860200AF020A /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E3655F72C04860200AF020A /* Post.swift */; };
 		9E5879C82BF8E8CF00E55E19 /* AppleAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E5879C72BF8E8CF00E55E19 /* AppleAuthService.swift */; };
 		9E5879CB2BF8ECA000E55E19 /* FireBaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E5879CA2BF8ECA000E55E19 /* FireBaseService.swift */; };
 		9E5BDD032BF9E3E5005FCFAC /* ServiceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E5BDD022BF9E3E5005FCFAC /* ServiceType.swift */; };
@@ -53,6 +54,7 @@
 		9E3655F02BFF4EA500AF020A /* AddVoteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddVoteViewModel.swift; sourceTree = "<group>"; };
 		9E3655F32C047D4B00AF020A /* FeedCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCollectionViewCell.swift; sourceTree = "<group>"; };
 		9E3655F52C04820C00AF020A /* FeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewModel.swift; sourceTree = "<group>"; };
+		9E3655F72C04860200AF020A /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		9E5879C42BF8DEE600E55E19 /* Project_SakaMaka.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Project_SakaMaka.entitlements; sourceTree = "<group>"; };
 		9E5879C72BF8E8CF00E55E19 /* AppleAuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleAuthService.swift; sourceTree = "<group>"; };
 		9E5879CA2BF8ECA000E55E19 /* FireBaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireBaseService.swift; sourceTree = "<group>"; };
@@ -179,6 +181,7 @@
 			isa = PBXGroup;
 			children = (
 				9E5BDD2B2BFC661A005FCFAC /* User.swift */,
+				9E3655F72C04860200AF020A /* Post.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -573,6 +576,7 @@
 				9E7455C22BF89D0000D519AD /* ViewController.swift in Sources */,
 				9E5BDD462BFE095F005FCFAC /* AddVoteViewController.swift in Sources */,
 				9E7455D72BF89F0900D519AD /* BaseViewController.swift in Sources */,
+				9E3655F82C04860200AF020A /* Post.swift in Sources */,
 				9E5BDD4F2BFE2076005FCFAC /* AddVoteSelectImageView.swift in Sources */,
 				9E7455BE2BF89D0000D519AD /* AppDelegate.swift in Sources */,
 				9E3655F62C04820C00AF020A /* FeedViewModel.swift in Sources */,
