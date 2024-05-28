@@ -9,36 +9,32 @@ import Foundation
 import FirebaseFirestore
 
 struct Post {
-    let authorID: String
-    let authorName: String
-    let content: String
+    let id: String
+    let title: String
     let imageURL: String
     let profileURL: String
-    let link: String
     let price: String
+    let link: String
+    let content: String
+    let authorName: String
+    let authorID: String
     let timestamp: Timestamp
-    let title: String
-    
-    init?(document: [String:Any]) {
-        guard let authorID = document["authorID"] as? String,
-              let authorName = document["authorName"] as? String,
-              let content = document["content"] as? String,
-              let imageURL = document["imageURL"] as? String,
-              let profileURL = document["profileURL"] as? String,
-              let link = document["link"] as? String,
-              let price = document["price"] as? String,
-              let timestamp = document["timestamp"] as? Timestamp,
-              let title = document["title"] as? String else {
-            return nil
-        }
-        self.authorID = authorID
-        self.authorName = authorName
-        self.content = content
-        self.imageURL = imageURL
-        self.profileURL = profileURL
-        self.link = link
-        self.price = price
-        self.timestamp = timestamp
-        self.title = title
+    var likeVotes: [String]
+    var unlikeVotes: [String]
+
+    init(document: [String: Any]) {
+        self.id = document["id"] as? String ?? ""
+        self.title = document["title"] as? String ?? ""
+        self.imageURL = document["imageURL"] as? String ?? ""
+        self.profileURL = document["profileURL"] as? String ?? ""
+        self.price = document["price"] as? String ?? ""
+        self.link = document["link"] as? String ?? ""
+        self.content = document["content"] as? String ?? ""
+        self.authorName = document["authorName"] as? String ?? ""
+        self.authorID = document["authorID"] as? String ?? ""
+        self.timestamp = document["timestamp"] as? Timestamp ?? Timestamp()
+        self.likeVotes = document["likeVotes"] as? [String] ?? []
+        self.unlikeVotes = document["unlikeVotes"] as? [String] ?? []
     }
 }
+

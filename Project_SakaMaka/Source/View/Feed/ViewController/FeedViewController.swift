@@ -73,8 +73,22 @@ class FeedViewController: BaseViewController {
         feedCollectionView.rx.setDelegate(self).disposed(by: disposeBag)
         
         viewModel.postsData
-            .drive(feedCollectionView.rx.items(cellIdentifier: FeedCollectionViewCell.id, cellType: FeedCollectionViewCell.self)) { row, item, cell in
+            .drive(feedCollectionView.rx.items(cellIdentifier: FeedCollectionViewCell.id, cellType: FeedCollectionViewCell.self)) { [weak self] row, item, cell in
+                let isLiked = self?.viewModel.isCurrentUserLikedPost(postId: item.id)
+                let isUnliked = self?.viewModel.isCurrentUserUnlikedPost(postId: item.id)
+
+                cell.onVoteBuyButtonTapped = { [weak self] in
+                    self?.viewModel.voteBuyButtonTapped.onNext(())
+                    self?.viewModel.postId.onNext(item.id)
+                }
+                
+                cell.onVoteDontBuyButtonTapped = { [weak self] in
+                    self?.viewModel.voteDontBuyButtonTapped.onNext(())
+                    self?.viewModel.postId.onNext(item.id)
+                }
+                
                 cell.configuration(item)
+                cell.setVoteButtonState(isLiked: isLiked ?? false, isUnliked: isUnliked ?? false)
             }.disposed(by: disposeBag)
     }
 }
@@ -96,6 +110,5 @@ extension FeedViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 45
     }
-
 }
 
