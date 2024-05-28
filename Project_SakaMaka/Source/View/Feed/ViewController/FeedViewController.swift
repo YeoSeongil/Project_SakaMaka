@@ -78,13 +78,11 @@ class FeedViewController: BaseViewController {
                 let isUnliked = self?.viewModel.isCurrentUserUnlikedPost(postId: item.id)
 
                 cell.onVoteBuyButtonTapped = { [weak self] in
-                    self?.viewModel.voteBuyButtonTapped.onNext(())
-                    self?.viewModel.postId.onNext(item.id)
+                    self?.viewModel.voteBuyButtonTapped.onNext((item.id, "like"))
                 }
                 
                 cell.onVoteDontBuyButtonTapped = { [weak self] in
-                    self?.viewModel.voteDontBuyButtonTapped.onNext(())
-                    self?.viewModel.postId.onNext(item.id)
+                    self?.viewModel.voteDontBuyButtonTapped.onNext((item.id, "unlike"))
                 }
                 
                 cell.configuration(item)

@@ -14,8 +14,8 @@ import FirebaseFirestore
 
 protocol FeedViewModelType {
     // Input
-    var voteBuyButtonTapped: AnyObserver<Void> { get }
-    var voteDontBuyButtonTapped: AnyObserver<Void> { get }
+    var voteBuyButtonTapped: AnyObserver<(String, String)> { get }
+    var voteDontBuyButtonTapped: AnyObserver<(String, String)> { get }
     var postId: AnyObserver<String> { get }
     
     // Output
@@ -31,8 +31,8 @@ class FeedViewModel {
     private let disposeBag = DisposeBag()
     
     // Input
-    private let inputVoteBuyButtonTapped = PublishSubject<Void>()
-    private let inputVoteDontBuyButtonTapped = PublishSubject<Void>()
+    private let inputVoteBuyButtonTapped = PublishSubject<(String, String)>()
+    private let inputVoteDontBuyButtonTapped = PublishSubject<(String, String)>()
     private let inputPostId = PublishSubject<String>()
     private let inputPost = PublishSubject<Post>()
     
@@ -47,21 +47,17 @@ class FeedViewModel {
     }
 
     private func likeVote() {
-        let voteBuyButtonTappedWithPostId = Observable.zip(inputVoteBuyButtonTapped, inputPostId)
-        
-        voteBuyButtonTappedWithPostId
-            .subscribe(onNext: { _, id in
-                FireBaseService.shared.vote(postId: id, vote: "like")
+        inputVoteBuyButtonTapped
+            .subscribe(onNext: { id, type in
+                FireBaseService.shared.vote(postId: id, vote: type)
             })
             .disposed(by: disposeBag)
     }
     
     private func unlikeVote() {
-        let voteDontBuyButtonTappedWithPostId = Observable.zip(inputVoteDontBuyButtonTapped, inputPostId)
-        
-        voteDontBuyButtonTappedWithPostId
-            .subscribe(onNext: { _, id in
-                FireBaseService.shared.vote(postId: id, vote: "unlike")
+        inputVoteDontBuyButtonTapped
+            .subscribe(onNext: { id, type in
+                FireBaseService.shared.vote(postId: id, vote: type)
             })
             .disposed(by: disposeBag)
     }
@@ -88,11 +84,11 @@ class FeedViewModel {
 }
 
 extension FeedViewModel: FeedViewModelType {
-    var voteBuyButtonTapped: AnyObserver<Void> {
+    var voteBuyButtonTapped: AnyObserver<(String, String)> {
         inputVoteBuyButtonTapped.asObserver()
     }
     
-    var voteDontBuyButtonTapped: AnyObserver<Void> {
+    var voteDontBuyButtonTapped: AnyObserver<(String, String)> {
         inputVoteDontBuyButtonTapped.asObserver()
     }
     
