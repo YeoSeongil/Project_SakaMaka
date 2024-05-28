@@ -143,7 +143,6 @@ class FireBaseService {
         }
     }
     
-    
     func vote(postId: String, vote: String) {
         guard let userID = Auth.auth().currentUser?.uid else {
             print("User not authenticated")
@@ -164,14 +163,32 @@ class FireBaseService {
 
             switch vote {
             case "like":
-                likeVotes.append(userID)
-                if let index = unlikeVotes.firstIndex(of: userID) {
-                    unlikeVotes.remove(at: index)
+                if likeVotes.contains(userID) {
+                    // If user already liked, remove their vote
+                    if let index = likeVotes.firstIndex(of: userID) {
+                        likeVotes.remove(at: index)
+                    }
+                } else {
+                    // If user didn't like before, add their vote
+                    likeVotes.append(userID)
+                    // If user previously unliked, remove their unlike vote
+                    if let index = unlikeVotes.firstIndex(of: userID) {
+                        unlikeVotes.remove(at: index)
+                    }
                 }
             case "unlike":
-                unlikeVotes.append(userID)
-                if let index = likeVotes.firstIndex(of: userID) {
-                    likeVotes.remove(at: index)
+                if unlikeVotes.contains(userID) {
+                    // If user already unliked, remove their vote
+                    if let index = unlikeVotes.firstIndex(of: userID) {
+                        unlikeVotes.remove(at: index)
+                    }
+                } else {
+                    // If user didn't unlike before, add their vote
+                    unlikeVotes.append(userID)
+                    // If user previously liked, remove their like vote
+                    if let index = likeVotes.firstIndex(of: userID) {
+                        likeVotes.remove(at: index)
+                    }
                 }
             default:
                 return
@@ -190,4 +207,5 @@ class FireBaseService {
             }
         }
     }
+
 }
