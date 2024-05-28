@@ -18,7 +18,7 @@ class FeedCollectionViewCell: UICollectionViewCell {
     
     private let stackView = UIStackView().then {
         $0.axis = .vertical
-        $0.spacing = 10
+        $0.spacing = 20
         $0.backgroundColor = .clear
     }
     
@@ -52,6 +52,9 @@ class FeedCollectionViewCell: UICollectionViewCell {
     
     private let itemImageView = UIImageView().then {
         $0.backgroundColor = .clear
+        $0.contentMode = .scaleAspectFill
+        $0.clipsToBounds = true
+        $0.layer.cornerRadius = 5
     }
 
     private let titleLabel = UILabel().then {
