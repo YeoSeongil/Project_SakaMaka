@@ -52,6 +52,8 @@ class FeedCollectionViewCell: UICollectionViewCell {
     
     private let itemImageView = UIImageView().then {
         $0.backgroundColor = .clear
+        $0.contentMode = .scaleAspectFill
+        $0.clipsToBounds = true
     }
 
     private let titleLabel = UILabel().then {
