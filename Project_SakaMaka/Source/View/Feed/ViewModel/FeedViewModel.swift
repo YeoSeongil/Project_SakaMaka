@@ -16,7 +16,6 @@ protocol FeedViewModelType {
     // Input
     var voteBuyButtonTapped: AnyObserver<(String, String)> { get }
     var voteDontBuyButtonTapped: AnyObserver<(String, String)> { get }
-    var postId: AnyObserver<String> { get }
     
     // Output
     var postsData: Driver<[Post]> { get }
