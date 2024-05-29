@@ -83,7 +83,7 @@ class FeedCollectionViewCell: UICollectionViewCell {
         $0.backgroundColor = .clear
     }
     
-    private let voteBuyButton = UIButton().then {
+    private lazy var voteBuyButton = UIButton().then {
         $0.setImage(.like, for: .normal)
         $0.tintColor = .Turquoise
     }
@@ -96,7 +96,7 @@ class FeedCollectionViewCell: UICollectionViewCell {
     private let commentButton = UIButton().then {
         $0.setImage(.comment, for: .normal)
     }
-    
+
     // MARK: init
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -187,7 +187,8 @@ class FeedCollectionViewCell: UICollectionViewCell {
         voteBuyButton.snp.makeConstraints {
             $0.centerY.equalToSuperview()
             $0.leading.equalToSuperview()
-            $0.height.width.equalTo(25)
+            $0.height.equalTo(25)
+            $0.width.equalTo(25)
         }
         
         voteDontBuyButton.snp.makeConstraints {
