@@ -86,6 +86,10 @@ class FeedViewController: BaseViewController {
                     self?.viewModel.voteDontBuyButtonTapped.onNext((item.id, "unlike"))
                 }
                 
+                cell.onSetupButtonTapped = { [weak self] in
+                    self?.didSetupButtonTapped(postId: item.id)
+                }
+                
                 cell.configuration(item)
                 cell.setButtonVisibility(isVisible: isAuthor)
                 cell.setVoteButtonState(isLiked: isLiked ?? false, isUnliked: isUnliked ?? false)
@@ -97,6 +101,29 @@ extension FeedViewController: FeedHeaderViewDelegate {
     func didAddVoteButtonTapped() {
         let vc = AddVoteViewController()
         self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    func didSetupButtonTapped(postId: String) {
+        let modalViewController = FeedSetupModalViewController()
+        
+        if let sheet = modalViewController.sheetPresentationController {
+            let fixedDetent = UISheetPresentationController.Detent.custom { context in
+                return 140
+            }
+            
+            sheet.detents = [fixedDetent]
+            sheet.prefersScrollingExpandsWhenScrolledToEdge = false
+            sheet.prefersEdgeAttachedInCompactHeight = true
+            sheet.widthFollowsPreferredContentSizeWhenEdgeAttached = true
+            sheet.prefersGrabberVisible = true
+        }
+        
+        modalViewController.didDeleteButtonTapped = { [weak self] in
+            self?.viewModel.postId.onNext(postId)
+            modalViewController.dismiss(animated: true)
+        }
+        
+        present(modalViewController, animated: true, completion: nil)
     }
 }
 
@@ -111,4 +138,3 @@ extension FeedViewController: UICollectionViewDelegateFlowLayout {
         return 45
     }
 }
-
