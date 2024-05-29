@@ -7,6 +7,9 @@
 
 import UIKit
 
+import RxCocoa
+import RxSwift
+
 import SnapKit
 import Then
 import FirebaseFirestore
@@ -14,11 +17,17 @@ import FirebaseFirestore
 class FeedCollectionViewCell: UICollectionViewCell {
     static let id: String = "FeedCollectionViewCell"
     
-    // MARK: - Components
+    private let disposeBag = DisposeBag()
     
+    // MARK: - Event Handlers
+    var onVoteBuyButtonTapped: (() -> Void)?
+    var onVoteDontBuyButtonTapped: (() -> Void)?
+    var onSetupButtonTapped: (() -> Void)?
+    
+    // MARK: - Components
     private let stackView = UIStackView().then {
         $0.axis = .vertical
-        $0.spacing = 10
+        $0.spacing = 20
         $0.backgroundColor = .clear
     }
     
@@ -45,6 +54,11 @@ class FeedCollectionViewCell: UICollectionViewCell {
         $0.textColor = .nightGray
     }
     
+    private let setupButton = UIButton().then {
+        $0.setImage(UIImage(systemName: "ellipsis" ), for: .normal)
+        $0.tintColor = .black
+    }
+    
     // Main
     private let cellMainView = UIView().then {
         $0.backgroundColor = .clear
@@ -52,6 +66,9 @@ class FeedCollectionViewCell: UICollectionViewCell {
     
     private let itemImageView = UIImageView().then {
         $0.backgroundColor = .clear
+        $0.contentMode = .scaleAspectFill
+        $0.clipsToBounds = true
+        $0.layer.cornerRadius = 5
     }
 
     private let titleLabel = UILabel().then {
@@ -72,23 +89,26 @@ class FeedCollectionViewCell: UICollectionViewCell {
         $0.backgroundColor = .clear
     }
     
-    private let voteBuyButton = UIButton().then {
-        $0.setImage(UIImage(systemName: "house"), for: .normal)
+    private lazy var voteBuyButton = UIButton().then {
+        $0.setImage(.like, for: .normal)
+        $0.tintColor = .Turquoise
     }
     
     private let voteDontBuyButton = UIButton().then {
-        $0.setImage(UIImage(systemName: "house"), for: .normal)
+        $0.setImage(.unlike, for: .normal)
+        $0.tintColor = .Turquoise
     }
     
     private let commentButton = UIButton().then {
-        $0.setImage(UIImage(systemName: "house"), for: .normal)
+        $0.setImage(.comment, for: .normal)
     }
-    
+
     // MARK: init
     override init(frame: CGRect) {
         super.init(frame: frame)
         setCell()
         setConstraint()
+        bind()
     }
     
     required init?(coder: NSCoder) {
@@ -105,7 +125,7 @@ class FeedCollectionViewCell: UICollectionViewCell {
             stackView.addArrangedSubview($0)
         }
         
-        [profileImageView, userNameLabel, postDateLabel].forEach {
+        [profileImageView, userNameLabel, postDateLabel, setupButton].forEach {
             cellHeaderView.addSubview($0)
         }        
         
@@ -144,6 +164,12 @@ class FeedCollectionViewCell: UICollectionViewCell {
             $0.leading.equalTo(profileImageView.snp.trailing).offset(15)
         }
         
+        setupButton.snp.makeConstraints {
+            $0.centerY.equalToSuperview()
+            $0.trailing.equalToSuperview()
+            $0.width.height.equalTo(30)
+        }
+        
         // Main
         cellMainView.snp.makeConstraints {
             $0.height.equalTo(330)
@@ -173,7 +199,7 @@ class FeedCollectionViewCell: UICollectionViewCell {
         voteBuyButton.snp.makeConstraints {
             $0.centerY.equalToSuperview()
             $0.leading.equalToSuperview()
-            $0.height.width.equalTo(25)
+            $0.width.height.equalTo(25)
         }
         
         voteDontBuyButton.snp.makeConstraints {
@@ -188,6 +214,26 @@ class FeedCollectionViewCell: UICollectionViewCell {
             $0.height.width.equalTo(25)
         }
     }
+    
+    private func bind() {
+        voteBuyButton.rx.tap
+            .bind(with: self) { owner, _ in
+                owner.onVoteBuyButtonTapped?()
+            }
+            .disposed(by: disposeBag)               
+        
+        voteDontBuyButton.rx.tap
+            .bind(with: self) { owner, _ in
+                owner.onVoteDontBuyButtonTapped?()
+            }
+            .disposed(by: disposeBag)
+        
+        setupButton.rx.tap
+            .bind(with: self) { owner, _ in
+                owner.onSetupButtonTapped?()
+            }
+            .disposed(by: disposeBag)
+    }
 }
 
 extension FeedCollectionViewCell {
@@ -198,6 +244,23 @@ extension FeedCollectionViewCell {
         contentLabel.text = data.content
         postDateLabel.text = formatTimestamp(data.timestamp)
         titleLabel.text = data.title
+    }
+    
+    func setVoteButtonState(isLiked: Bool, isUnliked: Bool) {
+        if isLiked {
+            voteBuyButton.setImage(UIImage(named: "like-fill")?.withRenderingMode(.alwaysTemplate), for: .normal)
+            voteDontBuyButton.setImage(UIImage(named: "unlike"), for: .normal)
+        } else if isUnliked {
+            voteDontBuyButton.setImage(UIImage(named: "unlike-fill")?.withRenderingMode(.alwaysTemplate), for: .normal)
+            voteBuyButton.setImage(UIImage(named: "like"), for: .normal)
+        } else {
+            voteDontBuyButton.setImage(UIImage(named: "unlike"), for: .normal)
+            voteBuyButton.setImage(UIImage(named: "like"), for: .normal)
+        }
+    }
+    
+    func setButtonVisibility(isVisible: Bool) {
+        setupButton.isHidden = !isVisible
     }
 }
 

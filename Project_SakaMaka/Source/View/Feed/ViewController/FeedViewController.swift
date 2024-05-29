@@ -73,8 +73,26 @@ class FeedViewController: BaseViewController {
         feedCollectionView.rx.setDelegate(self).disposed(by: disposeBag)
         
         viewModel.postsData
-            .drive(feedCollectionView.rx.items(cellIdentifier: FeedCollectionViewCell.id, cellType: FeedCollectionViewCell.self)) { row, item, cell in
+            .drive(feedCollectionView.rx.items(cellIdentifier: FeedCollectionViewCell.id, cellType: FeedCollectionViewCell.self)) { [weak self] row, item, cell in
+                let isLiked = self?.viewModel.isCurrentUserLikedPost(postId: item.id)
+                let isUnliked = self?.viewModel.isCurrentUserUnlikedPost(postId: item.id)
+                let isAuthor = self?.viewModel.isCurrentUserAuthor(authorId: item.authorID) ?? false
+                
+                cell.onVoteBuyButtonTapped = { [weak self] in
+                    self?.viewModel.voteBuyButtonTapped.onNext((item.id, "like"))
+                }
+                
+                cell.onVoteDontBuyButtonTapped = { [weak self] in
+                    self?.viewModel.voteDontBuyButtonTapped.onNext((item.id, "unlike"))
+                }
+                
+                cell.onSetupButtonTapped = { [weak self] in
+                    self?.didSetupButtonTapped(postId: item.id)
+                }
+                
                 cell.configuration(item)
+                cell.setButtonVisibility(isVisible: isAuthor)
+                cell.setVoteButtonState(isLiked: isLiked ?? false, isUnliked: isUnliked ?? false)
             }.disposed(by: disposeBag)
     }
 }
@@ -84,18 +102,39 @@ extension FeedViewController: FeedHeaderViewDelegate {
         let vc = AddVoteViewController()
         self.navigationController?.pushViewController(vc, animated: true)
     }
+    
+    func didSetupButtonTapped(postId: String) {
+        let modalViewController = FeedSetupModalViewController()
+        
+        if let sheet = modalViewController.sheetPresentationController {
+            let fixedDetent = UISheetPresentationController.Detent.custom { context in
+                return 140
+            }
+            
+            sheet.detents = [fixedDetent]
+            sheet.prefersScrollingExpandsWhenScrolledToEdge = false
+            sheet.prefersEdgeAttachedInCompactHeight = true
+            sheet.widthFollowsPreferredContentSizeWhenEdgeAttached = true
+            sheet.prefersGrabberVisible = true
+        }
+        
+        modalViewController.didDeleteButtonTapped = { [weak self] in
+            self?.viewModel.postId.onNext(postId)
+            modalViewController.dismiss(animated: true)
+        }
+        
+        present(modalViewController, animated: true, completion: nil)
+    }
 }
 
 extension FeedViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width: CGFloat = collectionView.bounds.width
-        let hegiht: CGFloat = 420
+        let hegiht: CGFloat = 440
         return CGSize(width: width, height: hegiht)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 45
     }
-
 }
-
