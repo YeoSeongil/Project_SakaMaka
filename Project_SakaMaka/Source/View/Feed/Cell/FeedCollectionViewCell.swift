@@ -22,6 +22,7 @@ class FeedCollectionViewCell: UICollectionViewCell {
     // MARK: - Event Handlers
     var onVoteBuyButtonTapped: (() -> Void)?
     var onVoteDontBuyButtonTapped: (() -> Void)?
+    var onSetupButtonTapped: (() -> Void)?
     
     // MARK: - Components
     private let stackView = UIStackView().then {
@@ -224,6 +225,12 @@ class FeedCollectionViewCell: UICollectionViewCell {
         voteDontBuyButton.rx.tap
             .bind(with: self) { owner, _ in
                 owner.onVoteDontBuyButtonTapped?()
+            }
+            .disposed(by: disposeBag)
+        
+        setupButton.rx.tap
+            .bind(with: self) { owner, _ in
+                owner.onSetupButtonTapped?()
             }
             .disposed(by: disposeBag)
     }
