@@ -53,6 +53,11 @@ class FeedCollectionViewCell: UICollectionViewCell {
         $0.textColor = .nightGray
     }
     
+    private let setupButton = UIButton().then {
+        $0.setImage(UIImage(systemName: "ellipsis" ), for: .normal)
+        $0.tintColor = .black
+    }
+    
     // Main
     private let cellMainView = UIView().then {
         $0.backgroundColor = .clear
@@ -119,7 +124,7 @@ class FeedCollectionViewCell: UICollectionViewCell {
             stackView.addArrangedSubview($0)
         }
         
-        [profileImageView, userNameLabel, postDateLabel].forEach {
+        [profileImageView, userNameLabel, postDateLabel, setupButton].forEach {
             cellHeaderView.addSubview($0)
         }        
         
@@ -158,6 +163,12 @@ class FeedCollectionViewCell: UICollectionViewCell {
             $0.leading.equalTo(profileImageView.snp.trailing).offset(15)
         }
         
+        setupButton.snp.makeConstraints {
+            $0.centerY.equalToSuperview()
+            $0.trailing.equalToSuperview()
+            $0.width.height.equalTo(30)
+        }
+        
         // Main
         cellMainView.snp.makeConstraints {
             $0.height.equalTo(330)
@@ -187,8 +198,7 @@ class FeedCollectionViewCell: UICollectionViewCell {
         voteBuyButton.snp.makeConstraints {
             $0.centerY.equalToSuperview()
             $0.leading.equalToSuperview()
-            $0.height.equalTo(25)
-            $0.width.equalTo(25)
+            $0.width.height.equalTo(25)
         }
         
         voteDontBuyButton.snp.makeConstraints {
@@ -240,6 +250,10 @@ extension FeedCollectionViewCell {
             voteDontBuyButton.setImage(UIImage(named: "unlike"), for: .normal)
             voteBuyButton.setImage(UIImage(named: "like"), for: .normal)
         }
+    }
+    
+    func setButtonVisibility(isVisible: Bool) {
+        setupButton.isHidden = !isVisible
     }
 }
 
