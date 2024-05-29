@@ -18,10 +18,16 @@ protocol AddVoteSelectImageViewDelegate: AnyObject {
     func didSelectImageButtonTapped()
 }
 
+protocol AddVoteSelectImageViewType {
+    var imageViewEmpty: Observable<Bool> { get }
+}
+
 class AddVoteSelectImageView: UIView {
     
     private let disposeBag = DisposeBag()
     weak var delegate: AddVoteSelectImageViewDelegate?
+    
+    private let isImageSelected = BehaviorRelay<Bool>(value: true) // 이미지가 선택 됐는지
     
     // MARK: - UI Components
     private let titleDescriptionLabel = UILabel().then {
@@ -32,7 +38,7 @@ class AddVoteSelectImageView: UIView {
     }
     
     private lazy var selectImageButton = UIButton().then {
-        $0.setImage(UIImage(named: "selectImage")?.withRenderingMode(.alwaysTemplate), for: .normal)
+        $0.setTitle("이미지 추가하기''", for: .normal)
         $0.imageView?.layer.cornerRadius = 10
         $0.imageView?.contentMode = .scaleToFill
         $0.imageView?.clipsToBounds = true
@@ -104,5 +110,13 @@ extension AddVoteSelectImageView {
         selectImageButton.setImage(image, for: .normal)
         selectImageButton.layer.borderWidth = 0
         emptyWarningMessageLabel.isHidden = true
+        
+        isImageSelected.accept(false)
+    }
+}
+
+extension AddVoteSelectImageView: AddVoteSelectImageViewType {
+    var imageViewEmpty: Observable<Bool> {
+        isImageSelected.asObservable()
     }
 }

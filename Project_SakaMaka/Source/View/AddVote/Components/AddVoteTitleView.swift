@@ -15,6 +15,7 @@ import Then
 
 protocol AddVoteTitleViewType {
     var titleText: Observable<String> { get }
+    var titleTextEmpty: Observable<Bool> { get }
 }
 
 class AddVoteTitleView: UIView {
@@ -126,5 +127,10 @@ extension AddVoteTitleView: AddVoteTitleViewType {
     var titleText: Observable<String> {
         titleTextField.rx.text.orEmpty
             .asObservable()
+    }
+    
+    var titleTextEmpty: Observable<Bool> {
+        titleTextField.rx.text.orEmpty
+            .map { $0.isEmpty }
     }
 }
