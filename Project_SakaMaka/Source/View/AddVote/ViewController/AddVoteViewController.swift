@@ -132,6 +132,18 @@ class AddVoteViewController: BaseViewController {
             .bind(to: viewModel.postButtonTapped)
             .disposed(by: disposeBag)
         
+        Observable.combineLatest(addVoteTitleView.titleTextEmpty, addVoteSelectImageView.imageViewEmpty)
+            .map { !$0 && !$1 }
+            .bind(to: postButton.rx.isEnabled)
+            .disposed(by: disposeBag)
+        
+        Observable.combineLatest(addVoteTitleView.titleTextEmpty, addVoteSelectImageView.imageViewEmpty)
+            .map { !$0 && !$1 }
+            .subscribe(with:self, onNext: { owner, isEnabled in
+                owner.changePostButtonBackgroundColor(isEnabled)
+            })
+            .disposed(by: disposeBag)
+        
         viewModel.postUploadResult
             .drive(with: self, onNext:  { owner, result in
                 switch result {
@@ -168,6 +180,10 @@ extension AddVoteViewController {
         let picker = PHPickerViewController(configuration: configuration)
         picker.delegate = self
         present(picker, animated: true, completion: nil)
+    }
+    
+    private func changePostButtonBackgroundColor(_ isEmpty: Bool) {
+        postButton.backgroundColor = isEmpty ?  .Turquoise : .lightGray
     }
 }
 
