@@ -76,7 +76,8 @@ class FeedViewController: BaseViewController {
             .drive(feedCollectionView.rx.items(cellIdentifier: FeedCollectionViewCell.id, cellType: FeedCollectionViewCell.self)) { [weak self] row, item, cell in
                 let isLiked = self?.viewModel.isCurrentUserLikedPost(postId: item.id)
                 let isUnliked = self?.viewModel.isCurrentUserUnlikedPost(postId: item.id)
-
+                let isAuthor = self?.viewModel.isCurrentUserAuthor(authorId: item.authorID) ?? false
+                
                 cell.onVoteBuyButtonTapped = { [weak self] in
                     self?.viewModel.voteBuyButtonTapped.onNext((item.id, "like"))
                 }
@@ -86,6 +87,7 @@ class FeedViewController: BaseViewController {
                 }
                 
                 cell.configuration(item)
+                cell.setButtonVisibility(isVisible: isAuthor)
                 cell.setVoteButtonState(isLiked: isLiked ?? false, isUnliked: isUnliked ?? false)
             }.disposed(by: disposeBag)
     }
