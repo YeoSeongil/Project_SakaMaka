@@ -24,6 +24,7 @@ protocol FeedViewModelType {
     // Method
     func isCurrentUserLikedPost(postId: String) -> Bool
     func isCurrentUserUnlikedPost(postId: String) -> Bool
+    func isCurrentUserAuthor(authorId: String) -> Bool
 }
 
 class FeedViewModel {
@@ -125,5 +126,12 @@ extension FeedViewModel: FeedViewModelType {
         }
         
         return false
+    }
+    
+    func isCurrentUserAuthor(authorId: String) -> Bool {
+        guard let currentUserID = Auth.auth().currentUser?.uid else {
+            return false
+        }
+        return authorId == currentUserID
     }
 }
