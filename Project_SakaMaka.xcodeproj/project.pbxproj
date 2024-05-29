@@ -50,6 +50,7 @@
 		9E7455E62BF8AC6D00D519AD /* UIFont + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7455E52BF8AC6D00D519AD /* UIFont + Extension.swift */; };
 		9E7455EB2BF8CE6100D519AD /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7455EA2BF8CE6100D519AD /* LoginViewModel.swift */; };
 		9ED2F1CD2C07388300A22B4E /* popAnimation.json in Resources */ = {isa = PBXBuildFile; fileRef = 9ED2F1CC2C07388300A22B4E /* popAnimation.json */; };
+		9ED2F1CF2C07493B00A22B4E /* FeedSetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ED2F1CE2C07493B00A22B4E /* FeedSetupViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -99,6 +100,7 @@
 		9E7455E52BF8AC6D00D519AD /* UIFont + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont + Extension.swift"; sourceTree = "<group>"; };
 		9E7455EA2BF8CE6100D519AD /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		9ED2F1CC2C07388300A22B4E /* popAnimation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = popAnimation.json; sourceTree = "<group>"; };
+		9ED2F1CE2C07493B00A22B4E /* FeedSetupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedSetupViewController.swift; sourceTree = "<group>"; };
 		C12611E47E27819F2A19345D /* Pods-Project_SakaMaka.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Project_SakaMaka.debug.xcconfig"; path = "Target Support Files/Pods-Project_SakaMaka/Pods-Project_SakaMaka.debug.xcconfig"; sourceTree = "<group>"; };
 		DBD4C8D96ACD58BAB179AE4A /* Pods-Project_SakaMaka.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Project_SakaMaka.release.xcconfig"; path = "Target Support Files/Pods-Project_SakaMaka/Pods-Project_SakaMaka.release.xcconfig"; sourceTree = "<group>"; };
 		ED2D95E7182D7927D859FBC5 /* Pods_Project_SakaMaka.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Project_SakaMaka.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -221,6 +223,7 @@
 			isa = PBXGroup;
 			children = (
 				9E5BDD392BFDF7E2005FCFAC /* FeedViewController.swift */,
+				9ED2F1CE2C07493B00A22B4E /* FeedSetupViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -580,6 +583,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9E5BDD3A2BFDF7E2005FCFAC /* FeedViewController.swift in Sources */,
+				9ED2F1CF2C07493B00A22B4E /* FeedSetupViewController.swift in Sources */,
 				9E5879CB2BF8ECA000E55E19 /* FireBaseService.swift in Sources */,
 				9E7455E62BF8AC6D00D519AD /* UIFont + Extension.swift in Sources */,
 				9E5879C82BF8E8CF00E55E19 /* AppleAuthService.swift in Sources */,

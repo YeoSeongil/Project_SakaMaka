@@ -16,7 +16,7 @@ protocol FeedViewModelType {
     // Input
     var voteBuyButtonTapped: AnyObserver<(String, String)> { get }
     var voteDontBuyButtonTapped: AnyObserver<(String, String)> { get }
-    
+    var postId: AnyObserver<String> { get }
     // Output
     var postsData: Driver<[Post]> { get }
     var hasVoted: Driver<Bool> { get }
@@ -44,6 +44,7 @@ class FeedViewModel {
         likeVote()
         unlikeVote()
         fetchPosts()
+        deletePost()
     }
 
     private func likeVote() {
@@ -80,6 +81,20 @@ class FeedViewModel {
                 let postsArray = documents.compactMap { Post(document: $0.data()) }
                 self.postsOutput.accept(postsArray)
             }
+    }
+    
+    private func deletePost() {
+        inputPostId
+            .subscribe(onNext: { id in
+                Firestore.firestore().collection("posts").document(id).delete { error in
+                    if let error = error {
+                        print("Error deleting post: \(error.localizedDescription)")
+                    } else {
+                        print("Post successfully deleted")
+                    }
+                }
+            })
+            .disposed(by: disposeBag)
     }
 }
 
