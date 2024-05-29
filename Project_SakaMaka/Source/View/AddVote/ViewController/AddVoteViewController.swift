@@ -125,7 +125,13 @@ class AddVoteViewController: BaseViewController {
             .disposed(by: disposeBag)
         
         addVoteContentView.contentText
-            .bind(to: viewModel.contentValue)
+            .subscribe(with:self, onNext: { owner, text in
+                if text == "ex) 아이패드 9.7인치 살까? 아니면 12.9인치 살까?" {
+                    owner.viewModel.contentValue.onNext("")
+                } else {
+                    owner.viewModel.contentValue.onNext(text)
+                }
+            })
             .disposed(by: disposeBag)
         
         postButton.rx.tap
