@@ -719,6 +719,7 @@ PODS:
   - Libuv-gRPC/Implementation (0.0.10):
     - Libuv-gRPC/Interface (= 0.0.10)
   - Libuv-gRPC/Interface (0.0.10)
+  - lottie-ios (4.4.3)
   - nanopb (2.30909.0):
     - nanopb/decode (= 2.30909.0)
     - nanopb/encode (= 2.30909.0)
@@ -739,6 +740,7 @@ DEPENDENCIES:
   - Firebase/Firestore
   - FirebaseStorage
   - Kingfisher (~> 7.0)
+  - lottie-ios
   - RxCocoa (= 6.6.0)
   - RxSwift (= 6.6.0)
   - SnapKit (~> 5.6.0)
@@ -764,6 +766,7 @@ SPEC REPOS:
     - Kingfisher
     - leveldb-library
     - Libuv-gRPC
+    - lottie-ios
     - nanopb
     - PromisesObjC
     - RxCocoa
@@ -791,6 +794,7 @@ SPEC CHECKSUMS:
   Kingfisher: f043ac666dfc96c1f37604f93effb45a7ee3a3e1
   leveldb-library: f03246171cce0484482ec291f88b6d563699ee06
   Libuv-gRPC: 55e51798e14ef436ad9bc45d12d43b77b49df378
+  lottie-ios: fcb5e73e17ba4c983140b7d21095c834b3087418
   nanopb: b552cce312b6c8484180ef47159bc0f65a1f0431
   PromisesObjC: 09985d6d70fbe7878040aa746d78236e6946d2ef
   RxCocoa: 44a80de90e25b739b5aeaae3c8c371a32e3343cc
@@ -799,6 +803,6 @@ SPEC CHECKSUMS:
   SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
   Then: 844265ae87834bbe1147d91d5d41a404da2ec27d
 
-PODFILE CHECKSUM: bc3b8aadd47211d272cc6a739c8db790bcd55bc8
+PODFILE CHECKSUM: afa2733931e3d2e802c36b608f4f2a555512a26e
 
 COCOAPODS: 1.15.2
