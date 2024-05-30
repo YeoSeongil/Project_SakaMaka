@@ -84,6 +84,12 @@ class FeedCollectionViewCell: UICollectionViewCell {
         $0.numberOfLines = 1
     }
     
+    private let priceLabel = UILabel().then {
+        $0.backgroundColor = .clear
+        $0.font = .b6
+        $0.textColor = .lightGray
+    }
+
     // Footer
     private let cellFooterView = UIView().then {
         $0.backgroundColor = .clear
@@ -129,7 +135,7 @@ class FeedCollectionViewCell: UICollectionViewCell {
             cellHeaderView.addSubview($0)
         }        
         
-        [itemImageView, titleLabel, contentLabel].forEach {
+        [itemImageView, titleLabel, contentLabel, priceLabel].forEach {
             cellMainView.addSubview($0)
         }
         
@@ -189,7 +195,13 @@ class FeedCollectionViewCell: UICollectionViewCell {
         contentLabel.snp.makeConstraints {
             $0.top.equalTo(titleLabel.snp.bottom).offset(5)
             $0.horizontalEdges.equalToSuperview()
+        }        
+        
+        priceLabel.snp.makeConstraints {
+            $0.top.equalTo(contentLabel.snp.bottom).offset(15)
+            $0.horizontalEdges.equalToSuperview()
         }
+        
 
         // Footer
         cellFooterView.snp.makeConstraints {
@@ -244,6 +256,8 @@ extension FeedCollectionViewCell {
         contentLabel.text = data.content
         postDateLabel.text = formatTimestamp(data.timestamp)
         titleLabel.text = data.title
+        
+        priceLabel.text = data.price == "" ? "가격 정보가 없습니다." : "가격: \(data.price)원"
     }
     
     func setVoteButtonState(isLiked: Bool, isUnliked: Bool) {
