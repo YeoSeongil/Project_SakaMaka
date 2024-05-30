@@ -16,7 +16,7 @@ import Then
 import SafariServices
 
 class FeedViewController: BaseViewController {
-
+    
     private let viewModel: FeedViewModelType
     
     // MARK: - UI Components
@@ -128,8 +128,17 @@ extension FeedViewController {
     
     private func didLinkButtonTapped(url: String) {
         guard let itemURL = URL(string: url) else { return }
-        let itemSafariView: SFSafariViewController = SFSafariViewController(url: itemURL)
-        self.present(itemSafariView, animated: true, completion: nil)
+        
+        let scheme = itemURL.scheme?.lowercased()
+        
+        if scheme == "http" || scheme == "https" {
+            let itemSafariView: SFSafariViewController = SFSafariViewController(url: itemURL)
+            self.present(itemSafariView, animated: true, completion: nil)
+        } else {
+            let alert = OnlyYesAlertViewController(message: "잘못된 형식의 링크에요.").setButtonTitle("확인했어요.")
+            alert.onlyAlertType = .defaultType
+            self.present(alert, animated: false)
+        }
     }
 }
 
