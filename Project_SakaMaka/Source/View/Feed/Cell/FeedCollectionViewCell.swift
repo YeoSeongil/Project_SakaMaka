@@ -337,6 +337,9 @@ extension FeedCollectionViewCell {
         
         priceLabel.text = data.price.isEmpty ? "가격 정보가 없습니다." : "가격: \(data.price)원"
         linkButton.isHidden = data.link.isEmpty
+        
+        voteBuyLabel.text = "\(data.likeVotes.count)명"
+        voteDontBuyLabel.text = "\(data.unlikeVotes.count)명"
     }
     
     func setVoteButtonState(isLiked: Bool, isUnliked: Bool) {
