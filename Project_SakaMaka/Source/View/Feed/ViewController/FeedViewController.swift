@@ -130,7 +130,7 @@ extension FeedViewController: FeedHeaderViewDelegate {
 extension FeedViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width: CGFloat = collectionView.bounds.width
-        let hegiht: CGFloat = 440
+        let hegiht: CGFloat = 460
         return CGSize(width: width, height: hegiht)
     }
     
