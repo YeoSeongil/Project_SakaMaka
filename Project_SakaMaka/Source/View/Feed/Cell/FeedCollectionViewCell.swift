@@ -28,7 +28,7 @@ class FeedCollectionViewCell: UICollectionViewCell {
     // MARK: - Components
     private let stackView = UIStackView().then {
         $0.axis = .vertical
-        $0.spacing = 20
+        $0.spacing = 10
         $0.backgroundColor = .clear
     }
     
@@ -82,7 +82,8 @@ class FeedCollectionViewCell: UICollectionViewCell {
         $0.backgroundColor = .clear
         $0.font = .b6
         $0.textColor = .black
-        $0.numberOfLines = 1
+        $0.numberOfLines = 3
+        $0.textAlignment = .natural
     }
     
     private let priceLabel = UILabel().then {
@@ -103,14 +104,40 @@ class FeedCollectionViewCell: UICollectionViewCell {
         $0.backgroundColor = .clear
     }
     
-    private lazy var voteBuyButton = UIButton().then {
+    private let voteBuyView = UIView().then {
+        $0.backgroundColor = .milkWhite
+        $0.layer.cornerRadius = 5
+    }
+    
+    private let voteBuyButton = UIButton().then {
         $0.setImage(.like, for: .normal)
         $0.tintColor = .Turquoise
+    }
+    
+    private let voteBuyLabel = UILabel().then {
+        $0.backgroundColor = .clear
+        $0.font = .b6
+        $0.textColor = .black
+        $0.textAlignment = .center
+        $0.text = "10명"
+    }
+    
+    private let voteDontBuyView = UIView().then {
+        $0.backgroundColor = .milkWhite
+        $0.layer.cornerRadius = 5
     }
     
     private let voteDontBuyButton = UIButton().then {
         $0.setImage(.unlike, for: .normal)
         $0.tintColor = .Turquoise
+    }
+    
+    private let voteDontBuyLabel = UILabel().then {
+        $0.backgroundColor = .clear
+        $0.font = .b6
+        $0.textColor = .black
+        $0.textAlignment = .center
+        $0.text = "0명"
     }
     
     private let commentButton = UIButton().then {
@@ -135,6 +162,14 @@ class FeedCollectionViewCell: UICollectionViewCell {
         
         addSubview(stackView)
         
+        [voteBuyButton, voteBuyLabel].forEach {
+            voteBuyView.addSubview($0)
+        }
+        
+        [voteDontBuyButton, voteDontBuyLabel].forEach {
+            voteDontBuyView.addSubview($0)
+        }
+        
         [cellHeaderView, cellMainView, cellFooterView].forEach {
             stackView.addArrangedSubview($0)
         }
@@ -147,7 +182,7 @@ class FeedCollectionViewCell: UICollectionViewCell {
             cellMainView.addSubview($0)
         }
         
-        [voteBuyButton, voteDontBuyButton, commentButton].forEach {
+        [voteBuyView, voteDontBuyView, commentButton].forEach {
             cellFooterView.addSubview($0)
         }
     }
@@ -186,7 +221,7 @@ class FeedCollectionViewCell: UICollectionViewCell {
         
         // Main
         cellMainView.snp.makeConstraints {
-            $0.height.equalTo(330)
+            $0.height.equalTo(391)
         }
         
         itemImageView.snp.makeConstraints {
@@ -203,10 +238,10 @@ class FeedCollectionViewCell: UICollectionViewCell {
         contentLabel.snp.makeConstraints {
             $0.top.equalTo(titleLabel.snp.bottom).offset(5)
             $0.horizontalEdges.equalToSuperview()
-        }        
+        }
         
         priceLabel.snp.makeConstraints {
-            $0.top.equalTo(contentLabel.snp.bottom).offset(15)
+            $0.bottom.equalToSuperview()
             $0.horizontalEdges.equalToSuperview()
         }
         
@@ -221,16 +256,40 @@ class FeedCollectionViewCell: UICollectionViewCell {
             $0.height.equalTo(30)
         }
         
+        voteBuyView.snp.makeConstraints {
+            $0.leading.equalToSuperview()
+            $0.width.equalTo(70)
+            $0.height.equalTo(25)
+        }
+        
         voteBuyButton.snp.makeConstraints {
             $0.centerY.equalToSuperview()
-            $0.leading.equalToSuperview()
-            $0.width.height.equalTo(25)
+            $0.leading.equalToSuperview().offset(7)
+            $0.width.height.equalTo(20)
+        }
+        
+        voteBuyLabel.snp.makeConstraints {
+            $0.centerY.equalToSuperview()
+            $0.leading.equalTo(voteBuyButton.snp.trailing).offset(5)
+            $0.trailing.equalToSuperview()
+        }
+        
+        voteDontBuyView.snp.makeConstraints {
+            $0.leading.equalTo(voteBuyView.snp.trailing).offset(15)
+            $0.width.equalTo(70)
+            $0.height.equalTo(25)
         }
         
         voteDontBuyButton.snp.makeConstraints {
             $0.centerY.equalToSuperview()
-            $0.leading.equalTo(voteBuyButton.snp.trailing).offset(10)
-            $0.height.width.equalTo(25)
+            $0.leading.equalToSuperview().offset(7)
+            $0.width.height.equalTo(20)
+        }
+        
+        voteDontBuyLabel.snp.makeConstraints {
+            $0.centerY.equalToSuperview()
+            $0.leading.equalTo(voteDontBuyButton.snp.trailing).offset(5)
+            $0.trailing.equalToSuperview()
         }
         
         commentButton.snp.makeConstraints {
@@ -272,12 +331,15 @@ extension FeedCollectionViewCell {
         profileImageView.setImageKingfisher(with: data.profileURL)
         userNameLabel.text = data.authorName
         itemImageView.setImageKingfisher(with: data.imageURL)
-        contentLabel.text = data.content
+        contentLabel.text = data.content.isEmpty ? "투표 설명이 없습니다." : data.content
         postDateLabel.text = formatTimestamp(data.timestamp)
         titleLabel.text = data.title
         
         priceLabel.text = data.price.isEmpty ? "가격 정보가 없습니다." : "가격: \(data.price)원"
         linkButton.isHidden = data.link.isEmpty
+        
+        voteBuyLabel.text = "\(data.likeVotes.count)명"
+        voteDontBuyLabel.text = "\(data.unlikeVotes.count)명"
     }
     
     func setVoteButtonState(isLiked: Bool, isUnliked: Bool) {
