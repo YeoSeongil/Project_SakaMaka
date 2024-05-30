@@ -13,6 +13,8 @@ import RxSwift
 import SnapKit
 import Then
 
+import SafariServices
+
 class FeedViewController: BaseViewController {
 
     private let viewModel: FeedViewModelType
@@ -90,20 +92,18 @@ class FeedViewController: BaseViewController {
                     self?.didSetupButtonTapped(postId: item.id)
                 }
                 
+                cell.onLinkButtonTapped = { [weak self] in
+                    self?.didLinkButtonTapped(url: item.link)
+                }
+                
                 cell.configuration(item)
                 cell.setButtonVisibility(isVisible: isAuthor)
                 cell.setVoteButtonState(isLiked: isLiked ?? false, isUnliked: isUnliked ?? false)
             }.disposed(by: disposeBag)
     }
 }
-
-extension FeedViewController: FeedHeaderViewDelegate {
-    func didAddVoteButtonTapped() {
-        let vc = AddVoteViewController()
-        self.navigationController?.pushViewController(vc, animated: true)
-    }
-    
-    func didSetupButtonTapped(postId: String) {
+extension FeedViewController {
+    private func didSetupButtonTapped(postId: String) {
         let modalViewController = FeedSetupModalViewController()
         
         if let sheet = modalViewController.sheetPresentationController {
@@ -124,6 +124,19 @@ extension FeedViewController: FeedHeaderViewDelegate {
         }
         
         present(modalViewController, animated: true, completion: nil)
+    }
+    
+    private func didLinkButtonTapped(url: String) {
+        guard let itemURL = URL(string: url) else { return }
+        let itemSafariView: SFSafariViewController = SFSafariViewController(url: itemURL)
+        self.present(itemSafariView, animated: true, completion: nil)
+    }
+}
+
+extension FeedViewController: FeedHeaderViewDelegate {
+    func didAddVoteButtonTapped() {
+        let vc = AddVoteViewController()
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 }
 
