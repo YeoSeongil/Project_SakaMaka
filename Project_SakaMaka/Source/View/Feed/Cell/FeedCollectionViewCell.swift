@@ -23,6 +23,7 @@ class FeedCollectionViewCell: UICollectionViewCell {
     var onVoteBuyButtonTapped: (() -> Void)?
     var onVoteDontBuyButtonTapped: (() -> Void)?
     var onSetupButtonTapped: (() -> Void)?
+    var onLinkButtonTapped: (() -> Void)?
     
     // MARK: - Components
     private let stackView = UIStackView().then {
@@ -90,6 +91,13 @@ class FeedCollectionViewCell: UICollectionViewCell {
         $0.textColor = .lightGray
     }
 
+    private let linkButton = UIButton().then {
+        $0.setImage(UIImage(systemName: "link"), for: .normal)
+        $0.tintColor = .white
+        $0.backgroundColor = .Turquoise
+        $0.layer.cornerRadius = 15
+    }
+    
     // Footer
     private let cellFooterView = UIView().then {
         $0.backgroundColor = .clear
@@ -135,7 +143,7 @@ class FeedCollectionViewCell: UICollectionViewCell {
             cellHeaderView.addSubview($0)
         }        
         
-        [itemImageView, titleLabel, contentLabel, priceLabel].forEach {
+        [itemImageView, titleLabel, contentLabel, priceLabel, linkButton].forEach {
             cellMainView.addSubview($0)
         }
         
@@ -202,7 +210,12 @@ class FeedCollectionViewCell: UICollectionViewCell {
             $0.horizontalEdges.equalToSuperview()
         }
         
-
+        linkButton.snp.makeConstraints {
+            $0.bottom.equalTo(itemImageView.snp.bottom).inset(10)
+            $0.trailing.equalToSuperview().inset(10)
+            $0.width.height.equalTo(30)
+        }
+        
         // Footer
         cellFooterView.snp.makeConstraints {
             $0.height.equalTo(30)
@@ -245,6 +258,12 @@ class FeedCollectionViewCell: UICollectionViewCell {
                 owner.onSetupButtonTapped?()
             }
             .disposed(by: disposeBag)
+        
+        linkButton.rx.tap
+            .bind(with:self) { owner, _ in
+                owner.onLinkButtonTapped?()
+            }
+            .disposed(by: disposeBag)
     }
 }
 
@@ -257,21 +276,18 @@ extension FeedCollectionViewCell {
         postDateLabel.text = formatTimestamp(data.timestamp)
         titleLabel.text = data.title
         
-        priceLabel.text = data.price == "" ? "가격 정보가 없습니다." : "가격: \(data.price)원"
+        priceLabel.text = data.price.isEmpty ? "가격 정보가 없습니다." : "가격: \(data.price)원"
+        linkButton.isHidden = data.link.isEmpty
     }
     
     func setVoteButtonState(isLiked: Bool, isUnliked: Bool) {
-        if isLiked {
-            voteBuyButton.setImage(UIImage(named: "like-fill")?.withRenderingMode(.alwaysTemplate), for: .normal)
-            voteDontBuyButton.setImage(UIImage(named: "unlike"), for: .normal)
-        } else if isUnliked {
-            voteDontBuyButton.setImage(UIImage(named: "unlike-fill")?.withRenderingMode(.alwaysTemplate), for: .normal)
-            voteBuyButton.setImage(UIImage(named: "like"), for: .normal)
-        } else {
-            voteDontBuyButton.setImage(UIImage(named: "unlike"), for: .normal)
-            voteBuyButton.setImage(UIImage(named: "like"), for: .normal)
-        }
+        let likeImageName = isLiked ? "like-fill" : "like"
+        let unlikeImageName = isUnliked ? "unlike-fill" : "unlike"
+        
+        voteBuyButton.setImage(UIImage(named: likeImageName)?.withRenderingMode(isLiked ? .alwaysTemplate : .automatic), for: .normal)
+        voteDontBuyButton.setImage(UIImage(named: unlikeImageName)?.withRenderingMode(isUnliked ? .alwaysTemplate : .automatic), for: .normal)
     }
+
     
     func setButtonVisibility(isVisible: Bool) {
         setupButton.isHidden = !isVisible
