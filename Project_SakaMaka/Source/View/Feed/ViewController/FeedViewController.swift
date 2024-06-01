@@ -96,12 +96,18 @@ class FeedViewController: BaseViewController {
                     self?.didLinkButtonTapped(url: item.link)
                 }
                 
+                cell.onCommentButtonTapped = { [weak self] in
+                    self?.didCommentButtonTapped()
+                }
+                
                 cell.configuration(item)
                 cell.setButtonVisibility(isVisible: isAuthor)
                 cell.setVoteButtonState(isLiked: isLiked ?? false, isUnliked: isUnliked ?? false)
             }.disposed(by: disposeBag)
     }
 }
+
+// MARK: - Method
 extension FeedViewController {
     private func didSetupButtonTapped(postId: String) {
         let modalViewController = FeedSetupModalViewController()
@@ -140,8 +146,16 @@ extension FeedViewController {
             self.present(alert, animated: false)
         }
     }
+    
+    private func didCommentButtonTapped() {
+        let modalViewController = CommentViewController()
+        modalViewController.modalPresentationStyle = .pageSheet
+        
+        present(modalViewController, animated: true)
+    }
 }
 
+// MARK: - Delegate
 extension FeedViewController: FeedHeaderViewDelegate {
     func didAddVoteButtonTapped() {
         let vc = AddVoteViewController()

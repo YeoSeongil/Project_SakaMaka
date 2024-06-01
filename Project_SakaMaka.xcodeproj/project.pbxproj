@@ -51,6 +51,10 @@
 		9E7455EB2BF8CE6100D519AD /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7455EA2BF8CE6100D519AD /* LoginViewModel.swift */; };
 		9ED2F1CD2C07388300A22B4E /* popAnimation.json in Resources */ = {isa = PBXBuildFile; fileRef = 9ED2F1CC2C07388300A22B4E /* popAnimation.json */; };
 		9ED2F1CF2C07493B00A22B4E /* FeedSetupModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ED2F1CE2C07493B00A22B4E /* FeedSetupModalViewController.swift */; };
+		9ED2F1D12C0B085100A22B4E /* CommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ED2F1D02C0B085100A22B4E /* CommentViewController.swift */; };
+		9ED2F1D32C0B0A9500A22B4E /* CommentHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ED2F1D22C0B0A9500A22B4E /* CommentHeaderView.swift */; };
+		9ED2F1D62C0B0F1A00A22B4E /* CommentFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ED2F1D52C0B0F1A00A22B4E /* CommentFooterView.swift */; };
+		9ED2F1D82C0B24F100A22B4E /* CustomLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ED2F1D72C0B24F100A22B4E /* CustomLineView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -101,6 +105,10 @@
 		9E7455EA2BF8CE6100D519AD /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		9ED2F1CC2C07388300A22B4E /* popAnimation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = popAnimation.json; sourceTree = "<group>"; };
 		9ED2F1CE2C07493B00A22B4E /* FeedSetupModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedSetupModalViewController.swift; sourceTree = "<group>"; };
+		9ED2F1D02C0B085100A22B4E /* CommentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentViewController.swift; sourceTree = "<group>"; };
+		9ED2F1D22C0B0A9500A22B4E /* CommentHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentHeaderView.swift; sourceTree = "<group>"; };
+		9ED2F1D52C0B0F1A00A22B4E /* CommentFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentFooterView.swift; sourceTree = "<group>"; };
+		9ED2F1D72C0B24F100A22B4E /* CustomLineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLineView.swift; sourceTree = "<group>"; };
 		C12611E47E27819F2A19345D /* Pods-Project_SakaMaka.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Project_SakaMaka.debug.xcconfig"; path = "Target Support Files/Pods-Project_SakaMaka/Pods-Project_SakaMaka.debug.xcconfig"; sourceTree = "<group>"; };
 		DBD4C8D96ACD58BAB179AE4A /* Pods-Project_SakaMaka.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Project_SakaMaka.release.xcconfig"; path = "Target Support Files/Pods-Project_SakaMaka/Pods-Project_SakaMaka.release.xcconfig"; sourceTree = "<group>"; };
 		ED2D95E7182D7927D859FBC5 /* Pods_Project_SakaMaka.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Project_SakaMaka.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -212,6 +220,7 @@
 		9E5BDD372BFDF7D4005FCFAC /* Feed */ = {
 			isa = PBXGroup;
 			children = (
+				9ED2F1D42C0B0F0400A22B4E /* Components */,
 				9E3655F22C047A6500AF020A /* Cell */,
 				9E5BDD382BFDF7DA005FCFAC /* ViewController */,
 				9E5BDD3B2BFDF817005FCFAC /* ViewModel */,
@@ -224,6 +233,7 @@
 			children = (
 				9E5BDD392BFDF7E2005FCFAC /* FeedViewController.swift */,
 				9ED2F1CE2C07493B00A22B4E /* FeedSetupModalViewController.swift */,
+				9ED2F1D02C0B085100A22B4E /* CommentViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -241,6 +251,7 @@
 			children = (
 				9E5BDD412BFE0234005FCFAC /* FeedHeaderView.swift */,
 				9E5BDD472BFE0D1E005FCFAC /* AddVoteHeaderView.swift */,
+				9ED2F1D72C0B24F100A22B4E /* CustomLineView.swift */,
 			);
 			path = HeaderView;
 			sourceTree = "<group>";
@@ -454,6 +465,15 @@
 			path = Lottie;
 			sourceTree = "<group>";
 		};
+		9ED2F1D42C0B0F0400A22B4E /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				9ED2F1D22C0B0A9500A22B4E /* CommentHeaderView.swift */,
+				9ED2F1D52C0B0F1A00A22B4E /* CommentFooterView.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
 		D493147200B50EB05B8FBA4F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -590,15 +610,18 @@
 				9E5BDD222BFB4E65005FCFAC /* TabBarController.swift in Sources */,
 				9E5BDD482BFE0D1E005FCFAC /* AddVoteHeaderView.swift in Sources */,
 				9E7455E22BF8AA8400D519AD /* UIColor + Extension.swift in Sources */,
+				9ED2F1D12C0B085100A22B4E /* CommentViewController.swift in Sources */,
 				9E7455DF2BF8A18B00D519AD /* LoginViewController.swift in Sources */,
 				9E5BDD362BFDF15C005FCFAC /* HomeViewController.swift in Sources */,
 				9E7455C22BF89D0000D519AD /* ViewController.swift in Sources */,
 				9E5BDD462BFE095F005FCFAC /* AddVoteViewController.swift in Sources */,
+				9ED2F1D32C0B0A9500A22B4E /* CommentHeaderView.swift in Sources */,
 				9E7455D72BF89F0900D519AD /* BaseViewController.swift in Sources */,
 				9E3655F82C04860200AF020A /* Post.swift in Sources */,
 				9E5BDD4F2BFE2076005FCFAC /* AddVoteSelectImageView.swift in Sources */,
 				9E7455BE2BF89D0000D519AD /* AppDelegate.swift in Sources */,
 				9E3655F62C04820C00AF020A /* FeedViewModel.swift in Sources */,
+				9ED2F1D62C0B0F1A00A22B4E /* CommentFooterView.swift in Sources */,
 				9E5BDD2E2BFC9FB8005FCFAC /* RegisterViewModel.swift in Sources */,
 				9E5BDD252BFB4FD8005FCFAC /* addShadow.swift in Sources */,
 				9E3655FC2C04AA1600AF020A /* UIImageView + Extension.swift in Sources */,
@@ -607,6 +630,7 @@
 				9E7455C02BF89D0000D519AD /* SceneDelegate.swift in Sources */,
 				9E7455DA2BF8A05A00D519AD /* SplashViewController.swift in Sources */,
 				9E5BDD0D2BFB0429005FCFAC /* RegisterViewController.swift in Sources */,
+				9ED2F1D82C0B24F100A22B4E /* CustomLineView.swift in Sources */,
 				9E5BDD4B2BFE17CD005FCFAC /* AddVoteTitleView.swift in Sources */,
 				9E5BDD512BFE323E005FCFAC /* AddVotePriceView.swift in Sources */,
 				9E5BDD312BFCCCED005FCFAC /* CustomAlertViewController.swift in Sources */,
