@@ -15,6 +15,9 @@ import Then
 
 class CommentViewController: BaseViewController {
     
+    private let viewModel: CommentViewModelType
+    private let postID: String
+    
     // MARK: - UI Components
     private lazy var headerView = CommentHeaderView().then {
         $0.delegate = self
@@ -22,7 +25,7 @@ class CommentViewController: BaseViewController {
     
     private lazy var tableView = UITableView().then {
         $0.backgroundColor = .clear
-        
+        $0.register(CommentTableViewCell.self, forCellReuseIdentifier: CommentTableViewCell.id)
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tableViewTapGesture))
         $0.addGestureRecognizer(gestureRecognizer)
     }
@@ -32,6 +35,15 @@ class CommentViewController: BaseViewController {
     }
     
     // MARK: - Init
+    init(viewModel: CommentViewModelType = CommentViewModel(), postID: String) {
+        self.viewModel = viewModel
+        self.postID = postID
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     // MARK: - LifeCycle
     override func viewDidLoad() {
@@ -70,6 +82,25 @@ class CommentViewController: BaseViewController {
     
     override func bind() {
         super.bind()
+        tableView.rx.setDelegate(self).disposed(by: disposeBag)
+        
+        viewModel.postID.onNext(postID)
+        
+        footerView.contentText
+            .bind(to: viewModel.commentValue)
+            .disposed(by: disposeBag)
+        
+        viewModel.commentsData
+            .drive(tableView.rx.items(cellIdentifier: CommentTableViewCell.id, cellType: CommentTableViewCell.self)) { row, item, cell in
+                cell.configuration(comment: item)
+            }
+            .disposed(by: disposeBag)
+        
+        viewModel.commentsData
+            .drive(onNext: { data in
+                print(data)
+            })
+            .disposed(by: disposeBag)
     }
 }
 
@@ -89,7 +120,13 @@ extension CommentViewController: CommentHeaderViewDelegate {
 
 extension CommentViewController: CommentFooterViewDelegate {
     func didAddCommentButtonTapped() {
-        
+        viewModel.addCommentButtonTapped.onNext(())
+    }
+}
+
+extension CommentViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 200
     }
 }
 
