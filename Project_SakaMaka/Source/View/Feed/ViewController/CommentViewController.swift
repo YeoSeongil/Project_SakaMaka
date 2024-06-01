@@ -36,7 +36,7 @@ class CommentViewController: BaseViewController {
     // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        //setupKeyboardObservers()
+        setupKeyboardObservers()
     }
     
     // MARK: - SetUp VC
