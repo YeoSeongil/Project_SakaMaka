@@ -256,7 +256,6 @@
 		9E5BDD402BFE0224005FCFAC /* HeaderView */ = {
 			isa = PBXGroup;
 			children = (
-				9E5BDD472BFE0D1E005FCFAC /* AddVoteHeaderView.swift */,
 			);
 			path = HeaderView;
 			sourceTree = "<group>";
@@ -282,6 +281,7 @@
 		9E5BDD492BFE17AD005FCFAC /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				9E5BDD472BFE0D1E005FCFAC /* AddVoteHeaderView.swift */,
 				9E5BDD4A2BFE17CD005FCFAC /* AddVoteTitleView.swift */,
 				9E5BDD4E2BFE2076005FCFAC /* AddVoteSelectImageView.swift */,
 				9E5BDD502BFE323E005FCFAC /* AddVotePriceView.swift */,
