@@ -24,6 +24,7 @@ class FeedCollectionViewCell: UICollectionViewCell {
     var onVoteDontBuyButtonTapped: (() -> Void)?
     var onSetupButtonTapped: (() -> Void)?
     var onLinkButtonTapped: (() -> Void)?
+    var onCommentButtonTapped: (() -> Void)?
     
     // MARK: - Components
     private let stackView = UIStackView().then {
@@ -321,6 +322,12 @@ class FeedCollectionViewCell: UICollectionViewCell {
         linkButton.rx.tap
             .bind(with:self) { owner, _ in
                 owner.onLinkButtonTapped?()
+            }
+            .disposed(by: disposeBag)
+        
+        commentButton.rx.tap
+            .bind(with: self) { owner, _ in
+                owner.onCommentButtonTapped?()
             }
             .disposed(by: disposeBag)
     }
