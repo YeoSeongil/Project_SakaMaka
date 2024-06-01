@@ -24,11 +24,18 @@ class CommentFooterView: UIView {
     
     // MARK: - UI Components
     
+    private let lineView = CustomLineView().then {
+        $0.lineColor = .nightGray
+        $0.lineWidth = 1.0
+    }
+    
     private let profileImageView = UIImageView().then {
-        $0.backgroundColor = .Turquoise
+        $0.backgroundColor = .clear
         $0.layer.cornerRadius = 17.5
         $0.layer.masksToBounds = true
-        $0.image = .addUser
+        $0.image = UIImage(systemName: "person.crop.circle.fill")
+        $0.contentMode = .scaleAspectFit
+        $0.tintColor = .Turquoise
     }
     
     private let commentTextField = UITextField().then {
@@ -64,10 +71,15 @@ class CommentFooterView: UIView {
     private func setView() {
         backgroundColor = .clear
         
-        [profileImageView, commentTextField, addCommentButton].forEach { addSubview($0) }
+        [lineView, profileImageView, commentTextField, addCommentButton].forEach { addSubview($0) }
     }
     
     private func setConstraint() {
+        lineView.snp.makeConstraints {
+            $0.top.equalToSuperview()
+            $0.horizontalEdges.equalToSuperview()
+        }
+        
         profileImageView.snp.makeConstraints {
             $0.centerY.equalToSuperview()
             $0.leading.equalToSuperview().inset(20)
