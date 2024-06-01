@@ -13,6 +13,10 @@ import RxSwift
 import SnapKit
 import Then
 
+protocol CommentFooterViewType {
+    var contentText: Observable<String> { get }
+}
+
 protocol CommentFooterViewDelegate: AnyObject {
     func didAddCommentButtonTapped()
 }
@@ -115,4 +119,10 @@ extension CommentFooterView {
     
 }
 
+extension CommentFooterView: CommentFooterViewType {
+    var contentText: Observable<String> {
+        commentTextField.rx.text.orEmpty
+            .asObservable()
+    }
+}
 
