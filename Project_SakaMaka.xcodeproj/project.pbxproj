@@ -55,6 +55,7 @@
 		9ED2F1D32C0B0A9500A22B4E /* CommentHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ED2F1D22C0B0A9500A22B4E /* CommentHeaderView.swift */; };
 		9ED2F1D62C0B0F1A00A22B4E /* CommentFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ED2F1D52C0B0F1A00A22B4E /* CommentFooterView.swift */; };
 		9ED2F1D82C0B24F100A22B4E /* CustomLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ED2F1D72C0B24F100A22B4E /* CustomLineView.swift */; };
+		9ED2F1DA2C0B341E00A22B4E /* CommentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ED2F1D92C0B341E00A22B4E /* CommentViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -109,6 +110,7 @@
 		9ED2F1D22C0B0A9500A22B4E /* CommentHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentHeaderView.swift; sourceTree = "<group>"; };
 		9ED2F1D52C0B0F1A00A22B4E /* CommentFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentFooterView.swift; sourceTree = "<group>"; };
 		9ED2F1D72C0B24F100A22B4E /* CustomLineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLineView.swift; sourceTree = "<group>"; };
+		9ED2F1D92C0B341E00A22B4E /* CommentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentViewModel.swift; sourceTree = "<group>"; };
 		C12611E47E27819F2A19345D /* Pods-Project_SakaMaka.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Project_SakaMaka.debug.xcconfig"; path = "Target Support Files/Pods-Project_SakaMaka/Pods-Project_SakaMaka.debug.xcconfig"; sourceTree = "<group>"; };
 		DBD4C8D96ACD58BAB179AE4A /* Pods-Project_SakaMaka.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Project_SakaMaka.release.xcconfig"; path = "Target Support Files/Pods-Project_SakaMaka/Pods-Project_SakaMaka.release.xcconfig"; sourceTree = "<group>"; };
 		ED2D95E7182D7927D859FBC5 /* Pods_Project_SakaMaka.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Project_SakaMaka.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -242,6 +244,7 @@
 			isa = PBXGroup;
 			children = (
 				9E3655F52C04820C00AF020A /* FeedViewModel.swift */,
+				9ED2F1D92C0B341E00A22B4E /* CommentViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -610,6 +613,7 @@
 				9E5BDD222BFB4E65005FCFAC /* TabBarController.swift in Sources */,
 				9E5BDD482BFE0D1E005FCFAC /* AddVoteHeaderView.swift in Sources */,
 				9E7455E22BF8AA8400D519AD /* UIColor + Extension.swift in Sources */,
+				9ED2F1DA2C0B341E00A22B4E /* CommentViewModel.swift in Sources */,
 				9ED2F1D12C0B085100A22B4E /* CommentViewController.swift in Sources */,
 				9E7455DF2BF8A18B00D519AD /* LoginViewController.swift in Sources */,
 				9E5BDD362BFDF15C005FCFAC /* HomeViewController.swift in Sources */,
