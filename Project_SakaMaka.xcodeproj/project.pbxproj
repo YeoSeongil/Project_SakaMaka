@@ -256,7 +256,6 @@
 		9E5BDD402BFE0224005FCFAC /* HeaderView */ = {
 			isa = PBXGroup;
 			children = (
-				9E5BDD412BFE0234005FCFAC /* FeedHeaderView.swift */,
 				9E5BDD472BFE0D1E005FCFAC /* AddVoteHeaderView.swift */,
 			);
 			path = HeaderView;
@@ -474,6 +473,7 @@
 		9ED2F1D42C0B0F0400A22B4E /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				9E5BDD412BFE0234005FCFAC /* FeedHeaderView.swift */,
 				9ED2F1D22C0B0A9500A22B4E /* CommentHeaderView.swift */,
 				9ED2F1D52C0B0F1A00A22B4E /* CommentFooterView.swift */,
 			);
