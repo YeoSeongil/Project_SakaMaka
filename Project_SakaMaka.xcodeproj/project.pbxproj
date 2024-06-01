@@ -208,6 +208,7 @@
 		9E5BDD2F2BFCCCD0005FCFAC /* Cumstom */ = {
 			isa = PBXGroup;
 			children = (
+				9ED2F1D72C0B24F100A22B4E /* CustomLineView.swift */,
 				9E5BDD302BFCCCED005FCFAC /* CustomAlertViewController.swift */,
 				9E5BDD322BFCDA9A005FCFAC /* OnlyYesAlertViewController.swift */,
 			);
@@ -257,7 +258,6 @@
 			children = (
 				9E5BDD412BFE0234005FCFAC /* FeedHeaderView.swift */,
 				9E5BDD472BFE0D1E005FCFAC /* AddVoteHeaderView.swift */,
-				9ED2F1D72C0B24F100A22B4E /* CustomLineView.swift */,
 			);
 			path = HeaderView;
 			sourceTree = "<group>";
