@@ -97,7 +97,7 @@ class FeedViewController: BaseViewController {
                 }
                 
                 cell.onCommentButtonTapped = { [weak self] in
-                    self?.didCommentButtonTapped(postID: item.id)
+                    self?.didCommentButtonTapped(postID: item.id, profileURL: item.profileURL)
                 }
                 
                 cell.configuration(item)
@@ -147,8 +147,8 @@ extension FeedViewController {
         }
     }
     
-    private func didCommentButtonTapped(postID: String) {
-        let modalViewController = CommentViewController(postID: postID)
+    private func didCommentButtonTapped(postID: String, profileURL: String) {
+        let modalViewController = CommentViewController(postID: postID, profileURL: profileURL)
         modalViewController.modalPresentationStyle = .pageSheet
         
         present(modalViewController, animated: true)
