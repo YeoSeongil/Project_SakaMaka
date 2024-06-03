@@ -17,6 +17,8 @@ import FirebaseFirestore
 class CommentTableViewCell: UITableViewCell {
     static let id: String = "CommentTableViewCell"
     
+    var showRepliesAction: (() -> Void)?
+    
     private let disposeBag = DisposeBag()
     
     // MARK: - UI Components
@@ -40,10 +42,16 @@ class CommentTableViewCell: UITableViewCell {
         $0.textColor = .nightGray
     }
     
+    private let setupButton = UIButton().then {
+        $0.setImage(UIImage(systemName: "ellipsis" ), for: .normal)
+        $0.tintColor = .black
+    }
+    
     private let commentLabel = UILabel().then {
         $0.backgroundColor = .clear
         $0.font = .b6
         $0.textColor = .black
+        $0.numberOfLines = 0
     }
     
     private let replyLabel = UILabel().then {
@@ -52,11 +60,26 @@ class CommentTableViewCell: UITableViewCell {
         $0.textColor = .black
     }
     
+    private let addReplyButton = UIButton().then {
+        $0.setTitleColor(.nightGray, for: .normal)
+        $0.setTitle("답글달기", for: .normal)
+        $0.backgroundColor = .clear
+        $0.titleLabel?.font = .b5
+    }
+    
+    private let showReplyButton = UIButton().then {
+        $0.setTitleColor(.Turquoise, for: .normal)
+        $0.setTitle("답글 1개 보기", for: .normal)
+        $0.backgroundColor = .clear
+        $0.titleLabel?.font = .h7
+    }
+    
     // Init
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setCell()
         setConstraint()
+        bind()
     }
     
     required init?(coder: NSCoder) {
@@ -67,8 +90,8 @@ class CommentTableViewCell: UITableViewCell {
     private func setCell() {
         backgroundColor = .white
         
-        [profileImageView, userNameLabel, commentDateLabel, commentLabel, replyLabel].forEach {
-            self.addSubview($0)
+        [profileImageView, userNameLabel, commentDateLabel, setupButton, commentLabel, addReplyButton, showReplyButton].forEach {
+            self.contentView.addSubview($0)
         }
     }
     
@@ -86,44 +109,67 @@ class CommentTableViewCell: UITableViewCell {
         
         commentDateLabel.snp.makeConstraints {
             $0.top.equalToSuperview().offset(10)
-            $0.leading.equalTo(userNameLabel.snp.trailing).offset(10)
-            $0.trailing.equalToSuperview().inset(20)
+            $0.leading.equalTo(userNameLabel.snp.trailing).offset(5)
         }
         
         commentLabel.snp.makeConstraints {
             $0.top.equalTo(userNameLabel.snp.bottom).offset(5)
             $0.leading.equalTo(profileImageView.snp.trailing).offset(10)
+            $0.trailing.equalToSuperview().inset(20)
         }
         
-        replyLabel.snp.makeConstraints {
-            $0.top.equalTo(commentLabel.snp.bottom).offset(15)
-            $0.leading.equalToSuperview().offset(50)
-            $0.height.equalTo(50)
+        setupButton.snp.makeConstraints {
+            $0.top.equalToSuperview().offset(10)
+            $0.trailing.equalToSuperview().inset(20)
         }
     }
     
     private func bind() {
-      
+        showReplyButton.rx.tap
+            .subscribe(with: self, onNext: { owner, _ in
+                print("탭")
+                owner.showRepliesAction?()
+            })
+            .disposed(by: disposeBag)
     }
 }
 
 extension CommentTableViewCell {
-    func configuration(comment: Comment) {
+    func configuration(comment: Comment, isRepliesVisible: Bool) {
         profileImageView.setImageKingfisher(with: comment.authorProfileURL)
         userNameLabel.text = comment.authorName
         commentDateLabel.text = formatTimestamp(comment.timestamp)
         commentLabel.text = comment.content
         
-        var repliesText = ""
-        for reply in comment.replies {
-            repliesText.append(contentsOf: "\(reply.authorName): \(reply.content)\n")
+        if comment.replies.isEmpty {
+            showReplyButton.isHidden = true
+            addReplyButton.snp.remakeConstraints {
+                $0.top.equalTo(commentLabel.snp.bottom).offset(5)
+                $0.leading.equalTo(profileImageView.snp.trailing).offset(10)
+                $0.height.equalTo(16)
+                $0.bottom.equalToSuperview().inset(10)
+            }
+        } else {
+            showReplyButton.isHidden = false
+            let replyButtonText = isRepliesVisible ? "답글 숨기기" : "답글 \(comment.replies.count)개 보기"
+            showReplyButton.setTitle(replyButtonText, for: .normal)
+            addReplyButton.snp.remakeConstraints {
+                $0.top.equalTo(commentLabel.snp.bottom).offset(5)
+                $0.leading.equalTo(profileImageView.snp.trailing).offset(10)
+                $0.height.equalTo(16)
+            }
+            showReplyButton.snp.remakeConstraints {
+                $0.top.equalTo(addReplyButton.snp.bottom).offset(5)
+                $0.leading.equalTo(profileImageView.snp.trailing).offset(10)
+                $0.height.equalTo(16)
+                $0.bottom.equalToSuperview().inset(10)
+            }
         }
-        replyLabel.text = repliesText
     }
 }
 
 extension CommentTableViewCell {
-    private func formatTimestamp(_ timestamp: Timestamp) -> String{
+    private func formatTimestamp(_ timestamp: Timestamp) -> String {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy.MM.dd"
         
