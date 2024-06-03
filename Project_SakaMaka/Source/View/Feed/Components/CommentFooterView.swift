@@ -37,8 +37,7 @@ class CommentFooterView: UIView {
         $0.backgroundColor = .clear
         $0.layer.cornerRadius = 17.5
         $0.layer.masksToBounds = true
-        $0.image = UIImage(systemName: "person.crop.circle.fill")
-        $0.contentMode = .scaleAspectFit
+
         $0.tintColor = .Turquoise
     }
     
@@ -73,7 +72,7 @@ class CommentFooterView: UIView {
     
     // MARK: - SetUp View
     private func setView() {
-        backgroundColor = .clear
+        backgroundColor = .white
         
         [lineView, profileImageView, commentTextField, addCommentButton].forEach { addSubview($0) }
     }
@@ -99,6 +98,7 @@ class CommentFooterView: UIView {
         
         addCommentButton.snp.makeConstraints {
             $0.centerY.equalToSuperview()
+            $0.width.height.equalTo(25)
             $0.trailing.equalToSuperview().inset(20)
         }
     }
@@ -113,10 +113,13 @@ class CommentFooterView: UIView {
 }
 
 extension CommentFooterView {
-    func configuration() {
-        
+    func configuration(url: String) {
+        if url.isEmpty {
+            profileImageView.image = UIImage(systemName: "person.crop.circle.fill")
+        } else {
+            profileImageView.setImageKingfisher(with: url)
+        }
     }
-    
 }
 
 extension CommentFooterView: CommentFooterViewType {
