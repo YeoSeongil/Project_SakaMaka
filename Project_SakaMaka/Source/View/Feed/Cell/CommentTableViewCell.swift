@@ -127,7 +127,6 @@ class CommentTableViewCell: UITableViewCell {
     private func bind() {
         showReplyButton.rx.tap
             .subscribe(with: self, onNext: { owner, _ in
-                print("탭")
                 owner.showRepliesAction?()
             })
             .disposed(by: disposeBag)

@@ -29,7 +29,6 @@ class CommentViewModel {
         tryAddComment()
         tryFetchComments()
         tryAddReply()
-        //addReply(to: "w0yOlLBrQNOqXeEsHVmY", commentID: "RVnAqUQnAlg6pq14QDbW", content: "답글2")
     }
     
     private func tryAddComment() {
