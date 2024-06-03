@@ -28,6 +28,8 @@ class CommentViewController: BaseViewController {
         $0.register(CommentTableViewCell.self, forCellReuseIdentifier: CommentTableViewCell.id)
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tableViewTapGesture))
         $0.addGestureRecognizer(gestureRecognizer)
+        $0.rowHeight = UITableView.automaticDimension
+        $0.estimatedRowHeight = 200
     }
     
     private lazy var footerView = CommentFooterView().then {
@@ -82,7 +84,6 @@ class CommentViewController: BaseViewController {
     
     override func bind() {
         super.bind()
-        tableView.rx.setDelegate(self).disposed(by: disposeBag)
         
         viewModel.postID.onNext(postID)
         
@@ -94,12 +95,6 @@ class CommentViewController: BaseViewController {
             .drive(tableView.rx.items(cellIdentifier: CommentTableViewCell.id, cellType: CommentTableViewCell.self)) { row, item, cell in
                 cell.configuration(comment: item)
             }
-            .disposed(by: disposeBag)
-        
-        viewModel.commentsData
-            .drive(onNext: { data in
-                print(data)
-            })
             .disposed(by: disposeBag)
     }
 }
@@ -121,12 +116,6 @@ extension CommentViewController: CommentHeaderViewDelegate {
 extension CommentViewController: CommentFooterViewDelegate {
     func didAddCommentButtonTapped() {
         viewModel.addCommentButtonTapped.onNext(())
-    }
-}
-
-extension CommentViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 200
     }
 }
 
