@@ -6,10 +6,8 @@
 //
 
 import UIKit
-
 import RxCocoa
 import RxSwift
-
 import SnapKit
 import Then
 
@@ -17,6 +15,10 @@ class CommentViewController: BaseViewController {
     
     private let viewModel: CommentViewModelType
     private let postID: String
+    private let profileURL: String
+    
+    private var isRepliesVisible: [String: Bool] = [:]
+    private var comments: [Comment] = []
     
     // MARK: - UI Components
     private lazy var headerView = CommentHeaderView().then {
@@ -26,20 +28,25 @@ class CommentViewController: BaseViewController {
     private lazy var tableView = UITableView().then {
         $0.backgroundColor = .clear
         $0.register(CommentTableViewCell.self, forCellReuseIdentifier: CommentTableViewCell.id)
+        $0.register(ReplyTableViewCell.self, forCellReuseIdentifier: ReplyTableViewCell.id)
+        $0.rowHeight = UITableView.automaticDimension
+        $0.estimatedRowHeight = 100
+        $0.separatorStyle = .none
+        
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tableViewTapGesture))
         $0.addGestureRecognizer(gestureRecognizer)
-        $0.rowHeight = UITableView.automaticDimension
-        $0.estimatedRowHeight = 200
     }
     
     private lazy var footerView = CommentFooterView().then {
         $0.delegate = self
+        $0.configuration(url: profileURL)
     }
     
     // MARK: - Init
-    init(viewModel: CommentViewModelType = CommentViewModel(), postID: String) {
+    init(viewModel: CommentViewModelType = CommentViewModel(), postID: String, profileURL: String) {
         self.viewModel = viewModel
         self.postID = postID
+        self.profileURL = profileURL
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -51,6 +58,8 @@ class CommentViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupKeyboardObservers()
+        tableView.dataSource = self
+        tableView.delegate = self
     }
     
     // MARK: - SetUp VC
@@ -84,7 +93,6 @@ class CommentViewController: BaseViewController {
     
     override func bind() {
         super.bind()
-        
         viewModel.postID.onNext(postID)
         
         footerView.contentText
@@ -92,9 +100,12 @@ class CommentViewController: BaseViewController {
             .disposed(by: disposeBag)
         
         viewModel.commentsData
-            .drive(tableView.rx.items(cellIdentifier: CommentTableViewCell.id, cellType: CommentTableViewCell.self)) { row, item, cell in
-                cell.configuration(comment: item)
-            }
+            .drive(onNext: { [weak self] comments in
+                self?.comments = comments
+                self?.isRepliesVisible = [:]
+                self?.tableView.reloadData()
+                self?.headerView.configuration(comment: comments)
+            })
             .disposed(by: disposeBag)
     }
 }
@@ -160,6 +171,53 @@ extension CommentViewController {
             }
             self.view.layoutIfNeeded()
         }
+    }
+}
+
+// MARK: - UITableViewDataSource
+extension CommentViewController: UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return comments.count
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        let comment = comments[section]
+        let isReplyVisible = isRepliesVisible[comment.id] ?? false
+        return isReplyVisible ? comment.replies.count + 1 : 1 // +1 to account for the comment cell
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let comment = comments[indexPath.section]
+        
+        if indexPath.row == 0 {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: CommentTableViewCell.id, for: indexPath) as? CommentTableViewCell else {
+                return UITableViewCell()
+            }
+            cell.configuration(comment: comment, isRepliesVisible: isRepliesVisible[comment.id] ?? false)
+            
+            // showRepliesAction 설정
+            cell.showRepliesAction = { [weak self] in
+                self?.toggleReplies(for: comment.id)
+            }
+            
+            return cell
+        } else {
+            let reply = comment.replies[indexPath.row - 1]
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: ReplyTableViewCell.id, for: indexPath) as? ReplyTableViewCell else {
+                return UITableViewCell()
+            }
+            cell.configuration(reply: reply)
+            return cell
+        }
+    }
+}
+
+// MARK: - UITableViewDelegate
+extension CommentViewController: UITableViewDelegate {
+    private func toggleReplies(for commentId: String) {
+        let isReplyVisible = isRepliesVisible[commentId] ?? false
+        isRepliesVisible[commentId] = !isReplyVisible
+        tableView.reloadData()
     }
 }
 

@@ -120,7 +120,6 @@ class FeedCollectionViewCell: UICollectionViewCell {
         $0.font = .b6
         $0.textColor = .black
         $0.textAlignment = .center
-        $0.text = "10명"
     }
     
     private let voteDontBuyView = UIView().then {
@@ -138,12 +137,12 @@ class FeedCollectionViewCell: UICollectionViewCell {
         $0.font = .b6
         $0.textColor = .black
         $0.textAlignment = .center
-        $0.text = "0명"
     }
     
     private let commentButton = UIButton().then {
         $0.setImage(.comment, for: .normal)
     }
+    
 
     // MARK: init
     override init(frame: CGRect) {

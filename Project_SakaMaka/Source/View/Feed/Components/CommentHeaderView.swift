@@ -34,14 +34,7 @@ class CommentHeaderView: UIView {
         attributedString.append(NSAttributedString(string: " 0", attributes: [.font: UIFont.b3, .foregroundColor: UIColor.black]))
         $0.attributedText = attributedString
     }
-//    private let title = UILabel().then {
-//        $0.text = "댓글"
-//        $0.textColor = .black
-//        $0.backgroundColor = .clear
-//        $0.textAlignment = .center
-//        $0.font = .h5
-//    }
-//    
+
     private let closeButton = UIButton().then {
         $0.setImage(UIImage(systemName: "xmark"), for: .normal)
         $0.tintColor = .black
@@ -94,7 +87,9 @@ class CommentHeaderView: UIView {
 }
 
 extension CommentHeaderView {
-    func configuration() {
-        
+    func configuration(comment: [Comment]) {
+        let attributedString = NSMutableAttributedString(string: "댓글", attributes: [.font: UIFont.b1, .foregroundColor: UIColor.Turquoise])
+        attributedString.append(NSAttributedString(string: " \(comment.count)", attributes: [.font: UIFont.b3, .foregroundColor: UIColor.black]))
+        title.attributedText = attributedString
     }
 }
