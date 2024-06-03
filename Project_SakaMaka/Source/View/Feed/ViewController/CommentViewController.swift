@@ -183,7 +183,7 @@ extension CommentViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let comment = comments[section]
         let isReplyVisible = isRepliesVisible[comment.id] ?? false
-        return isReplyVisible ? comment.replies.count + 1 : 1 // +1 to account for the comment cell
+        return isReplyVisible ? comment.replies.count + 1 : 1 
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
