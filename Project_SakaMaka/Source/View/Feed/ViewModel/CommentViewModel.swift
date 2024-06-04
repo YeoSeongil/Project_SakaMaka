@@ -12,6 +12,7 @@ protocol CommentViewModelType {
     
     // Output
     var commentsData: Driver<[Comment]> { get }
+    var successAddComment: Driver<Void> { get }
 }
 
 class CommentViewModel {
@@ -24,6 +25,7 @@ class CommentViewModel {
     private let inputAddReplyButtonTapped = PublishSubject<(String, String, String)>()
     
     private let outputCommentsData = BehaviorRelay<[Comment]>(value: [])
+    private let outputsuccessAddComment = PublishRelay<Void>()
     
     init() {
         tryAddComment()
@@ -93,6 +95,7 @@ class CommentViewModel {
                         print("Error adding comment: \(error)")
                     } else {
                         print("Comment added successfully")
+                        self.outputsuccessAddComment.accept(())
                         self.fetchComments(for: postID)
                     }
                 }
@@ -223,5 +226,9 @@ extension CommentViewModel: CommentViewModelType {
     
     var commentsData: Driver<[Comment]> {
         outputCommentsData.asDriver(onErrorDriveWith: .empty())
+    }
+    
+    var successAddComment: Driver<Void> {
+        outputsuccessAddComment.asDriver(onErrorDriveWith: .empty())
     }
 }

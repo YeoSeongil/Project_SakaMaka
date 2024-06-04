@@ -89,6 +89,7 @@ class CommentTableViewCell: UITableViewCell {
     // MARK: SetUp Cell
     private func setCell() {
         backgroundColor = .white
+        selectionStyle = .none
         
         [profileImageView, userNameLabel, commentDateLabel, setupButton, commentLabel, addReplyButton, showReplyButton].forEach {
             self.contentView.addSubview($0)
