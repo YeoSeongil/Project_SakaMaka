@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ReplySetupViewController: UIViewController {
+class ReplySetupModalViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
