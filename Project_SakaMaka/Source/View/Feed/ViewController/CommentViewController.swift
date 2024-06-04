@@ -100,25 +100,25 @@ class CommentViewController: BaseViewController {
             .bind(to: viewModel.commentValue)
             .disposed(by: disposeBag)
         
+        footerView.replyContentText
+            .filter { !$0.isEmpty }
+            .bind(to: viewModel.replyValue)
+            .disposed(by: disposeBag)
+        
         viewModel.successAddComment
             .drive(with: self, onNext: { owner, _ in
                 owner.view.endEditing(true)
                 owner.scrollToBottom()
                 owner.footerView.textFieldEmpty()
             })
-            .disposed(by: disposeBag)
+            .disposed(by: disposeBag)        
         
-//        viewModel.successDeleteComment
-//            .drive(with: self, onNext: { owner, _ in
-//                owner.tableView.reloadData()
-//            })
-//            .disposed(by: disposeBag)        
-//        
-//        viewModel.successDeleteReply
-//            .drive(with: self, onNext: { owner, _ in
-//                owner.tableView.reloadData()
-//            })
-//            .disposed(by: disposeBag)
+        viewModel.successAddReply
+            .drive(with: self, onNext: { owner, _ in
+                owner.view.endEditing(true)
+                owner.footerView.textFieldEmpty()
+            })
+            .disposed(by: disposeBag)
         
         viewModel.commentsData
             .drive(with: self, onNext: { owner, comments in
@@ -148,6 +148,10 @@ extension CommentViewController: CommentHeaderViewDelegate {
 extension CommentViewController: CommentFooterViewDelegate {
     func didAddCommentButtonTapped() {
         viewModel.addCommentButtonTapped.onNext(())
+    }    
+    
+    func didAddReplyButtonTapped() {
+        viewModel.addReplyButtonTapped.onNext(())
     }
 }
 
@@ -192,6 +196,11 @@ extension CommentViewController {
             }
             self.view.layoutIfNeeded()
         }
+    }
+    
+    private func didAddReplyButtonTapped(commentID: String) {
+        footerView.hideCommentTextField()
+        self.viewModel.commentID.onNext(commentID)
     }
     
     private func scrollToBottom() {
@@ -282,6 +291,10 @@ extension CommentViewController: UITableViewDataSource {
             // showRepliesAction 설정
             cell.showRepliesAction = { [weak self] in
                 self?.toggleReplies(for: comment.id)
+            }
+            
+            cell.onAddReplyButtonTapped = { [weak self] in
+                self?.didAddReplyButtonTapped(commentID: comment.id)
             }
             
             return cell

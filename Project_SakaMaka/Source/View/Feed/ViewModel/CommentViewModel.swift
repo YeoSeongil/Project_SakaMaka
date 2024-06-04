@@ -6,16 +6,19 @@ import FirebaseStorage
 
 protocol CommentViewModelType {
     var addCommentButtonTapped: AnyObserver<Void> { get }
+    var addReplyButtonTapped: AnyObserver<Void> { get }
     var commentValue: AnyObserver<String> { get }
     var postID: AnyObserver<String> { get }
+    var commentID: AnyObserver<String> { get }
+    var replyValue: AnyObserver<String> { get }
     var commentDeleteValue: AnyObserver<(String, String)> { get }
     var replyDeleteValue: AnyObserver<(String, String, String)> { get }
     var replyID: AnyObserver<String> { get }
-    var addReplyButtonTapped: AnyObserver<(String, String, String)> { get }
     
     // Output
     var commentsData: Driver<[Comment]> { get }
     var successAddComment: Driver<Void> { get }
+    var successAddReply: Driver<Void> { get }
     func isCurrentUserAuthor(authorId: String) -> Bool
 }
 
@@ -24,15 +27,18 @@ class CommentViewModel {
     private let disposeBag = DisposeBag()
     
     private let inputAddCommentButtonTapped = PublishSubject<Void>()
+    private let inputAddReplyButtonTapped = PublishSubject<Void>()
     private let inputCommentDeleteValue = PublishSubject<(String, String)>()
     private let inputReplyDeleteValue = PublishSubject<(String, String, String)>()
     private let inputCommentValue = PublishSubject<String>()
     private let inputPostID = PublishSubject<String>()
+    private let inputCommentID = PublishSubject<String>()
+    private let inputReplyValue = PublishSubject<String>()
     private let inputReplyID = PublishSubject<String>()
-    private let inputAddReplyButtonTapped = PublishSubject<(String, String, String)>()
     
     private let outputCommentsData = BehaviorRelay<[Comment]>(value: [])
     private let outputSuccessAddComment = PublishRelay<Void>()
+    private let outputSuccessAddReply = PublishRelay<Void>()
     
     init() {
         tryAddComment()
@@ -61,6 +67,7 @@ class CommentViewModel {
 
     private func tryAddReply() {
         inputAddReplyButtonTapped
+            .withLatestFrom(Observable.combineLatest(inputPostID, inputCommentID, inputReplyValue))
             .subscribe(with: self, onNext: { owner, data in
                 owner.addReply(to: data.0, commentID: data.1, content: data.2)
             })
@@ -78,9 +85,6 @@ class CommentViewModel {
     private func tryDeleteReply() {
         inputReplyDeleteValue
             .subscribe(with: self, onNext: { owner, data in
-                print(data.0)
-                print(data.1)
-                print(data.2)
                 owner.deleteReply(postID: data.0, commentID: data.1, replyID: data.2)
             })
             .disposed(by: disposeBag)
@@ -172,6 +176,7 @@ extension CommentViewModel {
                     } else {
                         print("Reply added successfully")
                         self.fetchComments(for: postID)
+                        self.outputSuccessAddReply.accept(())
                     }
                 }
             }
@@ -274,6 +279,10 @@ extension CommentViewModel: CommentViewModelType {
         inputAddCommentButtonTapped.asObserver()
     }
     
+    var addReplyButtonTapped: AnyObserver<Void> {
+        inputAddReplyButtonTapped.asObserver()
+    }
+    
     var commentValue: AnyObserver<String> {
         inputCommentValue.asObserver()
     }
@@ -285,16 +294,21 @@ extension CommentViewModel: CommentViewModelType {
     var replyDeleteValue: AnyObserver<(String, String, String)> {
         inputReplyDeleteValue.asObserver()
     }
+    
     var postID: AnyObserver<String> {
         inputPostID.asObserver()
     }
     
-    var replyID: AnyObserver<String> {
-        inputReplyID.asObserver()
+    var commentID: AnyObserver<String> {
+        inputCommentID.asObserver()
     }
     
-    var addReplyButtonTapped: AnyObserver<(String, String, String)> {
-        inputAddReplyButtonTapped.asObserver()
+    var replyValue: AnyObserver<String> {
+        inputReplyValue.asObserver()
+    }
+    
+    var replyID: AnyObserver<String> {
+        inputReplyID.asObserver()
     }
     
     var commentsData: Driver<[Comment]> {
@@ -305,6 +319,10 @@ extension CommentViewModel: CommentViewModelType {
         outputSuccessAddComment.asDriver(onErrorDriveWith: .empty())
     }
 
+    var successAddReply: Driver<Void> {
+        outputSuccessAddReply.asDriver(onErrorDriveWith: .empty())
+    }
+    
     func isCurrentUserAuthor(authorId: String) -> Bool {
         guard let currentUserID = Auth.auth().currentUser?.uid else {
             return false

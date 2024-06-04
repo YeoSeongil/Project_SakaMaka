@@ -18,6 +18,7 @@ class CommentTableViewCell: UITableViewCell {
     static let id: String = "CommentTableViewCell"
     
     var onSetupButtonTapped: (() -> Void)?
+    var onAddReplyButtonTapped: (() -> Void)?
     var showRepliesAction: (() -> Void)?
     
     private let disposeBag = DisposeBag()
@@ -70,7 +71,6 @@ class CommentTableViewCell: UITableViewCell {
     
     private let showReplyButton = UIButton().then {
         $0.setTitleColor(.Turquoise, for: .normal)
-        $0.setTitle("답글 1개 보기", for: .normal)
         $0.backgroundColor = .clear
         $0.titleLabel?.font = .h7
     }
@@ -127,6 +127,12 @@ class CommentTableViewCell: UITableViewCell {
     }
     
     private func bind() {
+        addReplyButton.rx.tap
+            .subscribe(with: self, onNext: { owner, _ in
+                owner.onAddReplyButtonTapped?()
+            })
+            .disposed(by: disposeBag)
+        
         showReplyButton.rx.tap
             .subscribe(with: self, onNext: { owner, _ in
                 owner.showRepliesAction?()
