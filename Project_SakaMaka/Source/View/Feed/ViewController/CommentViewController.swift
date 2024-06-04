@@ -96,15 +96,23 @@ class CommentViewController: BaseViewController {
         viewModel.postID.onNext(postID)
         
         footerView.contentText
+            .filter { !$0.isEmpty } 
             .bind(to: viewModel.commentValue)
             .disposed(by: disposeBag)
         
+        viewModel.successAddComment
+            .drive(with: self, onNext: { owner, _ in
+                owner.view.endEditing(true)
+                owner.scrollToBottom()
+            })
+            .disposed(by: disposeBag)
+        
         viewModel.commentsData
-            .drive(onNext: { [weak self] comments in
-                self?.comments = comments
-                self?.isRepliesVisible = [:]
-                self?.tableView.reloadData()
-                self?.headerView.configuration(comment: comments)
+            .drive(with: self, onNext: { owner, comments in
+                owner.comments = comments
+                owner.isRepliesVisible = [:]
+                owner.tableView.reloadData()
+                owner.headerView.configuration(comment: comments)
             })
             .disposed(by: disposeBag)
     }
@@ -170,6 +178,17 @@ extension CommentViewController {
                 $0.bottom.equalTo(self.view.safeAreaLayoutGuide)
             }
             self.view.layoutIfNeeded()
+        }
+    }
+    
+    private func scrollToBottom() {
+        let lastSection = tableView.numberOfSections - 1
+        if lastSection >= 0 {
+            let lastRow = tableView.numberOfRows(inSection: lastSection) - 1
+            if lastRow >= 0 {
+                let indexPath = IndexPath(row: lastRow, section: lastSection)
+                tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
+            }
         }
     }
 }
