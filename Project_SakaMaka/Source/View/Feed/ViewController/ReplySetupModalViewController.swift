@@ -7,23 +7,59 @@
 
 import UIKit
 
-class ReplySetupModalViewController: UIViewController {
+import RxCocoa
+import RxSwift
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+import SnapKit
+import Then
 
-        // Do any additional setup after loading the view.
+class ReplySetupModalViewController: BaseViewController {
+
+    var didDeleteButtonTapped: (() -> Void)?
+    
+    // MARK: - UI Components
+    private let deleteButton = UIButton().then {
+        $0.setTitle("댓글 삭제하기", for: .normal)
+        $0.setTitleColor(.black, for: .normal)
+        $0.tintColor = .black
+        $0.titleLabel?.font = .b2
+        $0.backgroundColor = .clear
+
+        let image = UIImage(systemName: "trash")
+        $0.setImage(image, for: .normal)
+        $0.titleEdgeInsets = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 0)
+        $0.contentHorizontalAlignment = .left
     }
     
+    // MARK: - Init
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    // MARK: - LifeCycle
+    override func viewDidLoad() {
+        super.viewDidLoad()
     }
-    */
-
+    
+    // MARK: - SetUp VC
+    override func setViewController() {
+        super.setViewController()
+        
+        view.addSubview(deleteButton)
+    }
+    
+    override func setConstraints() {
+        super.setConstraints()
+        deleteButton.snp.makeConstraints {
+            $0.verticalEdges.horizontalEdges.equalToSuperview().inset(20)
+        }
+    }
+    
+    override func bind() {
+        super.bind()
+        
+        deleteButton.rx.tap
+            .subscribe(with: self, onNext: { owner, _ in
+                owner.didDeleteButtonTapped?()
+            })
+            .disposed(by: disposeBag)
+    }
 }
+
