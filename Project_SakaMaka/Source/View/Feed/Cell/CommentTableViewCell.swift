@@ -17,6 +17,7 @@ import FirebaseFirestore
 class CommentTableViewCell: UITableViewCell {
     static let id: String = "CommentTableViewCell"
     
+    var onSetupButtonTapped: (() -> Void)?
     var showRepliesAction: (() -> Void)?
     
     private let disposeBag = DisposeBag()
@@ -129,6 +130,12 @@ class CommentTableViewCell: UITableViewCell {
         showReplyButton.rx.tap
             .subscribe(with: self, onNext: { owner, _ in
                 owner.showRepliesAction?()
+            })
+            .disposed(by: disposeBag)
+        
+        setupButton.rx.tap
+            .subscribe(with: self, onNext: { owner, _ in
+                owner.onSetupButtonTapped?()
             })
             .disposed(by: disposeBag)
     }

@@ -108,6 +108,18 @@ class CommentViewController: BaseViewController {
             })
             .disposed(by: disposeBag)
         
+//        viewModel.successDeleteComment
+//            .drive(with: self, onNext: { owner, _ in
+//                owner.tableView.reloadData()
+//            })
+//            .disposed(by: disposeBag)        
+//        
+//        viewModel.successDeleteReply
+//            .drive(with: self, onNext: { owner, _ in
+//                owner.tableView.reloadData()
+//            })
+//            .disposed(by: disposeBag)
+        
         viewModel.commentsData
             .drive(with: self, onNext: { owner, comments in
                 owner.comments = comments
@@ -192,6 +204,52 @@ extension CommentViewController {
             }
         }
     }
+    
+    private func didCommentSetupButtonTapped(postID: String, commentID: String) {
+        let modalViewController = CommentSetupModalViewController()
+        
+        if let sheet = modalViewController.sheetPresentationController {
+            let fixedDetent = UISheetPresentationController.Detent.custom { context in
+                return 70
+            }
+            
+            sheet.detents = [fixedDetent]
+            sheet.prefersScrollingExpandsWhenScrolledToEdge = false
+            sheet.prefersEdgeAttachedInCompactHeight = true
+            sheet.widthFollowsPreferredContentSizeWhenEdgeAttached = true
+            sheet.prefersGrabberVisible = true
+        }
+        
+        modalViewController.didDeleteButtonTapped = { [weak self] in
+            self?.viewModel.commentDeleteValue.onNext((postID, commentID))
+            modalViewController.dismiss(animated: true)
+        }
+        
+        present(modalViewController, animated: true, completion: nil)
+    }    
+    
+    private func didReplySetupButtonTapped(postID: String, commentID: String, replyID: String) {
+        let modalViewController = ReplySetupModalViewController()
+        
+        if let sheet = modalViewController.sheetPresentationController {
+            let fixedDetent = UISheetPresentationController.Detent.custom { context in
+                return 70
+            }
+            
+            sheet.detents = [fixedDetent]
+            sheet.prefersScrollingExpandsWhenScrolledToEdge = false
+            sheet.prefersEdgeAttachedInCompactHeight = true
+            sheet.widthFollowsPreferredContentSizeWhenEdgeAttached = true
+            sheet.prefersGrabberVisible = true
+        }
+        
+        modalViewController.didDeleteButtonTapped = { [weak self] in
+            self?.viewModel.replyDeleteValue.onNext((postID, commentID, replyID))
+            modalViewController.dismiss(animated: true)
+        }
+        
+        present(modalViewController, animated: true, completion: nil)
+    }
 }
 
 // MARK: - UITableViewDataSource
@@ -215,6 +273,9 @@ extension CommentViewController: UITableViewDataSource {
                 return UITableViewCell()
             }
             
+            cell.onSetupButtonTapped = { [weak self] in
+                self?.didCommentSetupButtonTapped(postID: comment.postID, commentID: comment.id)
+            }
             cell.setButtonVisibility(isVisible: isAuthor)
             cell.configuration(comment: comment, isRepliesVisible: isRepliesVisible[comment.id] ?? false)
             
@@ -228,6 +289,9 @@ extension CommentViewController: UITableViewDataSource {
             let reply = comment.replies[indexPath.row - 1]
             guard let cell = tableView.dequeueReusableCell(withIdentifier: ReplyTableViewCell.id, for: indexPath) as? ReplyTableViewCell else {
                 return UITableViewCell()
+            }
+            cell.onSetupButtonTapped = { [weak self] in
+                self?.didReplySetupButtonTapped(postID: comment.postID, commentID: comment.id, replyID: reply.id)
             }
             cell.setButtonVisibility(isVisible: isAuthor)
             cell.configuration(reply: reply)

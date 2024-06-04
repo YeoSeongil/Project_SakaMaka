@@ -58,6 +58,8 @@
 		9ED2F1DA2C0B341E00A22B4E /* CommentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ED2F1D92C0B341E00A22B4E /* CommentViewModel.swift */; };
 		9ED2F1DC2C0B41CD00A22B4E /* CommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ED2F1DB2C0B41CD00A22B4E /* CommentTableViewCell.swift */; };
 		9ED2F1DE2C0DCB6300A22B4E /* ReplyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ED2F1DD2C0DCB6300A22B4E /* ReplyTableViewCell.swift */; };
+		9EE952DD2C0F2D7900D9BA77 /* CommentSetupModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE952DC2C0F2D7900D9BA77 /* CommentSetupModalViewController.swift */; };
+		9EE952DF2C0F342300D9BA77 /* ReplySetupModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE952DE2C0F342300D9BA77 /* ReplySetupModalViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -115,6 +117,8 @@
 		9ED2F1D92C0B341E00A22B4E /* CommentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentViewModel.swift; sourceTree = "<group>"; };
 		9ED2F1DB2C0B41CD00A22B4E /* CommentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentTableViewCell.swift; sourceTree = "<group>"; };
 		9ED2F1DD2C0DCB6300A22B4E /* ReplyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplyTableViewCell.swift; sourceTree = "<group>"; };
+		9EE952DC2C0F2D7900D9BA77 /* CommentSetupModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentSetupModalViewController.swift; sourceTree = "<group>"; };
+		9EE952DE2C0F342300D9BA77 /* ReplySetupModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplySetupModalViewController.swift; sourceTree = "<group>"; };
 		C12611E47E27819F2A19345D /* Pods-Project_SakaMaka.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Project_SakaMaka.debug.xcconfig"; path = "Target Support Files/Pods-Project_SakaMaka/Pods-Project_SakaMaka.debug.xcconfig"; sourceTree = "<group>"; };
 		DBD4C8D96ACD58BAB179AE4A /* Pods-Project_SakaMaka.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Project_SakaMaka.release.xcconfig"; path = "Target Support Files/Pods-Project_SakaMaka/Pods-Project_SakaMaka.release.xcconfig"; sourceTree = "<group>"; };
 		ED2D95E7182D7927D859FBC5 /* Pods_Project_SakaMaka.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Project_SakaMaka.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -243,6 +247,8 @@
 				9E5BDD392BFDF7E2005FCFAC /* FeedViewController.swift */,
 				9ED2F1CE2C07493B00A22B4E /* FeedSetupModalViewController.swift */,
 				9ED2F1D02C0B085100A22B4E /* CommentViewController.swift */,
+				9EE952DC2C0F2D7900D9BA77 /* CommentSetupModalViewController.swift */,
+				9EE952DE2C0F342300D9BA77 /* ReplySetupModalViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -638,11 +644,13 @@
 				9E3655FC2C04AA1600AF020A /* UIImageView + Extension.swift in Sources */,
 				9E5BDD532BFE35BD005FCFAC /* AddVoteLinkView.swift in Sources */,
 				9ED2F1DC2C0B41CD00A22B4E /* CommentTableViewCell.swift in Sources */,
+				9EE952DD2C0F2D7900D9BA77 /* CommentSetupModalViewController.swift in Sources */,
 				9E5BDD422BFE0234005FCFAC /* FeedHeaderView.swift in Sources */,
 				9E7455C02BF89D0000D519AD /* SceneDelegate.swift in Sources */,
 				9E7455DA2BF8A05A00D519AD /* SplashViewController.swift in Sources */,
 				9E5BDD0D2BFB0429005FCFAC /* RegisterViewController.swift in Sources */,
 				9ED2F1D82C0B24F100A22B4E /* CustomLineView.swift in Sources */,
+				9EE952DF2C0F342300D9BA77 /* ReplySetupModalViewController.swift in Sources */,
 				9E5BDD4B2BFE17CD005FCFAC /* AddVoteTitleView.swift in Sources */,
 				9E5BDD512BFE323E005FCFAC /* AddVotePriceView.swift in Sources */,
 				9E5BDD312BFCCCED005FCFAC /* CustomAlertViewController.swift in Sources */,
