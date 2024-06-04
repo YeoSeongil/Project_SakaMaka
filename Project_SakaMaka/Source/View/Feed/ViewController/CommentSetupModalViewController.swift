@@ -13,7 +13,7 @@ import RxSwift
 import SnapKit
 import Then
 
-class CommentSetupViewController: BaseViewController {
+class CommentSetupModalViewController: BaseViewController {
 
     var didDeleteButtonTapped: (() -> Void)?
     
