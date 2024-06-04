@@ -135,6 +135,10 @@ class CommentTableViewCell: UITableViewCell {
 }
 
 extension CommentTableViewCell {
+    func setButtonVisibility(isVisible: Bool) {
+        setupButton.isHidden = !isVisible
+    }
+    
     func configuration(comment: Comment, isRepliesVisible: Bool) {
         profileImageView.setImageKingfisher(with: comment.authorProfileURL)
         userNameLabel.text = comment.authorName
