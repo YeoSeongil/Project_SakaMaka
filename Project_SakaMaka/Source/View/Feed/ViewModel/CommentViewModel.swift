@@ -13,6 +13,7 @@ protocol CommentViewModelType {
     // Output
     var commentsData: Driver<[Comment]> { get }
     var successAddComment: Driver<Void> { get }
+    func isCurrentUserAuthor(authorId: String) -> Bool
 }
 
 class CommentViewModel {
@@ -230,5 +231,12 @@ extension CommentViewModel: CommentViewModelType {
     
     var successAddComment: Driver<Void> {
         outputsuccessAddComment.asDriver(onErrorDriveWith: .empty())
+    }
+    
+    func isCurrentUserAuthor(authorId: String) -> Bool {
+        guard let currentUserID = Auth.auth().currentUser?.uid else {
+            return false
+        }
+        return authorId == currentUserID
     }
 }
