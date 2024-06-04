@@ -15,6 +15,7 @@ import Then
 
 protocol CommentFooterViewType {
     var contentText: Observable<String> { get }
+    func textFieldEmpty()
 }
 
 protocol CommentFooterViewDelegate: AnyObject {
@@ -126,6 +127,10 @@ extension CommentFooterView: CommentFooterViewType {
     var contentText: Observable<String> {
         commentTextField.rx.text.orEmpty
             .asObservable()
+    }
+    
+    func textFieldEmpty() {
+        commentTextField.text = .none
     }
 }
 
