@@ -17,9 +17,11 @@ protocol FeedViewModelType {
     var voteBuyButtonTapped: AnyObserver<(String, String)> { get }
     var voteDontBuyButtonTapped: AnyObserver<(String, String)> { get }
     var postId: AnyObserver<String> { get }
+    
     // Output
     var postsData: Driver<[Post]> { get }
     var hasVoted: Driver<Bool> { get }
+    var successDelete: Driver<Void> { get }
     
     // Method
     func isCurrentUserLikedPost(postId: String) -> Bool
@@ -39,12 +41,13 @@ class FeedViewModel {
     // Output
     private let postsOutput = BehaviorRelay<[Post]>(value: [])
     private let votedOutput = BehaviorRelay<Bool>(value: false)
+    private let successDeleteOutput = PublishRelay<Void>()
     
     init() {
         likeVote()
         unlikeVote()
-        fetchPosts()
-        deletePost()
+        tryFetchPosts()
+        tryDeletePost()
     }
 
     private func likeVote() {
@@ -63,6 +66,17 @@ class FeedViewModel {
             .disposed(by: disposeBag)
     }
     
+    private func tryFetchPosts() {
+        fetchPosts()
+    }
+    
+    private func tryDeletePost() {
+        deletePost()
+    }
+}
+
+// Method
+extension FeedViewModel {
     private func fetchPosts() {
         Firestore.firestore().collection("posts")
             .order(by: "timestamp", descending: true)
@@ -85,12 +99,13 @@ class FeedViewModel {
     
     private func deletePost() {
         inputPostId
-            .subscribe(onNext: { id in
+            .subscribe(with: self, onNext: { owner, id in
                 Firestore.firestore().collection("posts").document(id).delete { error in
                     if let error = error {
                         print("Error deleting post: \(error.localizedDescription)")
                     } else {
                         print("Post successfully deleted")
+                        owner.successDeleteOutput.accept(())
                     }
                 }
             })
@@ -117,6 +132,10 @@ extension FeedViewModel: FeedViewModelType {
     
     var hasVoted: Driver<Bool>{
         votedOutput.asDriver(onErrorDriveWith: .empty())
+    }
+    
+    var successDelete: Driver<Void> {
+        successDeleteOutput.asDriver(onErrorDriveWith: .empty())
     }
     
     func isCurrentUserLikedPost(postId: String) -> Bool {
