@@ -8,13 +8,14 @@ protocol CommentViewModelType {
     var addCommentButtonTapped: AnyObserver<Void> { get }
     var commentValue: AnyObserver<String> { get }
     var postID: AnyObserver<String> { get }
-    var commentID: AnyObserver<String> { get }
+    var commentDeleteValue: AnyObserver<(String, String)> { get }
+    var replyDeleteValue: AnyObserver<(String, String, String)> { get }
+    var replyID: AnyObserver<String> { get }
     var addReplyButtonTapped: AnyObserver<(String, String, String)> { get }
     
     // Output
     var commentsData: Driver<[Comment]> { get }
     var successAddComment: Driver<Void> { get }
-    var successDeleteComment: Driver<Void> { get }
     func isCurrentUserAuthor(authorId: String) -> Bool
 }
 
@@ -23,20 +24,22 @@ class CommentViewModel {
     private let disposeBag = DisposeBag()
     
     private let inputAddCommentButtonTapped = PublishSubject<Void>()
+    private let inputCommentDeleteValue = PublishSubject<(String, String)>()
+    private let inputReplyDeleteValue = PublishSubject<(String, String, String)>()
     private let inputCommentValue = PublishSubject<String>()
     private let inputPostID = PublishSubject<String>()
-    private let inputCommentID = PublishSubject<String>()
+    private let inputReplyID = PublishSubject<String>()
     private let inputAddReplyButtonTapped = PublishSubject<(String, String, String)>()
     
     private let outputCommentsData = BehaviorRelay<[Comment]>(value: [])
     private let outputSuccessAddComment = PublishRelay<Void>()
-    private let outputSuccessDeleteComment = PublishRelay<Void>()
     
     init() {
         tryAddComment()
         tryFetchComments()
         tryAddReply()
         tryDeleteComment()
+        tryDeleteReply()
     }
     
     private func tryAddComment() {
@@ -65,14 +68,26 @@ class CommentViewModel {
     }
     
     private func tryDeleteComment() {
-        let zip = Observable.zip(inputPostID, inputCommentID)
-        
-        zip.subscribe(with: self) { owner, id in
-            owner.deletePost(postID: id.0, commentID: id.1)
-        }
-        .disposed(by: disposeBag)
+        inputCommentDeleteValue
+            .subscribe(with: self, onNext: { owner, data in
+                owner.deleteComment(postID: data.0, commentID: data.1)
+            })
+            .disposed(by: disposeBag)
     }
+    
+    private func tryDeleteReply() {
+        inputReplyDeleteValue
+            .subscribe(with: self, onNext: { owner, data in
+                print(data.0)
+                print(data.1)
+                print(data.2)
+                owner.deleteReply(postID: data.0, commentID: data.1, replyID: data.2)
+            })
+            .disposed(by: disposeBag)
+    }
+}
 
+extension CommentViewModel {
     private func addComment(to postID: String, content: String) {
         let postRef = Firestore.firestore().collection("posts").document(postID)
         
@@ -177,6 +192,8 @@ class CommentViewModel {
                 var fetchedComments: [Comment] = []
                 var fetchReplyTasks: [DispatchWorkItem] = []
                 
+                let dispatchGroup = DispatchGroup()
+                
                 for document in querySnapshot?.documents ?? [] {
                     let data = document.data()
                     let comment = Comment(document: data)
@@ -184,10 +201,14 @@ class CommentViewModel {
                     fetchedComments.append(comment)
                     
                     // 대댓글을 가져오는 비동기 작업 추가
+                    dispatchGroup.enter()
                     let fetchReplyTask = DispatchWorkItem {
                         postRef.collection("comments").document(comment.id).collection("replies")
                             .order(by: "timestamp")
                             .getDocuments { (querySnapshot, error) in
+                                defer {
+                                    dispatchGroup.leave()
+                                }
                                 if let error = error {
                                     print("Error fetching replies: \(error)")
                                     return
@@ -205,28 +226,44 @@ class CommentViewModel {
                                 if let index = fetchedComments.firstIndex(where: { $0.id == comment.id }) {
                                     fetchedComments[index].replies = fetchedReplies
                                 }
-                                
-                                // 모든 대댓글이 추가되면 UI를 업데이트
-                                self?.outputCommentsData.accept(fetchedComments)
                             }
                     }
                     fetchReplyTasks.append(fetchReplyTask)
                 }
                 
                 // 모든 댓글에 대한 대댓글을 비동기적으로 가져옴
+                dispatchGroup.notify(queue: .main) {
+                    // 모든 대댓글이 추가되면 UI를 업데이트
+                    self?.outputCommentsData.accept(fetchedComments)
+                }
+                
                 let queue = DispatchQueue(label: "FetchReplyQueue")
                 fetchReplyTasks.forEach { queue.async(execute: $0) }
             }
     }
 
-    private func deletePost(postID: String, commentID: String) {
+
+    private func deleteComment(postID: String, commentID: String) {
         let postRef = Firestore.firestore().collection("posts").document(postID)
         postRef.collection("comments").document(commentID).delete { error in
             if let error = error {
                 print("Error deleting post: \(error.localizedDescription)")
             } else {
                 print("Post successfully deleted")
-                self.outputSuccessDeleteComment.accept(())
+                self.fetchComments(for: postID)
+            }
+        }
+    }
+    
+    private func deleteReply(postID: String, commentID: String, replyID: String) {
+        let postRef = Firestore.firestore().collection("posts").document(postID)
+        let commentRef = postRef.collection("comments").document(commentID)
+        commentRef.collection("replies").document(replyID).delete { error in
+            if let error = error {
+                print("Error deleting post: \(error.localizedDescription)")
+            } else {
+                print("Post successfully deleted")
+                self.fetchComments(for: postID)
             }
         }
     }
@@ -241,12 +278,19 @@ extension CommentViewModel: CommentViewModelType {
         inputCommentValue.asObserver()
     }
     
+    var commentDeleteValue: AnyObserver<(String, String)> {
+        inputCommentDeleteValue.asObserver()
+    }
+    
+    var replyDeleteValue: AnyObserver<(String, String, String)> {
+        inputReplyDeleteValue.asObserver()
+    }
     var postID: AnyObserver<String> {
         inputPostID.asObserver()
     }
     
-    var commentID: AnyObserver<String> {
-        inputCommentID.asObserver()
+    var replyID: AnyObserver<String> {
+        inputReplyID.asObserver()
     }
     
     var addReplyButtonTapped: AnyObserver<(String, String, String)> {
@@ -260,11 +304,7 @@ extension CommentViewModel: CommentViewModelType {
     var successAddComment: Driver<Void> {
         outputSuccessAddComment.asDriver(onErrorDriveWith: .empty())
     }
-    
-    var successDeleteComment: Driver<Void> {
-        outputSuccessDeleteComment.asDriver(onErrorDriveWith: .empty())
-    }
-    
+
     func isCurrentUserAuthor(authorId: String) -> Bool {
         guard let currentUserID = Auth.auth().currentUser?.uid else {
             return false
