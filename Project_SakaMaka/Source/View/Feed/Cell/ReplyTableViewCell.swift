@@ -19,6 +19,8 @@ class ReplyTableViewCell: UITableViewCell {
     
     private let disposeBag = DisposeBag()
     
+    var onSetupButtonTapped: (() -> Void)?
+    
     // MARK: - UI Components
     private let profileImageView = UIImageView().then {
         $0.backgroundColor = .clear
@@ -58,6 +60,7 @@ class ReplyTableViewCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setCell()
         setConstraint()
+        bind()
     }
     
     required init?(coder: NSCoder) {
@@ -105,7 +108,11 @@ class ReplyTableViewCell: UITableViewCell {
     }
     
     private func bind() {
-      
+        setupButton.rx.tap
+            .subscribe(with: self, onNext: { owner, _ in
+                owner.onSetupButtonTapped?()
+            })
+            .disposed(by: disposeBag)
     }
 }
 
@@ -116,6 +123,10 @@ extension ReplyTableViewCell {
            commentDateLabel.text = formatTimestamp(reply.timestamp)
            commentLabel.text = reply.content
        }
+    
+    func setButtonVisibility(isVisible: Bool) {
+        setupButton.isHidden = !isVisible
+    }
 }
 
 extension ReplyTableViewCell {
