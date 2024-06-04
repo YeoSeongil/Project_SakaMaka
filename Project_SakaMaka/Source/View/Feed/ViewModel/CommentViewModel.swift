@@ -8,11 +8,13 @@ protocol CommentViewModelType {
     var addCommentButtonTapped: AnyObserver<Void> { get }
     var commentValue: AnyObserver<String> { get }
     var postID: AnyObserver<String> { get }
+    var commentID: AnyObserver<String> { get }
     var addReplyButtonTapped: AnyObserver<(String, String, String)> { get }
     
     // Output
     var commentsData: Driver<[Comment]> { get }
     var successAddComment: Driver<Void> { get }
+    var successDeleteComment: Driver<Void> { get }
     func isCurrentUserAuthor(authorId: String) -> Bool
 }
 
@@ -23,15 +25,18 @@ class CommentViewModel {
     private let inputAddCommentButtonTapped = PublishSubject<Void>()
     private let inputCommentValue = PublishSubject<String>()
     private let inputPostID = PublishSubject<String>()
+    private let inputCommentID = PublishSubject<String>()
     private let inputAddReplyButtonTapped = PublishSubject<(String, String, String)>()
     
     private let outputCommentsData = BehaviorRelay<[Comment]>(value: [])
-    private let outputsuccessAddComment = PublishRelay<Void>()
+    private let outputSuccessAddComment = PublishRelay<Void>()
+    private let outputSuccessDeleteComment = PublishRelay<Void>()
     
     init() {
         tryAddComment()
         tryFetchComments()
         tryAddReply()
+        tryDeleteComment()
     }
     
     private func tryAddComment() {
@@ -57,6 +62,15 @@ class CommentViewModel {
                 owner.addReply(to: data.0, commentID: data.1, content: data.2)
             })
             .disposed(by: disposeBag)
+    }
+    
+    private func tryDeleteComment() {
+        let zip = Observable.zip(inputPostID, inputCommentID)
+        
+        zip.subscribe(with: self) { owner, id in
+            owner.deletePost(postID: id.0, commentID: id.1)
+        }
+        .disposed(by: disposeBag)
     }
 
     private func addComment(to postID: String, content: String) {
@@ -96,7 +110,7 @@ class CommentViewModel {
                         print("Error adding comment: \(error)")
                     } else {
                         print("Comment added successfully")
-                        self.outputsuccessAddComment.accept(())
+                        self.outputSuccessAddComment.accept(())
                         self.fetchComments(for: postID)
                     }
                 }
@@ -205,7 +219,17 @@ class CommentViewModel {
             }
     }
 
-
+    private func deletePost(postID: String, commentID: String) {
+        let postRef = Firestore.firestore().collection("posts").document(postID)
+        postRef.collection("comments").document(commentID).delete { error in
+            if let error = error {
+                print("Error deleting post: \(error.localizedDescription)")
+            } else {
+                print("Post successfully deleted")
+                self.outputSuccessDeleteComment.accept(())
+            }
+        }
+    }
 }
 
 extension CommentViewModel: CommentViewModelType {
@@ -221,6 +245,10 @@ extension CommentViewModel: CommentViewModelType {
         inputPostID.asObserver()
     }
     
+    var commentID: AnyObserver<String> {
+        inputCommentID.asObserver()
+    }
+    
     var addReplyButtonTapped: AnyObserver<(String, String, String)> {
         inputAddReplyButtonTapped.asObserver()
     }
@@ -230,7 +258,11 @@ extension CommentViewModel: CommentViewModelType {
     }
     
     var successAddComment: Driver<Void> {
-        outputsuccessAddComment.asDriver(onErrorDriveWith: .empty())
+        outputSuccessAddComment.asDriver(onErrorDriveWith: .empty())
+    }
+    
+    var successDeleteComment: Driver<Void> {
+        outputSuccessDeleteComment.asDriver(onErrorDriveWith: .empty())
     }
     
     func isCurrentUserAuthor(authorId: String) -> Bool {
