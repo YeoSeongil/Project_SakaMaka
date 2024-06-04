@@ -208,11 +208,14 @@ extension CommentViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let comment = comments[indexPath.section]
+        let isAuthor = self.viewModel.isCurrentUserAuthor(authorId: comment.authorID)
         
         if indexPath.row == 0 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: CommentTableViewCell.id, for: indexPath) as? CommentTableViewCell else {
                 return UITableViewCell()
             }
+            
+            cell.setButtonVisibility(isVisible: isAuthor)
             cell.configuration(comment: comment, isRepliesVisible: isRepliesVisible[comment.id] ?? false)
             
             // showRepliesAction 설정
@@ -226,6 +229,7 @@ extension CommentViewController: UITableViewDataSource {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: ReplyTableViewCell.id, for: indexPath) as? ReplyTableViewCell else {
                 return UITableViewCell()
             }
+            cell.setButtonVisibility(isVisible: isAuthor)
             cell.configuration(reply: reply)
             return cell
         }
