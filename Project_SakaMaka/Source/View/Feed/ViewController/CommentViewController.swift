@@ -104,6 +104,7 @@ class CommentViewController: BaseViewController {
             .drive(with: self, onNext: { owner, _ in
                 owner.view.endEditing(true)
                 owner.scrollToBottom()
+                owner.footerView.textFieldEmpty()
             })
             .disposed(by: disposeBag)
         
