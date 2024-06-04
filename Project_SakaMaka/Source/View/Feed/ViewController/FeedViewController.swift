@@ -74,6 +74,19 @@ class FeedViewController: BaseViewController {
     override func bind() {
         feedCollectionView.rx.setDelegate(self).disposed(by: disposeBag)
         
+        // Output
+        viewModel.successDelete
+            .drive(with: self, onNext: { owner, _ in
+                let alert = OnlyYesAlertViewController(message: "투표가 정상적으로 삭제 되었어요.").setButtonTitle("확인했어요.")
+                alert.onlyAlertType = .customType
+                alert.yesButtonTapAction = {
+                    alert.dismiss(animated: false)
+                    owner.navigationController?.popToRootViewController(animated: true)
+                }
+                owner.present(alert, animated: false)
+            })
+            .disposed(by: disposeBag)
+        
         viewModel.postsData
             .drive(feedCollectionView.rx.items(cellIdentifier: FeedCollectionViewCell.id, cellType: FeedCollectionViewCell.self)) { [weak self] row, item, cell in
                 let isLiked = self?.viewModel.isCurrentUserLikedPost(postId: item.id)
