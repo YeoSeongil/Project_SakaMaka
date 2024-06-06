@@ -15,6 +15,10 @@ import Then
 
 class MypageViewController: BaseViewController {
 
+    private lazy var headerView = MypageHeaderView().then {
+        $0.delegate = self
+    }
+    
     // MARK: - UI Components
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,5 +31,24 @@ class MypageViewController: BaseViewController {
     // MARK: - LifeCycle
     
     // MARK: - SetUp VC
+    override func setViewController() {
+        
+        [headerView].forEach {
+            view.addSubview($0)
+        }
+    }
     
+    override func setConstraints() {
+        headerView.snp.makeConstraints {
+            $0.top.equalTo(view.safeAreaLayoutGuide)
+            $0.horizontalEdges.equalToSuperview()
+            $0.height.equalTo(32)
+        }
+    }
+}
+
+extension MypageViewController: MypageHeaderViewDelegate {
+    func didSettingButtonTapped() {
+        
+    }
 }
