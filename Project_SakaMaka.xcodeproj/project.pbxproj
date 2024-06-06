@@ -262,13 +262,6 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
-		9E5BDD402BFE0224005FCFAC /* HeaderView */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = HeaderView;
-			sourceTree = "<group>";
-		};
 		9E5BDD432BFE0947005FCFAC /* AddVote */ = {
 			isa = PBXGroup;
 			children = (
@@ -339,7 +332,6 @@
 			isa = PBXGroup;
 			children = (
 				9ED2F1C52C072F0100A22B4E /* Lottie */,
-				9E5BDD402BFE0224005FCFAC /* HeaderView */,
 				9E5BDD2F2BFCCCD0005FCFAC /* Cumstom */,
 				9E5BDD232BFB4F99005FCFAC /* Utils */,
 				9E7455EC2BF8D39500D519AD /* Services */,
