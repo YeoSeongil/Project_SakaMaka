@@ -13,7 +13,7 @@ import RxSwift
 import SnapKit
 import Then
 
-class HomeViewController: BaseViewController {
+class MypageViewController: BaseViewController {
 
     // MARK: - UI Components
     override func viewDidLoad() {
