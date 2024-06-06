@@ -83,5 +83,13 @@ struct Reply {
         self.postID = document["postID"] as? String ?? ""
         self.parentCommentID = document["parentCommentID"] as? String ?? ""
         self.timestamp = document["timestamp"] as? Timestamp ?? Timestamp()
+  }
+}
+
+struct Thumbnail {
+    let url: String
+    
+    init(url: String) {
+        self.url = url
     }
 }

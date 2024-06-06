@@ -49,6 +49,7 @@
 		9E7455E22BF8AA8400D519AD /* UIColor + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7455E12BF8AA8400D519AD /* UIColor + Extension.swift */; };
 		9E7455E62BF8AC6D00D519AD /* UIFont + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7455E52BF8AC6D00D519AD /* UIFont + Extension.swift */; };
 		9E7455EB2BF8CE6100D519AD /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7455EA2BF8CE6100D519AD /* LoginViewModel.swift */; };
+		9E7A74AE2C11A916005C9EC1 /* MyFeedCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7A74AD2C11A916005C9EC1 /* MyFeedCollectionViewCell.swift */; };
 		9ED2F1CD2C07388300A22B4E /* popAnimation.json in Resources */ = {isa = PBXBuildFile; fileRef = 9ED2F1CC2C07388300A22B4E /* popAnimation.json */; };
 		9ED2F1CF2C07493B00A22B4E /* FeedSetupModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ED2F1CE2C07493B00A22B4E /* FeedSetupModalViewController.swift */; };
 		9ED2F1D12C0B085100A22B4E /* CommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ED2F1D02C0B085100A22B4E /* CommentViewController.swift */; };
@@ -111,6 +112,7 @@
 		9E7455E42BF8AC0700D519AD /* Roboto-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Medium.ttf"; sourceTree = "<group>"; };
 		9E7455E52BF8AC6D00D519AD /* UIFont + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont + Extension.swift"; sourceTree = "<group>"; };
 		9E7455EA2BF8CE6100D519AD /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		9E7A74AD2C11A916005C9EC1 /* MyFeedCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFeedCollectionViewCell.swift; sourceTree = "<group>"; };
 		9ED2F1CC2C07388300A22B4E /* popAnimation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = popAnimation.json; sourceTree = "<group>"; };
 		9ED2F1CE2C07493B00A22B4E /* FeedSetupModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedSetupModalViewController.swift; sourceTree = "<group>"; };
 		9ED2F1D02C0B085100A22B4E /* CommentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentViewController.swift; sourceTree = "<group>"; };
@@ -494,6 +496,7 @@
 			children = (
 				9EE952E12C11745D00D9BA77 /* MypageHeaderView.swift */,
 				9EE952E32C11772300D9BA77 /* MypageInfoView.swift */,
+				9E7A74AD2C11A916005C9EC1 /* MyFeedCollectionViewCell.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -644,6 +647,7 @@
 				9E5BDD222BFB4E65005FCFAC /* TabBarController.swift in Sources */,
 				9E5BDD482BFE0D1E005FCFAC /* AddVoteHeaderView.swift in Sources */,
 				9E7455E22BF8AA8400D519AD /* UIColor + Extension.swift in Sources */,
+				9E7A74AE2C11A916005C9EC1 /* MyFeedCollectionViewCell.swift in Sources */,
 				9EE952E42C11772300D9BA77 /* MypageInfoView.swift in Sources */,
 				9ED2F1DA2C0B341E00A22B4E /* CommentViewModel.swift in Sources */,
 				9ED2F1D12C0B085100A22B4E /* CommentViewController.swift in Sources */,

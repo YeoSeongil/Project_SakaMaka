@@ -13,10 +13,10 @@ import FirebaseFirestore
 import FirebaseStorage
 
 protocol MypageViewModelType {
-    
     // Output
     var userInfoData: Driver<[User]> { get }
     var profileURL: Driver<String> { get }
+    var postTumbnailURL: Driver<[Thumbnail]> { get }
 }
 
 class MypageViewModel{
@@ -24,10 +24,12 @@ class MypageViewModel{
     
     private let outputUserInfoData = BehaviorRelay<[User]>(value: [])
     private let outputProfileURL = BehaviorRelay<String>(value: "")
+    private let outputPostTumbnailURL = BehaviorRelay<[Thumbnail]>(value: [])
     
     init() {
         tryFetchUserInfo()
         tryFetchProfileURL()
+        tryFetchPostThumnailURL()
     }
     
     private func tryFetchUserInfo() {
@@ -36,6 +38,10 @@ class MypageViewModel{
     
     private func tryFetchProfileURL() {
         fetchProfileURL()
+    }
+    
+    private func tryFetchPostThumnailURL() {
+        fetchPostThumnailURL()
     }
 }
 
@@ -82,6 +88,30 @@ extension MypageViewModel {
             }
         }
     }
+    
+    private func fetchPostThumnailURL() {
+        guard let currentUser = Auth.auth().currentUser else {
+            print("err")
+            return
+        }
+        
+        let uid = currentUser.uid
+        
+        Firestore.firestore().collection("posts").whereField("authorID", isEqualTo: uid).addSnapshotListener { [weak self] querySnapshot, error  in
+            if let error = error {
+                print("error")
+            } else {
+                var imageURLs: [Thumbnail] = []
+                for document in querySnapshot!.documents {
+                    if let imageURL = document.data()["imageURL"] as? String {
+                        let thumbnail = Thumbnail(url: imageURL)
+                        imageURLs.append(thumbnail)
+                    }
+                }
+                self?.outputPostTumbnailURL.accept(imageURLs)
+            }
+        }
+    }
 }
 
 extension MypageViewModel: MypageViewModelType {
@@ -91,5 +121,9 @@ extension MypageViewModel: MypageViewModelType {
     
     var profileURL: Driver<String> {
         outputProfileURL.asDriver(onErrorDriveWith: .empty())
+    }
+    
+    var postTumbnailURL: Driver<[Thumbnail]> {
+        outputPostTumbnailURL.asDriver(onErrorDriveWith: .empty())
     }
 }

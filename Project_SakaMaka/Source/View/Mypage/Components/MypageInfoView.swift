@@ -27,7 +27,7 @@ class MypageInfoView: UIView {
     }
     
     private let nameLabel = UILabel().then {
-        $0.font = .b3
+        $0.font = .h6
         $0.backgroundColor = .clear
         $0.textColor = .black
         $0.textAlignment = .center
