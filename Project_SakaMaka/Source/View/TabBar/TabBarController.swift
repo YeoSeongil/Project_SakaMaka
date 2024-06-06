@@ -30,10 +30,11 @@ class TabBarController: UITabBarController {
     
     private func setTabBarController() {
         // Todo 나머지 VC 구현 후 추가
-        let homeVC = setNavigationController(title: "홈", unselectedImage: UIImage(systemName: "house"), rootViewController: HomeViewController())
-        let testVC2 = setNavigationController(title: "피드", unselectedImage: UIImage(named:  "tapbar_feed"), rootViewController: FeedViewController())
+        let feedViewController = setNavigationController(title: "피드", unselectedImage: UIImage(named:  "tapbar_feed"), rootViewController: FeedViewController())
+        let mypageViewController = setNavigationController(title: "내정보", unselectedImage: UIImage(systemName: "squareshape.split.2x2"), rootViewController: MypageViewController())
         
-        viewControllers = [homeVC, testVC2]
+        
+        viewControllers = [feedViewController, mypageViewController]
     }
 }
 
