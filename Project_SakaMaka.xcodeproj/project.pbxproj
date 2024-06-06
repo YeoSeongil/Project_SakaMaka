@@ -61,6 +61,8 @@
 		9EE952DD2C0F2D7900D9BA77 /* CommentSetupModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE952DC2C0F2D7900D9BA77 /* CommentSetupModalViewController.swift */; };
 		9EE952DF2C0F342300D9BA77 /* ReplySetupModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE952DE2C0F342300D9BA77 /* ReplySetupModalViewController.swift */; };
 		9EE952E22C11745D00D9BA77 /* MypageHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE952E12C11745D00D9BA77 /* MypageHeaderView.swift */; };
+		9EE952E42C11772300D9BA77 /* MypageInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE952E32C11772300D9BA77 /* MypageInfoView.swift */; };
+		9EE952E72C11793F00D9BA77 /* MypageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE952E62C11793F00D9BA77 /* MypageViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -121,6 +123,8 @@
 		9EE952DC2C0F2D7900D9BA77 /* CommentSetupModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentSetupModalViewController.swift; sourceTree = "<group>"; };
 		9EE952DE2C0F342300D9BA77 /* ReplySetupModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplySetupModalViewController.swift; sourceTree = "<group>"; };
 		9EE952E12C11745D00D9BA77 /* MypageHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageHeaderView.swift; sourceTree = "<group>"; };
+		9EE952E32C11772300D9BA77 /* MypageInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageInfoView.swift; sourceTree = "<group>"; };
+		9EE952E62C11793F00D9BA77 /* MypageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageViewModel.swift; sourceTree = "<group>"; };
 		C12611E47E27819F2A19345D /* Pods-Project_SakaMaka.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Project_SakaMaka.debug.xcconfig"; path = "Target Support Files/Pods-Project_SakaMaka/Pods-Project_SakaMaka.debug.xcconfig"; sourceTree = "<group>"; };
 		DBD4C8D96ACD58BAB179AE4A /* Pods-Project_SakaMaka.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Project_SakaMaka.release.xcconfig"; path = "Target Support Files/Pods-Project_SakaMaka/Pods-Project_SakaMaka.release.xcconfig"; sourceTree = "<group>"; };
 		ED2D95E7182D7927D859FBC5 /* Pods_Project_SakaMaka.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Project_SakaMaka.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -228,6 +232,7 @@
 			isa = PBXGroup;
 			children = (
 				9EE952E02C1173AE00D9BA77 /* Components */,
+				9EE952E52C11792B00D9BA77 /* ViewModel */,
 				9E5BDD352BFDF15C005FCFAC /* MypageViewController.swift */,
 			);
 			path = Mypage;
@@ -488,8 +493,17 @@
 			isa = PBXGroup;
 			children = (
 				9EE952E12C11745D00D9BA77 /* MypageHeaderView.swift */,
+				9EE952E32C11772300D9BA77 /* MypageInfoView.swift */,
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		9EE952E52C11792B00D9BA77 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				9EE952E62C11793F00D9BA77 /* MypageViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		D493147200B50EB05B8FBA4F /* Frameworks */ = {
@@ -623,12 +637,14 @@
 				9E5BDD3A2BFDF7E2005FCFAC /* FeedViewController.swift in Sources */,
 				9ED2F1CF2C07493B00A22B4E /* FeedSetupModalViewController.swift in Sources */,
 				9ED2F1DE2C0DCB6300A22B4E /* ReplyTableViewCell.swift in Sources */,
+				9EE952E72C11793F00D9BA77 /* MypageViewModel.swift in Sources */,
 				9E5879CB2BF8ECA000E55E19 /* FireBaseService.swift in Sources */,
 				9E7455E62BF8AC6D00D519AD /* UIFont + Extension.swift in Sources */,
 				9E5879C82BF8E8CF00E55E19 /* AppleAuthService.swift in Sources */,
 				9E5BDD222BFB4E65005FCFAC /* TabBarController.swift in Sources */,
 				9E5BDD482BFE0D1E005FCFAC /* AddVoteHeaderView.swift in Sources */,
 				9E7455E22BF8AA8400D519AD /* UIColor + Extension.swift in Sources */,
+				9EE952E42C11772300D9BA77 /* MypageInfoView.swift in Sources */,
 				9ED2F1DA2C0B341E00A22B4E /* CommentViewModel.swift in Sources */,
 				9ED2F1D12C0B085100A22B4E /* CommentViewController.swift in Sources */,
 				9E7455DF2BF8A18B00D519AD /* LoginViewController.swift in Sources */,
