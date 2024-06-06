@@ -16,6 +16,7 @@ import Then
 class MypageViewController: BaseViewController {
     
     private let viewModel: MypageViewModelType
+    private let sectionInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
     
     // MARK: - UI Components
     private lazy var headerView = MypageHeaderView().then {
@@ -23,6 +24,25 @@ class MypageViewController: BaseViewController {
     }
     
     private let mypageInfoView = MypageInfoView()
+    
+    private let collectionViewLayout = UICollectionViewFlowLayout().then {
+        $0.scrollDirection = .vertical
+    }
+    
+    private let myFeedLabel =  UILabel().then {
+        let attributedString = NSMutableAttributedString(string: "나의 투표", attributes: [.font: UIFont.b1, .foregroundColor: UIColor.black])
+        attributedString.append(NSAttributedString(string: " 0", attributes: [.font: UIFont.b3, .foregroundColor: UIColor.Turquoise]))
+        $0.attributedText = attributedString
+    }
+
+    private lazy var myFeedCollectionView = UICollectionView(
+        frame: .zero,
+        collectionViewLayout: collectionViewLayout
+    ).then {
+        $0.backgroundColor = .clear
+        $0.register(MyFeedCollectionViewCell.self, forCellWithReuseIdentifier: MyFeedCollectionViewCell.id)
+        $0.showsVerticalScrollIndicator = false
+    }
     
     // MARK: - Init
     
@@ -44,7 +64,7 @@ class MypageViewController: BaseViewController {
     
     // MARK: - SetUp VC
     override func setViewController() {
-        [headerView, mypageInfoView].forEach {
+        [headerView, mypageInfoView, myFeedLabel, myFeedCollectionView].forEach {
             view.addSubview($0)
         }
     }
@@ -60,10 +80,23 @@ class MypageViewController: BaseViewController {
             $0.top.equalTo(headerView.snp.bottom).offset(40)
             $0.horizontalEdges.equalToSuperview().inset(20)
             $0.height.equalTo(200)
+        }        
+        
+        myFeedLabel.snp.makeConstraints {
+            $0.top.equalTo(mypageInfoView.snp.bottom).offset(40)
+            $0.leading.equalToSuperview().inset(20)
+        }
+        
+        myFeedCollectionView.snp.makeConstraints {
+            $0.top.equalTo(myFeedLabel.snp.bottom)
+            $0.horizontalEdges.equalToSuperview().inset(20)
+            $0.bottom.equalTo(view.safeAreaLayoutGuide)
         }
     }
     
     override func bind() {
+        myFeedCollectionView.rx.setDelegate(self).disposed(by: disposeBag)
+        
         viewModel.userInfoData
             .drive(with: self, onNext: { owner, user in
                 owner.mypageInfoView.configuration(user: user)
@@ -75,11 +108,43 @@ class MypageViewController: BaseViewController {
                 owner.mypageInfoView.setProfile(url: url)
             })
             .disposed(by: disposeBag)
+        
+        viewModel.postTumbnailURL
+            .drive(myFeedCollectionView.rx.items(cellIdentifier: MyFeedCollectionViewCell.id, cellType: MyFeedCollectionViewCell.self)) { [weak self] row, item, cell in
+                self?.myFeedCollectionView.reloadData()
+                cell.configuration(url: item)
+            }.disposed(by: disposeBag)
+        
+        viewModel.postTumbnailURL
+            .drive(with:self, onNext: { owner, urls in
+                let attributedString = NSMutableAttributedString(string: "나의 투표", attributes: [.font: UIFont.b1, .foregroundColor: UIColor.black])
+                attributedString.append(NSAttributedString(string: " \(urls.count)", attributes: [.font: UIFont.b3, .foregroundColor: UIColor.Turquoise]))
+                owner.myFeedLabel.attributedText = attributedString
+            })
+            .disposed(by: disposeBag)
     }
 }
 
 extension MypageViewController: MypageHeaderViewDelegate {
     func didSettingButtonTapped() {
         
+    }
+}
+
+extension MypageViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let itemsPerRow: CGFloat = 3
+        let paddingSpace = sectionInsets.left * (itemsPerRow + 1)
+        let availableWidth = collectionView.frame.width - paddingSpace
+        let widthPerItem = availableWidth / itemsPerRow
+        return CGSize(width: widthPerItem, height: 100)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return sectionInsets
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return sectionInsets.top + 20
     }
 }
