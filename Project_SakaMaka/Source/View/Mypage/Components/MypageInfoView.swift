@@ -23,6 +23,7 @@ class MypageInfoView: UIView {
         $0.contentMode = .scaleAspectFill
         $0.layer.masksToBounds = true
         $0.layer.cornerRadius = 50
+        $0.tintColor = .Turquoise
     }
     
     private let nameLabel = UILabel().then {
