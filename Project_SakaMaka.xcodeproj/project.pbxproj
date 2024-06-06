@@ -60,6 +60,7 @@
 		9ED2F1DE2C0DCB6300A22B4E /* ReplyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ED2F1DD2C0DCB6300A22B4E /* ReplyTableViewCell.swift */; };
 		9EE952DD2C0F2D7900D9BA77 /* CommentSetupModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE952DC2C0F2D7900D9BA77 /* CommentSetupModalViewController.swift */; };
 		9EE952DF2C0F342300D9BA77 /* ReplySetupModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE952DE2C0F342300D9BA77 /* ReplySetupModalViewController.swift */; };
+		9EE952E22C11745D00D9BA77 /* MypageHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE952E12C11745D00D9BA77 /* MypageHeaderView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -119,6 +120,7 @@
 		9ED2F1DD2C0DCB6300A22B4E /* ReplyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplyTableViewCell.swift; sourceTree = "<group>"; };
 		9EE952DC2C0F2D7900D9BA77 /* CommentSetupModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentSetupModalViewController.swift; sourceTree = "<group>"; };
 		9EE952DE2C0F342300D9BA77 /* ReplySetupModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplySetupModalViewController.swift; sourceTree = "<group>"; };
+		9EE952E12C11745D00D9BA77 /* MypageHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageHeaderView.swift; sourceTree = "<group>"; };
 		C12611E47E27819F2A19345D /* Pods-Project_SakaMaka.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Project_SakaMaka.debug.xcconfig"; path = "Target Support Files/Pods-Project_SakaMaka/Pods-Project_SakaMaka.debug.xcconfig"; sourceTree = "<group>"; };
 		DBD4C8D96ACD58BAB179AE4A /* Pods-Project_SakaMaka.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Project_SakaMaka.release.xcconfig"; path = "Target Support Files/Pods-Project_SakaMaka/Pods-Project_SakaMaka.release.xcconfig"; sourceTree = "<group>"; };
 		ED2D95E7182D7927D859FBC5 /* Pods_Project_SakaMaka.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Project_SakaMaka.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -225,6 +227,7 @@
 		9E5BDD342BFDF151005FCFAC /* Mypage */ = {
 			isa = PBXGroup;
 			children = (
+				9EE952E02C1173AE00D9BA77 /* Components */,
 				9E5BDD352BFDF15C005FCFAC /* MypageViewController.swift */,
 			);
 			path = Mypage;
@@ -481,6 +484,14 @@
 			path = Components;
 			sourceTree = "<group>";
 		};
+		9EE952E02C1173AE00D9BA77 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				9EE952E12C11745D00D9BA77 /* MypageHeaderView.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
 		D493147200B50EB05B8FBA4F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -629,6 +640,7 @@
 				9E3655F82C04860200AF020A /* Post.swift in Sources */,
 				9E5BDD4F2BFE2076005FCFAC /* AddVoteSelectImageView.swift in Sources */,
 				9E7455BE2BF89D0000D519AD /* AppDelegate.swift in Sources */,
+				9EE952E22C11745D00D9BA77 /* MypageHeaderView.swift in Sources */,
 				9E3655F62C04820C00AF020A /* FeedViewModel.swift in Sources */,
 				9ED2F1D62C0B0F1A00A22B4E /* CommentFooterView.swift in Sources */,
 				9E5BDD2E2BFC9FB8005FCFAC /* RegisterViewModel.swift in Sources */,
