@@ -28,7 +28,7 @@
 		9E5BDD2E2BFC9FB8005FCFAC /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E5BDD2D2BFC9FB8005FCFAC /* RegisterViewModel.swift */; };
 		9E5BDD312BFCCCED005FCFAC /* CustomAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E5BDD302BFCCCED005FCFAC /* CustomAlertViewController.swift */; };
 		9E5BDD332BFCDA9A005FCFAC /* OnlyYesAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E5BDD322BFCDA9A005FCFAC /* OnlyYesAlertViewController.swift */; };
-		9E5BDD362BFDF15C005FCFAC /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E5BDD352BFDF15C005FCFAC /* HomeViewController.swift */; };
+		9E5BDD362BFDF15C005FCFAC /* MypageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E5BDD352BFDF15C005FCFAC /* MypageViewController.swift */; };
 		9E5BDD3A2BFDF7E2005FCFAC /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E5BDD392BFDF7E2005FCFAC /* FeedViewController.swift */; };
 		9E5BDD422BFE0234005FCFAC /* FeedHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E5BDD412BFE0234005FCFAC /* FeedHeaderView.swift */; };
 		9E5BDD462BFE095F005FCFAC /* AddVoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E5BDD452BFE095F005FCFAC /* AddVoteViewController.swift */; };
@@ -84,7 +84,7 @@
 		9E5BDD2D2BFC9FB8005FCFAC /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
 		9E5BDD302BFCCCED005FCFAC /* CustomAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlertViewController.swift; sourceTree = "<group>"; };
 		9E5BDD322BFCDA9A005FCFAC /* OnlyYesAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnlyYesAlertViewController.swift; sourceTree = "<group>"; };
-		9E5BDD352BFDF15C005FCFAC /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		9E5BDD352BFDF15C005FCFAC /* MypageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageViewController.swift; sourceTree = "<group>"; };
 		9E5BDD392BFDF7E2005FCFAC /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
 		9E5BDD412BFE0234005FCFAC /* FeedHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedHeaderView.swift; sourceTree = "<group>"; };
 		9E5BDD452BFE095F005FCFAC /* AddVoteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddVoteViewController.swift; sourceTree = "<group>"; };
@@ -222,12 +222,12 @@
 			path = Cumstom;
 			sourceTree = "<group>";
 		};
-		9E5BDD342BFDF151005FCFAC /* Home */ = {
+		9E5BDD342BFDF151005FCFAC /* Mypage */ = {
 			isa = PBXGroup;
 			children = (
-				9E5BDD352BFDF15C005FCFAC /* HomeViewController.swift */,
+				9E5BDD352BFDF15C005FCFAC /* MypageViewController.swift */,
 			);
-			path = Home;
+			path = Mypage;
 			sourceTree = "<group>";
 		};
 		9E5BDD372BFDF7D4005FCFAC /* Feed */ = {
@@ -366,7 +366,7 @@
 				9E7455DB2BF8A0D000D519AD /* Splash */,
 				9E7455DD2BF8A17700D519AD /* Login */,
 				9E7455DC2BF8A0EC00D519AD /* Register */,
-				9E5BDD342BFDF151005FCFAC /* Home */,
+				9E5BDD342BFDF151005FCFAC /* Mypage */,
 				9E5BDD372BFDF7D4005FCFAC /* Feed */,
 				9E5BDD432BFE0947005FCFAC /* AddVote */,
 			);
@@ -621,7 +621,7 @@
 				9ED2F1DA2C0B341E00A22B4E /* CommentViewModel.swift in Sources */,
 				9ED2F1D12C0B085100A22B4E /* CommentViewController.swift in Sources */,
 				9E7455DF2BF8A18B00D519AD /* LoginViewController.swift in Sources */,
-				9E5BDD362BFDF15C005FCFAC /* HomeViewController.swift in Sources */,
+				9E5BDD362BFDF15C005FCFAC /* MypageViewController.swift in Sources */,
 				9E7455C22BF89D0000D519AD /* ViewController.swift in Sources */,
 				9E5BDD462BFE095F005FCFAC /* AddVoteViewController.swift in Sources */,
 				9ED2F1D32C0B0A9500A22B4E /* CommentHeaderView.swift in Sources */,
