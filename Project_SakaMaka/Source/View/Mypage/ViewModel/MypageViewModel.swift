@@ -97,7 +97,10 @@ extension MypageViewModel {
         
         let uid = currentUser.uid
         
-        Firestore.firestore().collection("posts").whereField("authorID", isEqualTo: uid).addSnapshotListener { [weak self] querySnapshot, error  in
+        Firestore.firestore().collection("posts")
+            .whereField("authorID", isEqualTo: uid)
+            .order(by: "timestamp", descending: true)
+            .addSnapshotListener { [weak self] querySnapshot, error  in
             if let error = error {
                 print("error")
             } else {
