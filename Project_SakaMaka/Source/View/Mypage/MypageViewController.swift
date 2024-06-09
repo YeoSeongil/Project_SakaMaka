@@ -27,6 +27,8 @@ class MypageViewController: BaseViewController {
     
     private let collectionViewLayout = UICollectionViewFlowLayout().then {
         $0.scrollDirection = .vertical
+        $0.minimumInteritemSpacing = 0
+        $0.minimumLineSpacing = 0
     }
     
     private let myFeedLabel =  UILabel().then {
@@ -88,8 +90,8 @@ class MypageViewController: BaseViewController {
         }
         
         myFeedCollectionView.snp.makeConstraints {
-            $0.top.equalTo(myFeedLabel.snp.bottom)
-            $0.horizontalEdges.equalToSuperview().inset(20)
+            $0.top.equalTo(myFeedLabel.snp.bottom).offset(10)
+            $0.horizontalEdges.equalToSuperview()
             $0.bottom.equalTo(view.safeAreaLayoutGuide)
         }
     }
@@ -133,18 +135,7 @@ extension MypageViewController: MypageHeaderViewDelegate {
 
 extension MypageViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let itemsPerRow: CGFloat = 3
-        let paddingSpace = sectionInsets.left * (itemsPerRow + 1)
-        let availableWidth = collectionView.frame.width - paddingSpace
-        let widthPerItem = availableWidth / itemsPerRow
-        return CGSize(width: widthPerItem, height: 100)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return sectionInsets
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return sectionInsets.top + 20
+        let width = collectionView.bounds.width / 3
+        return CGSize(width: width, height: width)
     }
 }
