@@ -96,6 +96,7 @@ class MypageViewController: BaseViewController {
     }
     
     override func bind() {
+        super.bind()
         myFeedCollectionView.rx.setDelegate(self).disposed(by: disposeBag)
         
         viewModel.userInfoData
@@ -111,10 +112,15 @@ class MypageViewController: BaseViewController {
             .disposed(by: disposeBag)
         
         viewModel.postTumbnailURL
-            .drive(myFeedCollectionView.rx.items(cellIdentifier: MyFeedCollectionViewCell.id, cellType: MyFeedCollectionViewCell.self)) { [weak self] row, item, cell in
-                self?.myFeedCollectionView.reloadData()
+            .drive(myFeedCollectionView.rx.items(cellIdentifier: MyFeedCollectionViewCell.id, cellType: MyFeedCollectionViewCell.self)) { row, item, cell in
                 cell.configuration(url: item)
             }.disposed(by: disposeBag)
+        
+        myFeedCollectionView.rx.itemSelected
+            .subscribe(with: self, onNext: { owner, indexPath  in
+                owner.handleCellSelection(at: indexPath)
+            })
+            .disposed(by: disposeBag)
         
         viewModel.postTumbnailURL
             .drive(with:self, onNext: { owner, urls in
@@ -126,6 +132,20 @@ class MypageViewController: BaseViewController {
     }
 }
 
+extension MypageViewController {
+    private func showMyVoteDetailViewController(id: String) {
+        let vc = MyVoteDetailViewController()
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    private func handleCellSelection(at indexPath: IndexPath) {
+        viewModel.postTumbnailURL
+            .drive(with: self, onNext: { owner, item in
+                owner.showMyVoteDetailViewController(id: item[indexPath.row].id)
+            })
+            .disposed(by: disposeBag)
+    }
+}
 extension MypageViewController: MypageHeaderViewDelegate {
     func didSettingButtonTapped() {
         
