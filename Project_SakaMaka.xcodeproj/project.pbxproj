@@ -235,7 +235,7 @@
 			children = (
 				9EE952E02C1173AE00D9BA77 /* Components */,
 				9EE952E52C11792B00D9BA77 /* ViewModel */,
-				9E5BDD352BFDF15C005FCFAC /* MypageViewController.swift */,
+				9EE65F752C15BA65008016FF /* ViewController */,
 			);
 			path = Mypage;
 			sourceTree = "<group>";
@@ -489,6 +489,14 @@
 				9ED2F1D52C0B0F1A00A22B4E /* CommentFooterView.swift */,
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		9EE65F752C15BA65008016FF /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				9E5BDD352BFDF15C005FCFAC /* MypageViewController.swift */,
+			);
+			path = ViewController;
 			sourceTree = "<group>";
 		};
 		9EE952E02C1173AE00D9BA77 /* Components */ = {
