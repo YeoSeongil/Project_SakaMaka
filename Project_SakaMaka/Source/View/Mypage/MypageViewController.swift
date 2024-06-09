@@ -16,7 +16,6 @@ import Then
 class MypageViewController: BaseViewController {
     
     private let viewModel: MypageViewModelType
-    private let sectionInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
     
     // MARK: - UI Components
     private lazy var headerView = MypageHeaderView().then {
@@ -27,8 +26,8 @@ class MypageViewController: BaseViewController {
     
     private let collectionViewLayout = UICollectionViewFlowLayout().then {
         $0.scrollDirection = .vertical
-        $0.minimumInteritemSpacing = 0
-        $0.minimumLineSpacing = 0
+        $0.minimumInteritemSpacing = 3
+        $0.minimumLineSpacing = 3
     }
     
     private let myFeedLabel =  UILabel().then {
@@ -135,7 +134,18 @@ extension MypageViewController: MypageHeaderViewDelegate {
 
 extension MypageViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = collectionView.bounds.width / 3
-        return CGSize(width: width, height: width)
+        let itemsPerRow: CGFloat = 3
+        let paddingSpace = 3 * (itemsPerRow - 1)
+        let availableWidth = collectionView.bounds.width - paddingSpace
+        let widthPerItem = availableWidth / itemsPerRow
+        return CGSize(width: widthPerItem, height: widthPerItem)
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 3
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 3
     }
 }
