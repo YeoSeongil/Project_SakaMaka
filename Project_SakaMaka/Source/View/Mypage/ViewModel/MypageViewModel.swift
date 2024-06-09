@@ -107,7 +107,8 @@ extension MypageViewModel {
                 var imageURLs: [Thumbnail] = []
                 for document in querySnapshot!.documents {
                     if let imageURL = document.data()["imageURL"] as? String {
-                        let thumbnail = Thumbnail(url: imageURL)
+                        let id = document.documentID
+                        let thumbnail = Thumbnail(url: imageURL, id: id)
                         imageURLs.append(thumbnail)
                     }
                 }

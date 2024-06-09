@@ -88,8 +88,10 @@ struct Reply {
 
 struct Thumbnail {
     let url: String
+    let id: String
     
-    init(url: String) {
+    init(url: String, id: String) {
         self.url = url
+        self.id = id
     }
 }
