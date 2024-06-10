@@ -12,15 +12,15 @@ import RxSwift
 
 import SnapKit
 import Then
-//
-//protocol MyVoteDetailCommentViewDelegate: AnyObject {
-//    func didBackbuttonTapped()
-//}
+
+protocol MyVoteDetailCommentViewDelegate: AnyObject {
+    func didCommentButtonTapped()
+}
 
 class MyVoteDetailCommentView: UIView {
     
     private let disposeBag = DisposeBag()
-    //weak var delegate: MyVoteDetailCommentViewDelegate?
+    weak var delegate: MyVoteDetailCommentViewDelegate?
     
     // MARK: - UI Components
     private let titleLabel = UILabel()
@@ -32,11 +32,11 @@ class MyVoteDetailCommentView: UIView {
         $0.tintColor = .Turquoise
     }
     
-    private let commentLabel = UILabel().then {
-        $0.textColor = .black
+    private let commentButton = UIButton().then {
+        $0.setTitleColor(.black, for: .normal)
         $0.backgroundColor = .clear
-        $0.textAlignment = .center
-        $0.font = .b6
+        $0.titleLabel?.font = .b6
+        $0.contentHorizontalAlignment = .left
     }
 
     // MARK: - Init
@@ -55,7 +55,7 @@ class MyVoteDetailCommentView: UIView {
     private func setView() {
         backgroundColor = .milkWhite
         
-         [titleLabel, profileImageView, commentLabel].forEach { addSubview($0) }
+         [titleLabel, profileImageView, commentButton].forEach { addSubview($0) }
     }
     
     private func setConstraint() {
@@ -71,14 +71,20 @@ class MyVoteDetailCommentView: UIView {
             $0.bottom.equalToSuperview().offset(-10)
         }
         
-        commentLabel.snp.makeConstraints {
+        commentButton.snp.makeConstraints {
             $0.top.equalTo(titleLabel.snp.bottom).offset(10)
             $0.leading.equalTo(profileImageView.snp.trailing).offset(15)
+            $0.trailing.equalToSuperview().offset(-15)
             $0.bottom.equalToSuperview().offset(-10)
         }
     }
     
     private func bind() {
+        commentButton.rx.tap
+            .subscribe(with: self, onNext: { owner, _ in
+                owner.delegate?.didCommentButtonTapped()
+            })
+            .disposed(by: disposeBag)
     }
 }
 
@@ -89,7 +95,7 @@ extension MyVoteDetailCommentView {
             attributedString.append(NSAttributedString(string: " \(comment.count)개", attributes: [.font: UIFont.b6, .foregroundColor: UIColor.Turquoise]))
             titleLabel.attributedText = attributedString
             
-            commentLabel.text = "댓글이 없어요."
+            commentButton.setTitle("댓글이 없어요.", for: .normal)
             
             profileImageView.image = UIImage(systemName: "person.crop.circle.fill")
         } else {
@@ -97,8 +103,7 @@ extension MyVoteDetailCommentView {
             attributedString.append(NSAttributedString(string: " \(comment.count)개", attributes: [.font: UIFont.b6, .foregroundColor: UIColor.Turquoise]))
             titleLabel.attributedText = attributedString
             
-            commentLabel.text = comment[0].content
-            
+            commentButton.setTitle(comment[0].content, for: .normal)
             profileImageView.setImageKingfisher(with: comment[0].authorProfileURL)
         }
     }
