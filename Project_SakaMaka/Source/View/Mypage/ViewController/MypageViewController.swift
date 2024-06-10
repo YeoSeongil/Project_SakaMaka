@@ -134,7 +134,7 @@ class MypageViewController: BaseViewController {
 
 extension MypageViewController {
     private func showMyVoteDetailViewController(id: String) {
-        let vc = MyVoteDetailViewController()
+        let vc = MyVoteDetailViewController(postID: id)
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
