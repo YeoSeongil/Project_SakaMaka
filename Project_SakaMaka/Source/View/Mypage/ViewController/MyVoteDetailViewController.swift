@@ -24,8 +24,9 @@ class MyVoteDetailViewController: BaseViewController {
     }
     private let contentView = MyVoteDetailContentView()
     
-    private let commentView = MyVoteDetailCommentView().then {
+    private lazy var commentView = MyVoteDetailCommentView().then {
         $0.layer.cornerRadius = 8
+        $0.delegate = self
     }
     private let voteProgressView = MyVoteDetailProgressView()
     
@@ -96,7 +97,9 @@ class MyVoteDetailViewController: BaseViewController {
             .drive(with: self, onNext: { owner, comment in
                 owner.commentView.configuration(comment: comment)
             })
-            .disposed(by: disposeBag)    }
+            .disposed(by: disposeBag)
+        
+    }
 }
 
 extension MyVoteDetailViewController {
@@ -107,5 +110,25 @@ extension MyVoteDetailViewController {
 extension MyVoteDetailViewController: MyVoteDetailHeaderViewDelegate {
     func didBackbuttonTapped() {
         self.navigationController?.popViewController(animated: true)
+    }
+}
+
+extension MyVoteDetailViewController: MyVoteDetailCommentViewDelegate {
+    func didCommentButtonTapped() {
+        viewModel.detailPost
+            .drive(with: self, onNext: { owner, post in
+                let profileURL: String
+                if post.isEmpty {
+                    profileURL = ""
+                } else {
+                    profileURL = post[0].profileURL
+                }
+                
+                let modalViewController = CommentViewController(postID: owner.postID, profileURL: profileURL)
+                modalViewController.modalPresentationStyle = .pageSheet
+                
+                owner.present(modalViewController, animated: true)
+            })
+            .disposed(by: disposeBag)
     }
 }
