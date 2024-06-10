@@ -61,6 +61,7 @@
 		9ED2F1DE2C0DCB6300A22B4E /* ReplyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ED2F1DD2C0DCB6300A22B4E /* ReplyTableViewCell.swift */; };
 		9EE65F772C15BDB3008016FF /* MyVoteDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE65F762C15BDB3008016FF /* MyVoteDetailViewController.swift */; };
 		9EE65F792C15BF6A008016FF /* MyVoteDetailHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE65F782C15BF6A008016FF /* MyVoteDetailHeaderView.swift */; };
+		9EE65F7B2C16C2DF008016FF /* MyVoteDetailCommentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE65F7A2C16C2DF008016FF /* MyVoteDetailCommentView.swift */; };
 		9EE952DD2C0F2D7900D9BA77 /* CommentSetupModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE952DC2C0F2D7900D9BA77 /* CommentSetupModalViewController.swift */; };
 		9EE952DF2C0F342300D9BA77 /* ReplySetupModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE952DE2C0F342300D9BA77 /* ReplySetupModalViewController.swift */; };
 		9EE952E22C11745D00D9BA77 /* MypageHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE952E12C11745D00D9BA77 /* MypageHeaderView.swift */; };
@@ -126,6 +127,7 @@
 		9ED2F1DD2C0DCB6300A22B4E /* ReplyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplyTableViewCell.swift; sourceTree = "<group>"; };
 		9EE65F762C15BDB3008016FF /* MyVoteDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyVoteDetailViewController.swift; sourceTree = "<group>"; };
 		9EE65F782C15BF6A008016FF /* MyVoteDetailHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyVoteDetailHeaderView.swift; sourceTree = "<group>"; };
+		9EE65F7A2C16C2DF008016FF /* MyVoteDetailCommentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyVoteDetailCommentView.swift; sourceTree = "<group>"; };
 		9EE952DC2C0F2D7900D9BA77 /* CommentSetupModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentSetupModalViewController.swift; sourceTree = "<group>"; };
 		9EE952DE2C0F342300D9BA77 /* ReplySetupModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplySetupModalViewController.swift; sourceTree = "<group>"; };
 		9EE952E12C11745D00D9BA77 /* MypageHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageHeaderView.swift; sourceTree = "<group>"; };
@@ -511,6 +513,7 @@
 				9EE952E32C11772300D9BA77 /* MypageInfoView.swift */,
 				9E7A74AD2C11A916005C9EC1 /* MyFeedCollectionViewCell.swift */,
 				9EE65F782C15BF6A008016FF /* MyVoteDetailHeaderView.swift */,
+				9EE65F7A2C16C2DF008016FF /* MyVoteDetailCommentView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -696,6 +699,7 @@
 				9E5BDD312BFCCCED005FCFAC /* CustomAlertViewController.swift in Sources */,
 				9E3655F12BFF4EA500AF020A /* AddVoteViewModel.swift in Sources */,
 				9E5BDD332BFCDA9A005FCFAC /* OnlyYesAlertViewController.swift in Sources */,
+				9EE65F7B2C16C2DF008016FF /* MyVoteDetailCommentView.swift in Sources */,
 				9E7455EB2BF8CE6100D519AD /* LoginViewModel.swift in Sources */,
 				9E5BDD552BFE36FF005FCFAC /* AddVoteContentView.swift in Sources */,
 				9E5BDD032BF9E3E5005FCFAC /* ServiceType.swift in Sources */,
