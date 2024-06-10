@@ -22,6 +22,20 @@ class MyVoteDetailViewController: BaseViewController {
     private lazy var headerView = MyVoteDetailHeaderView().then {
         $0.delegate = self
     }
+    private let contentView = MyVoteDetailContentView()
+    
+    private let commentView = MyVoteDetailCommentView().then {
+        $0.layer.cornerRadius = 8
+    }
+    private let voteProgressView = MyVoteDetailProgressView()
+    
+    private let stackView = UIStackView().then {
+        $0.axis = .vertical
+        $0.spacing = 0
+        $0.backgroundColor = .clear
+        $0.distribution =  .equalSpacing
+    }
+
     
     // MARK: - Init
     init(viewModel: MypageViewModelType = MypageViewModel(), postID: String) {
@@ -37,15 +51,18 @@ class MyVoteDetailViewController: BaseViewController {
     // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(postID)
         // Do any additional setup after loading the view.
     }
     
     // MARK: - SetUp VC
     override func setViewController() {
         super.setViewController()
-        [headerView].forEach {
+        [headerView, stackView].forEach {
             view.addSubview($0)
+        }
+        
+        [contentView, voteProgressView, commentView].forEach {
+            stackView.addArrangedSubview($0)
         }
     }
     
@@ -56,10 +73,34 @@ class MyVoteDetailViewController: BaseViewController {
             $0.horizontalEdges.equalToSuperview()
             $0.height.equalTo(32)
         }
+        
+        stackView.snp.makeConstraints {
+            $0.top.equalTo(headerView.snp.bottom).offset(20)
+            $0.horizontalEdges.equalToSuperview().inset(20)
+            $0.bottom.equalTo(view.safeAreaLayoutGuide).offset(-100)
+        }
     }
     
     override func bind() {
-    }
+        super.bind()
+        viewModel.postID.onNext(postID)
+        
+        viewModel.detailPost
+            .drive(with: self, onNext: { owner, post in
+                owner.voteProgressView.configuration(data: post)
+                owner.contentView.configuration(data: post)
+            })
+            .disposed(by: disposeBag)
+        
+        viewModel.detailComment
+            .drive(with: self, onNext: { owner, comment in
+                owner.commentView.configuration(comment: comment)
+            })
+            .disposed(by: disposeBag)    }
+}
+
+extension MyVoteDetailViewController {
+
 }
 
 // MARK: - Delegate
