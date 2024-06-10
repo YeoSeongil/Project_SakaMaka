@@ -517,9 +517,9 @@
 				9EE952E32C11772300D9BA77 /* MypageInfoView.swift */,
 				9E7A74AD2C11A916005C9EC1 /* MyFeedCollectionViewCell.swift */,
 				9EE65F782C15BF6A008016FF /* MyVoteDetailHeaderView.swift */,
-				9EE65F7A2C16C2DF008016FF /* MyVoteDetailCommentView.swift */,
 				9EE65F7C2C16C657008016FF /* MyVoteDetailContentView.swift */,
 				9EE65F7E2C16C792008016FF /* MyVoteDetailProgressView.swift */,
+				9EE65F7A2C16C2DF008016FF /* MyVoteDetailCommentView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
