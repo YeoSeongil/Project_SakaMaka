@@ -15,6 +15,7 @@ import Then
 
 class MyVoteDetailViewController: BaseViewController {
     
+    private let postID: String
     private let viewModel: MypageViewModelType
     
     // MARK: - UI Components
@@ -23,7 +24,8 @@ class MyVoteDetailViewController: BaseViewController {
     }
     
     // MARK: - Init
-    init(viewModel: MypageViewModelType = MypageViewModel()) {
+    init(viewModel: MypageViewModelType = MypageViewModel(), postID: String) {
+        self.postID = postID
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
@@ -35,7 +37,7 @@ class MyVoteDetailViewController: BaseViewController {
     // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        print(postID)
         // Do any additional setup after loading the view.
     }
     
