@@ -20,10 +20,12 @@ class LoginViewController: BaseViewController {
     private let viewModel: LoginViewModelType
     
     // MARK: - UI Components
-    private let loginButtonStackView = UIStackView().then {
-        $0.axis = .vertical
-        $0.spacing = 8.0
-        $0.backgroundColor = .clear
+    
+    private let titleLabel = UILabel().then {
+        let attributedString = NSMutableAttributedString(string: "살까 말까 고민 될 땐?", attributes: [.font: UIFont.h8, .foregroundColor: UIColor.black])
+        attributedString.append(NSAttributedString(string: "\n사카마카", attributes: [.font: UIFont.h8, .foregroundColor: UIColor.Turquoise]))
+        $0.attributedText = attributedString
+        $0.numberOfLines = 2
     }
     
     private let appleLoginButton = UIButton(type: .system).then {
@@ -60,30 +62,24 @@ class LoginViewController: BaseViewController {
     override func setViewController() {
         super.setViewController()
         
-        [loginButtonStackView].forEach {
+        [titleLabel, appleLoginButton].forEach {
             view.addSubview($0)
         }
-        
-        [appleLoginButton].forEach {
-            loginButtonStackView.addArrangedSubview($0)
-        }
-        
         appleLoginButton.addSubview(appleLogoImageView)
     }
     
     override func setConstraints() {
         super.setConstraints()
         
-        loginButtonStackView.snp.makeConstraints {
-            $0.bottom.equalTo(view.safeAreaInsets).inset(100)
-            $0.height.equalTo(60)
+        titleLabel.snp.makeConstraints {
+            $0.top.equalToSuperview().offset(100)
             $0.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(20)
         }
         
-        [appleLoginButton].forEach {
-            $0.snp.makeConstraints {
-                $0.height.equalTo(60)
-            }
+        appleLoginButton.snp.makeConstraints {
+            $0.height.equalTo(60)
+            $0.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(20)
+            $0.bottom.equalTo(view.safeAreaInsets).inset(100)
         }
         
         appleLogoImageView.snp.makeConstraints {
