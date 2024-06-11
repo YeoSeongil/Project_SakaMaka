@@ -7,39 +7,48 @@
 
 import UIKit
 
-import Firebase
+import FirebaseAuth
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     var window: UIWindow?
     
-    
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
-        // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
-        // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
-        guard let windowScene = (scene as? UIWindowScene) else { return }
-        window = UIWindow(windowScene: windowScene)
-        //
+            guard let windowScene = (scene as? UIWindowScene) else { return }
+            
+            window = UIWindow(windowScene: windowScene)
+            
+            let splashViewController = SplashViewController()
+            window?.rootViewController = splashViewController
+            window?.makeKeyAndVisible()
+            
+            // 2초 후에 사용자 인증 상태를 확인하여 전환
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                self.checkAuthentication()
+            }
+        }
+    
+    private func checkAuthentication() {
+        let newRootViewController: UIViewController
         
         if Auth.auth().currentUser != nil {
-            let tapBarController = TabBarController()
-            
+            // 사용자 인증이 되어 있을 경우
+            let tabBarController = TabBarController()
             let navigationController = UINavigationController()
             navigationController.navigationBar.isHidden = true
-            navigationController.viewControllers = [tapBarController]
-            
-            window?.rootViewController = navigationController
-            window?.makeKeyAndVisible()
+            navigationController.viewControllers = [tabBarController]
+            newRootViewController = navigationController
         } else {
-            let rootViewController = LoginViewController()
-            
-            let navigationController = UINavigationController(rootViewController: rootViewController)
+            // 사용자 인증이 되어 있지 않을 경우
+            let loginViewController = LoginViewController()
+            let navigationController = UINavigationController(rootViewController: loginViewController)
             navigationController.navigationBar.isHidden = true
-            
-            window?.rootViewController = navigationController
-            window?.makeKeyAndVisible()
+            newRootViewController = navigationController
         }
+        
+        UIView.transition(with: window!, duration: 0.5, options: .transitionCrossDissolve, animations: {
+            self.window?.rootViewController = newRootViewController
+        }, completion: nil)
     }
     
     func sceneDidDisconnect(_ scene: UIScene) {

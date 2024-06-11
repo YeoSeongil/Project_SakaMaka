@@ -14,21 +14,31 @@ import SnapKit
 import Then
 
 class SplashViewController: BaseViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+    
+    // MARK: - UI Components
+    private let titleLabel = UILabel().then {
+        let attributedString = NSMutableAttributedString(string: "사카", attributes: [.font: UIFont.h8, .foregroundColor: UIColor.white])
+        attributedString.append(NSAttributedString(string: "마카", attributes: [.font: UIFont.h8, .foregroundColor: UIColor.milkWhite]))
+        $0.attributedText = attributedString
     }
     
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    // MARK: - LifeCycle
+    override func viewDidLoad() {
+        super.viewDidLoad()
     }
-    */
-
+    
+    // MARK: - SetUp VC
+    override func setViewController() {
+        super.setViewController()
+        view.backgroundColor = .Turquoise
+        [titleLabel].forEach { view.addSubview($0) }
+    }
+    
+    override func setConstraints() {
+        super.setConstraints()
+        titleLabel.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.centerY.equalToSuperview()
+        }
+    }
 }
