@@ -28,6 +28,7 @@ class ReplyTableViewCell: UITableViewCell {
         $0.layer.masksToBounds = true
         $0.image = UIImage(systemName: "person.crop.circle.fill")
         $0.tintColor = .Turquoise
+        $0.contentMode = .scaleAspectFill
     }
     
     private let userNameLabel = UILabel().then {

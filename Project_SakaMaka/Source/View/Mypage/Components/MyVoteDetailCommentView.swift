@@ -30,6 +30,7 @@ class MyVoteDetailCommentView: UIView {
         $0.layer.cornerRadius = 15
         $0.layer.masksToBounds = true
         $0.tintColor = .Turquoise
+        $0.contentMode = .scaleAspectFill
     }
     
     private let commentButton = UIButton().then {
@@ -90,15 +91,7 @@ class MyVoteDetailCommentView: UIView {
 
 extension MyVoteDetailCommentView {
     func configuration(comment: [Comment]) {
-        if comment.isEmpty {
-            let attributedString = NSMutableAttributedString(string: "댓글", attributes: [.font: UIFont.b6, .foregroundColor: UIColor.black])
-            attributedString.append(NSAttributedString(string: " \(comment.count)개", attributes: [.font: UIFont.b6, .foregroundColor: UIColor.Turquoise]))
-            titleLabel.attributedText = attributedString
-            
-            commentButton.setTitle("댓글이 없어요.", for: .normal)
-            
-            profileImageView.image = UIImage(systemName: "person.crop.circle.fill")
-        } else {
+        if !comment.isEmpty {
             let attributedString = NSMutableAttributedString(string: "댓글", attributes: [.font: UIFont.b6, .foregroundColor: UIColor.black])
             attributedString.append(NSAttributedString(string: " \(comment.count)개", attributes: [.font: UIFont.b6, .foregroundColor: UIColor.Turquoise]))
             titleLabel.attributedText = attributedString
