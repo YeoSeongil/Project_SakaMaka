@@ -14,11 +14,12 @@ protocol CommentViewModelType {
     var commentDeleteValue: AnyObserver<(String, String)> { get }
     var replyDeleteValue: AnyObserver<(String, String, String)> { get }
     var replyID: AnyObserver<String> { get }
-    
+
     // Output
     var commentsData: Driver<[Comment]> { get }
     var successAddComment: Driver<Void> { get }
     var successAddReply: Driver<Void> { get }
+    var profileURL: Driver<String> { get }
     func isCurrentUserAuthor(authorId: String) -> Bool
 }
 
@@ -39,13 +40,19 @@ class CommentViewModel {
     private let outputCommentsData = BehaviorRelay<[Comment]>(value: [])
     private let outputSuccessAddComment = PublishRelay<Void>()
     private let outputSuccessAddReply = PublishRelay<Void>()
+    private let outputProfileURL = BehaviorRelay<String>(value: "")
     
     init() {
+        tryFetchProfileURL()
         tryAddComment()
         tryFetchComments()
         tryAddReply()
         tryDeleteComment()
         tryDeleteReply()
+    }
+    
+    private func tryFetchProfileURL() {
+        fetchProfileURL()
     }
     
     private func tryAddComment() {
@@ -92,6 +99,22 @@ class CommentViewModel {
 }
 
 extension CommentViewModel {
+    private func fetchProfileURL() {
+        guard let currentUser = Auth.auth().currentUser else {
+            return
+        }
+        
+        let profileImageRef = Storage.storage().reference().child("profiles/\(currentUser.uid)")
+        
+        profileImageRef.downloadURL { [weak self] url, error in
+            if let error = error {
+                print("error")
+            } else if let urlString = url?.absoluteString{
+                self?.outputProfileURL.accept(urlString)
+            }
+        }
+    }
+    
     private func addComment(to postID: String, content: String) {
         let postRef = Firestore.firestore().collection("posts").document(postID)
         
@@ -321,6 +344,10 @@ extension CommentViewModel: CommentViewModelType {
 
     var successAddReply: Driver<Void> {
         outputSuccessAddReply.asDriver(onErrorDriveWith: .empty())
+    }
+    
+    var profileURL: Driver<String> {
+        outputProfileURL.asDriver(onErrorDriveWith: .empty())
     }
     
     func isCurrentUserAuthor(authorId: String) -> Bool {
