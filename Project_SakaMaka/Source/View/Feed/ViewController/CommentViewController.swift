@@ -39,7 +39,6 @@ class CommentViewController: BaseViewController {
     
     private lazy var footerView = CommentFooterView().then {
         $0.delegate = self
-        $0.configuration(url: profileURL)
     }
     
     // MARK: - Init
@@ -126,6 +125,12 @@ class CommentViewController: BaseViewController {
                 owner.isRepliesVisible = [:]
                 owner.tableView.reloadData()
                 owner.headerView.configuration(comment: comments)
+            })
+            .disposed(by: disposeBag)
+        
+        viewModel.profileURL
+            .drive(with: self, onNext: { owner, url in
+                owner.footerView.configuration(url: url)
             })
             .disposed(by: disposeBag)
     }
