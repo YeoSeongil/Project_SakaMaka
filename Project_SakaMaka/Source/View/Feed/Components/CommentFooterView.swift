@@ -41,7 +41,6 @@ class CommentFooterView: UIView {
         $0.backgroundColor = .clear
         $0.layer.cornerRadius = 17.5
         $0.layer.masksToBounds = true
-
         $0.tintColor = .Turquoise
     }
     
