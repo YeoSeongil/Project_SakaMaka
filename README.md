@@ -1,3 +1,7 @@
+# 사카마카 - 살까 말까 고민될 땐?
+
+![KakaoTalk_20240613_121412256](https://github.com/YeoSeongil/Project_SakaMaka/assets/75207506/a126f954-cc24-4a99-aeda-6ba84acfa665)
+
 ## 개발 기간
 - 개발 : 24.05.18 ~ 24.06.11
 
@@ -42,5 +46,5 @@
 |COMMENT|주석 작성|
 
 ## 시연 영상
-
+https://youtu.be/8K_SL70_x1Y
 
